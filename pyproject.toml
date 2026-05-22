@@ -1,0 +1,16 @@
+[project]
+name = "local-invoice-intelligence"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "docile-benchmark>=0.3.4",
+    "ollama>=0.6.2",
+    "pydantic>=2.13.4",
+    "pydantic-settings>=2.14.1",
+    "pymupdf>=1.27.2.3",
+    "python-dateutil>=2.9.0.post0",
+    "rapidfuzz>=3.14.5",
+    "tqdm>=4.67.3",
+]
