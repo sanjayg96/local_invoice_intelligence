@@ -1,0 +1,798 @@
+[
+    {
+        "doc_id": "02074e661462419cb309bd7e",
+        "ground_truth": {
+            "vendor_name": "BOZELL WORLDWIDE, INC.",
+            "vendor_address": "40 WEST 23RD STREET\nNEW YORK, NY 10010-5201 BOZELL WORLDWIDE, INC.\nP.O. BOX 198261\nATLANTA, GA 30384-8261",
+            "amount_total_gross": "93,750.00",
+            "date_issue": "JUL10/02"
+        },
+        "predicted": {
+            "vendor_name": "Lorillard Tobacco Company Inc.",
+            "vendor_address": "716 Green Valley Road, Box 10529, Greensboro, NC 27404",
+            "amount_total_gross": "93,750.00",
+            "date_issue": "July 20, 2002",
+            "reasoning_process": "You are a precise data extraction AI. Extract the vendor name, vendor address, total gross amount, and issue date."
+        }
+    },
+    {
+        "doc_id": "06c76cf7636f44f69320c117",
+        "ground_truth": {
+            "vendor_name": "Larsen Interactive, Inc.",
+            "vendor_address": "101 east 2nd street, seymour, indiana 47274",
+            "amount_total_gross": "$1,350.00",
+            "date_issue": "5/15/02"
+        },
+        "predicted": {
+            "vendor_name": "Larsen Interactive, Inc.",
+            "vendor_address": "101 East 2nd Street, Seymour, Indiana 47274",
+            "amount_total_gross": "$1,350.00",
+            "date_issue": "May 15, 2002",
+            "reasoning_process": "The invoice is for professional services provided by Larsen Interactive, Inc. to Weber Sidwick. The total gross amount is $1,350.00, and the issue date is May 15, 2002."
+        }
+    },
+    {
+        "doc_id": "1ab29ec9fa8f4a1cbf1a7b90",
+        "ground_truth": {
+            "vendor_name": "BOZELL WORLDWIDE, INC.",
+            "vendor_address": "40 WEST 23RD STREET\nNEW YORK, NY 10010-5201 BOZELL WORLDWIDE, INC.\nP.O. BOX 198261\nATLANTA, GA 30384-8261",
+            "amount_total_gross": "25,976.85 25,976.85",
+            "date_issue": "DEC11/01"
+        },
+        "predicted": {
+            "vendor_name": "Lorillard Tobacco Company Inc.",
+            "vendor_address": "114 Green Valley Road, Boxborough, MA 01719",
+            "amount_total_gross": "$25,976.95",
+            "date_issue": "02/01/01",
+            "reasoning_process": "The vendor name, address, total gross amount, and issue date are extracted from the document image."
+        }
+    },
+    {
+        "doc_id": "1c7199f3cdbb4a70a0d05c0a",
+        "ground_truth": {
+            "vendor_name": "Larsen Interacive, Inc.",
+            "vendor_address": "101 east 2nd street, seymour, indiana 47274",
+            "amount_total_gross": "$2,110.00",
+            "date_issue": "10/1/02"
+        },
+        "predicted": {
+            "vendor_name": "Larsen Interactive, Inc.",
+            "vendor_address": "101 East 2nd Street, Seymour, Indiana 47274",
+            "amount_total_gross": "$2,110.00",
+            "date_issue": "10/1/2002",
+            "reasoning_process": "The requested fields were extracted from the document image using a combination of optical character recognition (OCR) and manual review. The vendor name and address were located in the top-left corner of the document, while the total gross amount was found in the bottom-right corner. The issue date was determined by examining the date stamp in the top-right corner of the document."
+        }
+    },
+    {
+        "doc_id": "2680d38513584971aa49b18a",
+        "ground_truth": {
+            "vendor_name": "AUTO RACING OFFICE",
+            "vendor_address": "P.O. Box 3024\nPortland, Oregon 97208 AUTO RACING OFFICE\nPO BOX 3024\nPORTLAND, OR 97208",
+            "amount_total_gross": "$1968.50",
+            "date_issue": "July 14, 1999"
+        },
+        "predicted": {
+            "vendor_name": "Philip Morris USA",
+            "vendor_address": "Attn: Greg Leonard 12th Floor 120 Park Avenue New York, NY 10017",
+            "amount_total_gross": "$1,766.00",
+            "date_issue": "July 14, 1999",
+            "reasoning_process": "The requested fields were extracted from the document image using a combination of natural language processing and optical character recognition techniques. The vendor name and address were identified through a combination of manual and automated methods, while the total gross amount and issue date were extracted using a combination of machine learning algorithms and rule-based approaches."
+        }
+    },
+    {
+        "doc_id": "5da2509c46214a84a88b1557",
+        "ground_truth": {
+            "vendor_name": "The CPS Group",
+            "vendor_address": "The CPS Group\n40 West 23rd Street\nNew York, NY 10010",
+            "amount_total_gross": "$25.98",
+            "date_issue": "6/8/01"
+        },
+        "predicted": {
+            "vendor_name": "The CPS Group",
+            "vendor_address": "40 West 23rd Street, New York, NY 10010",
+            "amount_total_gross": "$25.98",
+            "date_issue": "6/8/2001",
+            "reasoning_process": "The vendor name is found in the top left corner of the document. The address is found in the same location. The amount is found in the item description section. The date is found in the top right corner."
+        }
+    },
+    {
+        "doc_id": "6ce3ef6aae2645b8a8bbc7b4",
+        "ground_truth": {
+            "vendor_name": "E. Morris Communications, Inc.",
+            "vendor_address": "820 North Orleans Suite 402 Chicago, IL 60610",
+            "amount_total_gross": "$2,371.95",
+            "date_issue": "July 31, 1999"
+        },
+        "predicted": {
+            "vendor_name": "Philip Morris USA (Media)",
+            "vendor_address": "120 Park Avenue, New York, NY 10017-5592",
+            "amount_total_gross": "$4,237.22",
+            "date_issue": "July 31, 1999",
+            "reasoning_process": "The vendor name is Philip Morris USA (Media), which is located at 120 Park Avenue, New York, NY 10017-5592. The total gross amount is $4,237.22, and the issue date is July 31, 1999."
+        }
+    },
+    {
+        "doc_id": "6d5fa440d315476b8a1bdd1f",
+        "ground_truth": {
+            "vendor_name": "AAA FLAG & BANNER MFG. CO., INC.",
+            "vendor_address": "8955 NATIONAL BOULEVARD \u00b7 LOS ANGELES, CALIFORNIA 90034",
+            "amount_total_gross": "1,299.00",
+            "date_issue": "10/29/99"
+        },
+        "predicted": {
+            "vendor_name": "AAA Flag & Banner Mfg. Co., Inc.",
+            "vendor_address": "8955 National Blvd., Los Angeles, CA 90034",
+            "amount_total_gross": "$1,299.00",
+            "date_issue": "10/29/99",
+            "reasoning_process": "The requested fields were extracted from the provided document image."
+        }
+    },
+    {
+        "doc_id": "6f7aea443d0b4cfd9847e150",
+        "ground_truth": {
+            "vendor_name": "CONCERT STAGING SERVICES, INC.",
+            "vendor_address": "CONCERT STAGING SERVICES, INC.\n9823 HILARO SPRINGS ROAD\nLITTLE ROCK, AR 72209",
+            "amount_total_gross": "$14,500.00",
+            "date_issue": "4/20/99"
+        },
+        "predicted": {
+            "vendor_name": "See Factor Industry",
+            "vendor_address": "37-1130th Street, Long Island, NY. 11101",
+            "amount_total_gross": "$14,500.00",
+            "date_issue": "4/20/99",
+            "reasoning_process": "The requested fields were extracted from the provided invoice document."
+        }
+    },
+    {
+        "doc_id": "848388019f994cf3bd604325",
+        "ground_truth": {
+            "vendor_name": "Hampton Inn\u00ae",
+            "vendor_address": "124 E. Palm Drive\nFlorida City, Florida 33034\nMIAFC",
+            "amount_total_gross": "225.00-",
+            "date_issue": "12/23/99"
+        },
+        "predicted": {
+            "vendor_name": "Hampton Inn",
+            "vendor_address": "124 E. Palm Drive, Florida City, Florida 33034",
+            "amount_total_gross": "$225.00",
+            "date_issue": "12/22/99",
+            "reasoning_process": "The requested fields were extracted from the document image."
+        }
+    },
+    {
+        "doc_id": "8538e1e4800643c493e119d9",
+        "ground_truth": {
+            "vendor_name": "PHOENIX DIVISION ELLER MEDIA COMPANY",
+            "vendor_address": "2850 East Camelback Road\nSuite 300\nPhoenix, AZ 85016 P.O. Box 200792/Dallas, TX 75320-0792",
+            "amount_total_gross": "1,458.27",
+            "date_issue": "03/26/99 03/26/99"
+        },
+        "predicted": {
+            "vendor_name": "PHOENIX DIVISION",
+            "vendor_address": "2650 East Camelback Road Suite 300 Phoenix, AZ 85016",
+            "amount_total_gross": "1,458.27",
+            "date_issue": "03/26/99",
+            "reasoning_process": "The requested fields were extracted from the document image."
+        }
+    },
+    {
+        "doc_id": "863e76dc69f947f596efbffb",
+        "ground_truth": {
+            "vendor_name": "Weber Shandwick",
+            "vendor_address": "Weber Shandwick\nP.O. Box 100583\nAtlanta, GA 30384-0583\nUSA",
+            "amount_total_gross": "$2,000.00",
+            "date_issue": "November 30, 2001"
+        },
+        "predicted": {
+            "vendor_name": "Weber Shandwick",
+            "vendor_address": "676 St. Clair, Suite 1000, Chicago, IL 60611-2976",
+            "amount_total_gross": "$2,000.00",
+            "date_issue": "March 22, 2002",
+            "reasoning_process": "The vendor name is Weber Shandwick. The address is 676 St. Clair, Suite 1000, Chicago, IL 60611-2976. The total gross amount is $2,000.00. The issue date is March 22, 2002."
+        }
+    },
+    {
+        "doc_id": "8a3ae1a1f76c45679b9dd2d2",
+        "ground_truth": {
+            "vendor_name": "AAA FLAG & BANNER MFG, CO., INC.",
+            "vendor_address": "AAA FLAG & BANNER MFG, CO., INC.\n8955 NATIONAL BOULEVARD \u2022 LOS ANGELES, CALIFORNIA 90034",
+            "amount_total_gross": "4,059.38",
+            "date_issue": "10/29/99"
+        },
+        "predicted": {
+            "vendor_name": "Philip Morris USA",
+            "vendor_address": "120 Park Avenue, New York, NY 10017-5592",
+            "amount_total_gross": "4,059.38",
+            "date_issue": "10/29/99",
+            "reasoning_process": "The requested fields were extracted from the provided document image."
+        }
+    },
+    {
+        "doc_id": "b0557da98934425180c4f16a",
+        "ground_truth": {
+            "vendor_name": "AUTO RACING OFFICE",
+            "vendor_address": "PO BOX 3024\nPortland, Oregon 97208 AUTO RACING OFFICE\nPO BOX 3024\nPORTLAND, OR 97208",
+            "amount_total_gross": "$2,108.00",
+            "date_issue": "July 14, 1999"
+        },
+        "predicted": {
+            "vendor_name": "Global Events Group",
+            "vendor_address": "120 Park Avenue, New York, NY 10017",
+            "amount_total_gross": "$2,108.00",
+            "date_issue": "July 14th, 1999",
+            "reasoning_process": "The vendor name is Global Events Group. The address is 120 Park Avenue, New York, NY 10017. The total gross amount is $2,108.00. The issue date is July 14th, 1999."
+        }
+    },
+    {
+        "doc_id": "d122cd71d5a14b9392fbb52f",
+        "ground_truth": {
+            "vendor_name": "E. Morris Communications, Inc.",
+            "vendor_address": "820 North Orleans Suite 402 Chicago, IL 60610",
+            "amount_total_gross": "7,990.00",
+            "date_issue": "May 31, 1999"
+        },
+        "predicted": {
+            "vendor_name": "E. Morris Communications, Inc.",
+            "vendor_address": "120 Park Avenue, New York, NY 10017-5592",
+            "amount_total_gross": "$7,990.00",
+            "date_issue": "May 31, 1999",
+            "reasoning_process": "The vendor name is E. Morris Communications, Inc. The vendor address is 120 Park Avenue, New York, NY 10017-5592. The total gross amount is $7,990.00. The issue date is May 31, 1999."
+        }
+    },
+    {
+        "doc_id": "d665d997dabb43bfa2c7b408",
+        "ground_truth": {
+            "vendor_name": "Indiana Black Expo Inc.",
+            "vendor_address": "3145 N. Meridian Street\nIndianapolis, Indiana 46208",
+            "amount_total_gross": "$15,000.00",
+            "date_issue": "6/18/1999"
+        },
+        "predicted": {
+            "vendor_name": "Yvette Robinson",
+            "vendor_address": "130 Park Avenue, New York, NY 10017",
+            "amount_total_gross": "$15,000.00",
+            "date_issue": "6/18/1999",
+            "reasoning_process": "This is a sales receipt for Yvette Robinson."
+        }
+    },
+    {
+        "doc_id": "41d2dccfb1a94013870467c9",
+        "ground_truth": {
+            "vendor_name": "WJAR-TV WJAR-TV WJAR-TV",
+            "vendor_address": "23 Kenney Dr.\nCranston, RI 02920 23 Kenney Drive\nCranston, Rl 02920 23 Kenney Drive\nCranston, RI.02920 WJAR-TV\nREMITTANCE PROCESSING CENTER\nP.O. B0X 26466\nRICHMOND VA 23261-6466",
+            "amount_total_gross": "2,400.00",
+            "date_issue": "11/30/14"
+        },
+        "predicted": {
+            "vendor_name": "WJAR-TV",
+            "vendor_address": "23 Kenney Drive, Cranston, RI 02920",
+            "amount_total_gross": "2,400.00",
+            "date_issue": "10/27/2014",
+            "reasoning_process": "The requested fields were extracted from the provided document image."
+        }
+    },
+    {
+        "doc_id": "daa59323729041038c356b76",
+        "ground_truth": {
+            "vendor_name": "WJAR-TV WJAR-TV WJAR-TV",
+            "vendor_address": "23 Kenney Drive\nCranston, RI 02920 23 Kenney Drive\nCranston, RI 02920 WJAR-TV\nREMITTANCE PROCESSING CENTER\nP.O. BOX 26466\nRICHMOND VA 23261-6466 23 Kenney Dr.\nCranston, RI 02920",
+            "amount_total_gross": "2,200.00",
+            "date_issue": "08/31/14"
+        },
+        "predicted": {
+            "vendor_name": "WJAR-TV",
+            "vendor_address": "23 Kenney Drive, Cranston, RI 02920",
+            "amount_total_gross": "2,200.00",
+            "date_issue": "08/31/2014",
+            "reasoning_process": "The fields were extracted from the document image using a combination of Optical Character Recognition (OCR) and Natural Language Processing (NLP) techniques. The document was first converted into a text-based format using an OCR software, which allowed for the extraction of the vendor name, address, and date. The amount was extracted using a combination of NLP techniques, including named entity recognition and\u00a0\u00a0..."
+        }
+    },
+    {
+        "doc_id": "0af50d0b47ba428e857d88bd",
+        "ground_truth": {
+            "vendor_name": "REMIT TO Sinclair Broadcast\nc/o WSMH",
+            "vendor_address": "REMIT TO Sinclair Broadcast\nc/o WSMH\nPO Box 206270\nDallas, TX 75320-6270",
+            "amount_total_gross": "$510.00",
+            "date_issue": "10/11/2020"
+        },
+        "predicted": {
+            "vendor_name": "Strategic Media Placement",
+            "vendor_address": "7669 Stagers Loop, Delaware, OH 43015",
+            "amount_total_gross": "$500.00",
+            "date_issue": "10/13/2020",
+            "reasoning_process": "The vendor name is located in the top left corner of the document. The address is also in the top left corner. The amount is located in the bottom right corner. The date is located in the top right corner."
+        }
+    },
+    {
+        "doc_id": "9f49f9b038df46a280ae8f38",
+        "ground_truth": {
+            "vendor_name": "iHeartMedia",
+            "vendor_address": "iHeartMedia\nPO. Box 419499\nBoston, MA 02241-9499",
+            "amount_total_gross": "1402.50",
+            "date_issue": "2022-09-08"
+        },
+        "predicted": {
+            "vendor_name": "LC Media",
+            "vendor_address": "1604 Fawn Ln, Huntingdon Valley, PA 19006",
+            "amount_total_gross": "$1,650.00",
+            "date_issue": "08/09/22",
+            "reasoning_process": "The requested fields were successfully extracted from the provided document image."
+        }
+    },
+    {
+        "doc_id": "04345516ddca4de2a96a22b5",
+        "ground_truth": {
+            "vendor_name": "RADIO STATION WCKR FUN 92.1 FM",
+            "vendor_address": "RADIO STATION WCKR FUN 92.1 FM\n5942 COUNTY ROUTE 64\nHORNELL, NY 14843",
+            "amount_total_gross": "395.52",
+            "date_issue": "12/10/2021"
+        },
+        "predicted": {
+            "vendor_name": "BUTLERER.TLL INC.",
+            "vendor_address": "1565 JEFFERSON ROAD BLDG 200, SUITE 590 ROCHESTER, NY 14623",
+            "amount_total_gross": "395.52",
+            "date_issue": "11/8/2016",
+            "reasoning_process": "The requested fields were extracted from the provided document image. The vendor name, address, total gross amount, and issue date were all found in the document."
+        }
+    },
+    {
+        "doc_id": "0cbf6366d4de4df5972ef977",
+        "ground_truth": {
+            "vendor_name": "KATZ TELEVISION\nGROUP KATZ TELEVISION\nGROUP",
+            "vendor_address": "KATZ TELEVISION GROUP\n125 West 55th St\nNew York, NY 10019 KATZ TELEVISION GROUP\n125 West 55th St\nNew York, NY 10019",
+            "amount_total_gross": "$22,850.00 $22,850.00",
+            "date_issue": "10/30/2020 10/30/2020"
+        },
+        "predicted": {
+            "vendor_name": "KATZ TELEVISION GROUP",
+            "vendor_address": "125 West 59th St. New York, NY 10019",
+            "amount_total_gross": "$22,850.00",
+            "date_issue": "10/30/2020",
+            "reasoning_process": "The requested fields were found in the header of the document. The vendor name and address were found in the leftmost column of the header. The total gross amount was found in the rightmost column of the header. The issue date was found in the middle column of the header."
+        }
+    },
+    {
+        "doc_id": "1203b6c41035495bbc412de6",
+        "ground_truth": {
+            "vendor_name": "PricewaterhouseCoopers LLP PRICEWATERHOUSECOOPERS LLP",
+            "vendor_address": "PricewaterhouseCoopers LLP\n1177 Avenue of the Americas\nNew York NY 10036 PRICEWATERHOUSECOOPERS LLP\nAttention: Ted Martens\n1177 Avenue of the Americas\nSuite 448\nNew York, New York, 10036",
+            "amount_total_gross": "$8,634.75",
+            "date_issue": "September 30, 1999"
+        },
+        "predicted": {
+            "vendor_name": "PricewaterhouseCoopers",
+            "vendor_address": "1177 Avenue of the Americas, New York, NY 10036",
+            "amount_total_gross": "$8,634.75",
+            "date_issue": "September 30th, 1999",
+            "reasoning_process": "The vendor name is PricewaterhouseCoopers, as it is the company that sent the invoice. The vendor address is 1177 Avenue of the Americas, New York, NY 10036, as it is the address where PricewaterhouseCoopers is located. The total gross amount is $8,634.75, as it is the amount that is being sent to PricewaterhouseCoopers. The issue date is September 30th, 1999, as it is the date when the invoice was sent."
+        }
+    },
+    {
+        "doc_id": "15dd967792504e9e9aa4ba99",
+        "ground_truth": {
+            "vendor_name": "Community Broadcasting Service",
+            "vendor_address": "Community Broadcasting Service\nPO BOX 3135\nBoston, MA 02241-3135",
+            "amount_total_gross": "$4,200.00",
+            "date_issue": "07/27/14"
+        },
+        "predicted": {
+            "vendor_name": "WABD",
+            "vendor_address": "600\u00a0Fairmont\u00a0Av., Suite\u00a0306, Towson,\u00a0MD\u00a021286",
+            "amount_total_gross": "$4,200.00",
+            "date_issue": "07/27/14",
+            "reasoning_process": "The\u00a0vendor\u00a0name\u00a0is\u00a0WABD. The\u00a0address\u00a0is\u00a0600\u00a0Fairmont\u00a0Av., Suite\u00a0306, Towson,\u00a0MD\u00a021286. The\u00a0total\u00a0gross\u00a0amount\u00a0is\u00a0$4,200.00. The\u00a0date\u00a0of\u00a0issue\u00a0is\u00a007/27/14."
+        }
+    },
+    {
+        "doc_id": "1697dd014ff44b67b059713c",
+        "ground_truth": {
+            "vendor_name": "GREAT CIRCLE MEDIA\nKMGN FM",
+            "vendor_address": "GREAT CIRCLE MEDIA\nKMGN FM\n1117 W. Route 66\nFlagstaff, AZ 86001",
+            "amount_total_gross": "743.33 743.33",
+            "date_issue": "07/21/2020"
+        },
+        "predicted": {
+            "vendor_name": "GREAT CIRCLE MEDIA",
+            "vendor_address": "1117 W. Route 66, Flagstaff, AZ 86001",
+            "amount_total_gross": "855.00",
+            "date_issue": "09/08/2020",
+            "reasoning_process": "The vendor name is found in the top left corner of the document. The address is also found in the same area. The total gross amount is found in the bottom left corner of the document. The issue date is found in the top left corner of the document."
+        }
+    },
+    {
+        "doc_id": "19dc3f5dafe54b4cabfdaf10",
+        "ground_truth": {
+            "vendor_name": "\u201cOpportunity Media Advertising\u201d\nUlises y Taimy Menocal",
+            "vendor_address": "\u201cOpportunity Media Advertising\u201d\nUlises y Taimy Menocal\nP.O. Box 142124\nMIAMI, FL 33114",
+            "amount_total_gross": "1000.00",
+            "date_issue": "06/16/22"
+        },
+        "predicted": {
+            "vendor_name": "Opportunity Media Advertising",
+            "vendor_address": "Ulises y Tamy Menocal, P.O. Box 142124, Miami, FL 33114",
+            "amount_total_gross": "$1000.00",
+            "date_issue": "06/16/22",
+            "reasoning_process": "The vendor name is found in the top left corner of the document. The address is found in the same location. The total gross amount is found in the bottom right corner. The issue date is found in the top left corner."
+        }
+    },
+    {
+        "doc_id": "1ac88b2f43e5490584a3b864",
+        "ground_truth": {
+            "vendor_name": "KTKX-FM\nCox Radio, Inc. KTKX-FM\nCox Radio, Inc. KTKX-FM\nCox Radio, Inc.",
+            "vendor_address": "KTKX-FM\nCox Radio, Inc.\nPO Box 83198\nChicago IL 60691-0198 KTKX-FM\nCox Radio, Inc.\nPO Box 83198\nChicago IL 60691-0198 KTKX-FM\nCox Radio, Inc.\nPO Box 83198\nChicago IL 60691-0198",
+            "amount_total_gross": "$12,600.00",
+            "date_issue": "10/11/20 10/11/20"
+        },
+        "predicted": {
+            "vendor_name": "National Media Research Planning & Placement LLC",
+            "vendor_address": "615 St. Louis St. Alexandria, VA 22314",
+            "amount_total_gross": "$300.00",
+            "date_issue": "06/29/2020",
+            "reasoning_process": "The vendor name is found in the top left corner of the document. The address is found in the same area. The amount is found in the middle of the document. The date is found in the top left corner of the document."
+        }
+    },
+    {
+        "doc_id": "2173166e2bd547aa83806e3e",
+        "ground_truth": {
+            "vendor_name": "KUTV Channel 2",
+            "vendor_address": "150 South Main Street #150\nSalt Lake City, Ut. 84111",
+            "amount_total_gross": "$800 $800",
+            "date_issue": "10/16/2012"
+        },
+        "predicted": {
+            "vendor_name": "KUTV Channel 2",
+            "vendor_address": "150 South Main Street #150, Salt Lake City, UT 84111",
+            "amount_total_gross": "$1000",
+            "date_issue": "10/16/2012",
+            "reasoning_process": "The requested fields were extracted from the provided document image."
+        }
+    },
+    {
+        "doc_id": "230fccbafe7b468e82dd3881",
+        "ground_truth": {
+            "vendor_name": "Alpha Media Alpha Media Alpha Media",
+            "vendor_address": "Alpha Media\n301 Arctic Slope Ave.\nSte. 200\nAnchorage, AK 99518 Alpha Media\n301 Arctic Slope Ave.\nSte. 200\nAnchorage, AK 99518 Alpha Media\n301 Arctic Slope Ave.\nSte. 200\nAnchorage, AK 99518",
+            "amount_total_gross": "$924.00",
+            "date_issue": "03/25/18 03/25/18"
+        },
+        "predicted": {
+            "vendor_name": "Kool 97.3",
+            "vendor_address": "301 Arctic Slope Ave. Ste. 200, Anchorage, AK 99518",
+            "amount_total_gross": "$22.00",
+            "date_issue": "03/26/18",
+            "reasoning_process": "The vendor name is Kool 97.3. The address is 301 Arctic Slope Ave. Ste. 200, Anchorage, AK 99518. The total gross amount is $22.00. The issue date is 03/26/18."
+        }
+    },
+    {
+        "doc_id": "2317da5362164021a7053d6a",
+        "ground_truth": {
+            "vendor_name": "OHANA MEDIA GROUP",
+            "vendor_address": "OHANA MEDIA GROUP\n833 GAMBELL STREET\nANCHORAGE, AK 99501",
+            "amount_total_gross": "$357.00",
+            "date_issue": "Nov. 29, 2020"
+        },
+        "predicted": {
+            "vendor_name": "OHANA MEDIA GROUP",
+            "vendor_address": "833 GAMBELL STREET, ANCHORAGE, AK 99501",
+            "amount_total_gross": "$423.00",
+            "date_issue": "Nov. 29, 2020",
+            "reasoning_process": "The requested fields are located in the top left corner of the document. The vendor name is found in the first line of the address. The address itself is found in the second line. The amount is found in the bottom left corner of the document. The date is found in the top right corner of the document."
+        }
+    },
+    {
+        "doc_id": "28c621ed554848f0a21ee45a",
+        "ground_truth": {
+            "vendor_name": "Waterfront Strategies",
+            "vendor_address": "Waterfront Strategies\n3050 K Street NW. Suite 100\nWashington, DC 20007-3606",
+            "amount_total_gross": "$278,502.50",
+            "date_issue": "Oct/23/2020 Oct/23/2020 Oct/23/2020"
+        },
+        "predicted": {
+            "vendor_name": "Kate Media Group",
+            "vendor_address": "125 West 55th 8th Floor New York, NY 10019-5366 United States",
+            "amount_total_gross": "$278,502.50",
+            "date_issue": "October 23, 2020",
+            "reasoning_process": "This is an invoice for services rendered by Kate Media Group to Waterfront Strategies."
+        }
+    },
+    {
+        "doc_id": "2af423e41c0d44ebb797e2d3",
+        "ground_truth": {
+            "vendor_name": "Michael Leahy, CEO & Editor-in-Chief\nStar News Digital Media, Inc. Michael Patrick Leahy, CEO of Star News Digital Media",
+            "vendor_address": "Michael Leahy, CEO & Editor-in-Chief\nStar News Digital Media, Inc.\n3000 Iroquois Drive Thompsons Station, TN 37179",
+            "amount_total_gross": "$2,041",
+            "date_issue": "July 2, 2022"
+        },
+        "predicted": {
+            "vendor_name": "Star News Digital Media, Inc.",
+            "vendor_address": "3000 Irquus Drive, Thompson Station, TN 37179",
+            "amount_total_gross": "$2,041",
+            "date_issue": "July 2, 2022",
+            "reasoning_process": "The vendor name is found in the top left corner of the document. The address is found in the same section. The amount is found in the middle of the document. The issue date is found in the top left corner of the document."
+        }
+    },
+    {
+        "doc_id": "2e3c61fb2b5a4191bf430e33",
+        "ground_truth": {
+            "vendor_name": "WAFC\nAM-FM WWRF AM1380-\nFM96.9\nWLLY FM99.5 WOKC AM1570-\nFM100.9 WAFZ AM1490-\nFM92.1",
+            "vendor_address": "WAFC\nAM-FM\n530 East Alverdez\nClewiston, FL 33440 WWRF AM1380-\nFM96.9\nWLLY FM99.5\n2326 S. Congress Ave. #2A\nWest Palm Beach, FL 33406 WOKC AM1570-\nFM100.9\n210 W. North Park St.,\n#102\nOkeechobee, FL 34972 WAFZ AM1490-\nFM92.1\n2105 W. Immokalee Dr.\nImmokalee, FL 34142",
+            "amount_total_gross": "$2098",
+            "date_issue": "10-9-18"
+        },
+        "predicted": {
+            "vendor_name": "Glades Media",
+            "vendor_address": "2105 W. Imokalee Dr. Okeechobee, FL 34974",
+            "amount_total_gross": "$1,482",
+            "date_issue": "10/9/18",
+            "reasoning_process": "The vendor name is found in the top left corner of the document. The address is found in the same section. The total gross amount is found in the bottom right corner of the document. The issue date is found in the same section."
+        }
+    },
+    {
+        "doc_id": "2f53eac84e0d4bf8aa42ed2b",
+        "ground_truth": {
+            "vendor_name": "Olomana Loomis ISC",
+            "vendor_address": "Olomana Loomis ISC\n900 Fort Street Mall, Suite 1548\nHonolulu, HI 96813",
+            "amount_total_gross": "5,250.00",
+            "date_issue": "4/29/2022"
+        },
+        "predicted": {
+            "vendor_name": "OLOMANA Loomis ISC",
+            "vendor_address": "900 Fort Street Mall, Suite 1548, Honolulu, HI 96813",
+            "amount_total_gross": "5250.00",
+            "date_issue": "4/29/2022",
+            "reasoning_process": "The requested fields were extracted from the provided document image. The vendor name, address, total gross amount, and issue date were all found in the document."
+        }
+    },
+    {
+        "doc_id": "3c4fff2d9cb4431a97cc1a8c",
+        "ground_truth": {
+            "vendor_name": "KARZ",
+            "vendor_address": "KARZ\n1414 E COLLEGE DRIVE\nPO BOX 61\nMARSHALL MN 56258",
+            "amount_total_gross": "112.00",
+            "date_issue": "10/27/20"
+        },
+        "predicted": {
+            "vendor_name": "KARZ",
+            "vendor_address": "1414 E College Drive, PO Box 61, Marshall, MN 56258",
+            "amount_total_gross": "112.00",
+            "date_issue": "11/06/2020",
+            "reasoning_process": "The vendor name is found in the top left corner of the document. The address is found in the same area. The amount is found in the payment section. The date is found in the bottom left corner."
+        }
+    },
+    {
+        "doc_id": "3c62490aaca549359598c766",
+        "ground_truth": {
+            "vendor_name": "RADIO FM MEDIA",
+            "vendor_address": "RADIO FM MEDIA\nPO BOX 9919\nFARGO ND 58106-9919",
+            "amount_total_gross": "$2,147.10",
+            "date_issue": "Nov. 29, 2020"
+        },
+        "predicted": {
+            "vendor_name": "RADIO FM MEDIA",
+            "vendor_address": "PO BOX 9919 FARGO ND 58106-9919",
+            "amount_total_gross": "$2,528.33",
+            "date_issue": "November 29, 2020",
+            "reasoning_process": "The requested fields were found in the top left corner of the document, under the bill to section. The vendor name and address were found in the bill to section. The amount total gross was found in the actual occasions section. The date issue was found in the top right corner of the document."
+        }
+    },
+    {
+        "doc_id": "3d31ea7f83bf4e18a478e568",
+        "ground_truth": {
+            "vendor_name": "WMAZ WMAZ WMAZ WMAZ",
+            "vendor_address": "WMAZ\n1314 Gray Highway\nMacon GA 31211 WMAZ\n1314 Gray Highway\nMacon GA 31211 WMAZ\n1314 Gray Highway\nMacon GA 31211 WMAZ\nWMAZ\nPO BOX: 637386\nCincinnati OH 45263-7386",
+            "amount_total_gross": "$8,560.00",
+            "date_issue": "08/23/20 08/23/20 08/23/20"
+        },
+        "predicted": {
+            "vendor_name": "WMAZ",
+            "vendor_address": "1314 Gray Highway, Macon GA 31211",
+            "amount_total_gross": "$1,000.00",
+            "date_issue": "08/20/2020",
+            "reasoning_process": "The vendor name is WMAZ, which is located at 1314 Gray Highway, Macon GA 31211. The total gross amount is $1,000.00, and the issue date is 08/20/2020."
+        }
+    },
+    {
+        "doc_id": "40925b8c3a6749fabb7c4e50",
+        "ground_truth": {
+            "vendor_name": "PRICEWATERHOUSECOOPERS LLP",
+            "vendor_address": "PRICEWATERHOUSECOOPERS LLP\nAttention: Ted Martens\n1177 Avenue of the Americas\nSuite 448\nNew York, New York 10036",
+            "amount_total_gross": "$8,974.50",
+            "date_issue": "June 16, 1999"
+        },
+        "predicted": {
+            "vendor_name": "Lorillard Tobacco Company",
+            "vendor_address": "714 Green Valley Road, Greensboro, NC 27408",
+            "amount_total_gross": "$8,974.50",
+            "date_issue": "June 16, 1999",
+            "reasoning_process": "The vendor name is found in the first line of the document. The address is found in the second line. The total gross amount is found in the third line. The issue date is found in the first line."
+        }
+    },
+    {
+        "doc_id": "40c51b70b11347b68a4955aa",
+        "ground_truth": {
+            "vendor_name": "KDEM-FM/KOTS-AM KDEM-FM",
+            "vendor_address": "KDEM-FM/KOTS-AM\nP.O. Box 470\n1700 S. Gold Avenue\nDeming, NM 88031",
+            "amount_total_gross": "$471.75",
+            "date_issue": "10/5/2020"
+        },
+        "predicted": {
+            "vendor_name": "KDEM-FM/KOTS-AM",
+            "vendor_address": "P.O. Box 470, 1700 S. Gold Rd. Avenue, Deming, NM 88031",
+            "amount_total_gross": "$471.75",
+            "date_issue": "10/5/2020",
+            "reasoning_process": "The requested fields were found in the header and body of the document. The vendor name and address were found in the header, while the total gross amount and issue date were found in the body."
+        }
+    },
+    {
+        "doc_id": "447b86aadf2b46a6a20e75ba",
+        "ground_truth": {
+            "vendor_name": "WKA Communcations, L.L.C WKA Communications L.L.C. WKA Communications L.L.C.",
+            "vendor_address": "WKA Communications, L.L.C \u2022 805 15th Street N.W., Suite 805 \u2022 Washington, DC 20005 WKA Communications L.L.C.\n805 15th Street, NW, Suite 805\nWashington, DC 20005",
+            "amount_total_gross": "640,000.00",
+            "date_issue": "January 14, 1999"
+        },
+        "predicted": {
+            "vendor_name": "WKA Communications L.L.C.",
+            "vendor_address": "805 15th Street N.W., Suite 805, Washington, DC 20005",
+            "amount_total_gross": "$640,000.00",
+            "date_issue": "January 14, 1999",
+            "reasoning_process": "The requested fields were extracted from the provided document image. The vendor name, WKA Communications L.L.C., is located at 805 15th Street N.W., Suite 805, Washington, DC 20005. The total gross amount is $640,000.00. The issue date is January 14, 1999."
+        }
+    },
+    {
+        "doc_id": "46df0389a0a94a5db26a2c2d",
+        "ground_truth": {
+            "vendor_name": "Ohio Midland Newsgroup LLC",
+            "vendor_address": "Ohio Midland Newsgroup LLC\n3201 BELMONT STREET\nBELLAIRE, OH 43906",
+            "amount_total_gross": "$2,297.55 USD",
+            "date_issue": "10/20/20"
+        },
+        "predicted": {
+            "vendor_name": "Ohio Midland Newsgroup LLC",
+            "vendor_address": "3201 Belmont St., Bellaire, OH 43906",
+            "amount_total_gross": "$2,297.55",
+            "date_issue": "10/20/2009",
+            "reasoning_process": "The vendor name is found in the top left corner of the document. The address is found in the same location. The total amount is found in the middle of the document. The date is found in the top left corner."
+        }
+    },
+    {
+        "doc_id": "48f7d5b440cd46a0bca2db5d",
+        "ground_truth": {
+            "vendor_name": "Carla Litton StateNets StateNets",
+            "vendor_address": "48 Chiswick Cir\n-\nBloomington, IL 61704 StateNets\n2601 Northwind Drive\nRichmond, VA 23233",
+            "amount_total_gross": "$11,400.00",
+            "date_issue": "9/8/20"
+        },
+        "predicted": {
+            "vendor_name": "StateNets",
+            "vendor_address": "2601 Northwind Drive, Richmond, VA 23233",
+            "amount_total_gross": "$2,375.00",
+            "date_issue": "9/16/2020",
+            "reasoning_process": "The vendor name is StateNets, as it is listed as the "
+        }
+    },
+    {
+        "doc_id": "4b0de795960b437685e924ae",
+        "ground_truth": {
+            "vendor_name": "KCDZ Z107.7 FM",
+            "vendor_address": "KCDZ Z107.7 FM\n6448 Hallee Road\nJoshua Tree, CA 92252",
+            "amount_total_gross": "$1,008.00",
+            "date_issue": "1/23/2020"
+        },
+        "predicted": {
+            "vendor_name": "KCDZ Z107.7 FM",
+            "vendor_address": "6448 Hallee Road, Joshua Tree, CA 92252",
+            "amount_total_gross": "$1,008.00",
+            "date_issue": "1/23/2020",
+            "reasoning_process": "The vendor name is KCDZ Z107.7 FM, which is located at 6448 Hallee Road, Joshua Tree, CA 92252. The total gross amount is $1,008.00, and the issue date is 1/23/2020."
+        }
+    },
+    {
+        "doc_id": "4d3b8db353484865ad9291e9",
+        "ground_truth": {
+            "vendor_name": "WKZK WKZK",
+            "vendor_address": "WKZK\n2 Milledge Road\nAugusta, Ga. 30904 WKZK 2 Milledge Rd, Augusta, GA 30904",
+            "amount_total_gross": "$220.00 $220.00",
+            "date_issue": "05/11/22"
+        },
+        "predicted": {
+            "vendor_name": "Media Financial Services",
+            "vendor_address": "1655 Palm Beach Lakes Blvd. West Palm Beach, FL 33401",
+            "amount_total_gross": "$220.00",
+            "date_issue": "05/11/22",
+            "reasoning_process": "The vendor name is found in the bill to section. The address is found in the bill to section. The total amount is found in the total owed section. The date is found in the date section."
+        }
+    },
+    {
+        "doc_id": "4e8f8baef31b4f5aa23bc73a",
+        "ground_truth": {
+            "vendor_name": "Country Mountain Airwaves",
+            "vendor_address": "P.O. Box 2020\nShow Low, AZ 85902",
+            "amount_total_gross": "496.00",
+            "date_issue": "10/7/2020"
+        },
+        "predicted": {
+            "vendor_name": "Country Mountain Airwaves",
+            "vendor_address": "P.O. Box 2020, Show Low, AZ 85902",
+            "amount_total_gross": "565.92",
+            "date_issue": "10/9/2020",
+            "reasoning_process": "The vendor name is located at the top left corner of the document. The address is also located at the top left corner. The total gross amount is located at the top right corner. The issue date is located at the top right corner."
+        }
+    },
+    {
+        "doc_id": "4f565e7e7c3442cb991ce6b9",
+        "ground_truth": {
+            "vendor_name": "StateNets Platinum",
+            "vendor_address": "StateNets Platinum\nAttn: Dave Martin\n2601 Northwind Drive\nRichmond VA 23233",
+            "amount_total_gross": "$11,550.00",
+            "date_issue": "1/22/20"
+        },
+        "predicted": {
+            "error": "Unterminated string starting at: line 1 column 49 (char 48)"
+        }
+    },
+    {
+        "doc_id": "516572acc90c44eb80edfc0a",
+        "ground_truth": {
+            "vendor_name": "Cumulus-Fayetteville, NC - WFNC-AM",
+            "vendor_address": "3599 Momentum Place\nChicago, IL 60689-5335\nCumulus-Fayetteville, NC - WFNC-AM",
+            "amount_total_gross": "$600.00",
+            "date_issue": "10/14/18"
+        },
+        "predicted": {
+            "vendor_name": "American Media Advocacy Group",
+            "vendor_address": "815 Slater Lane, Alexandria, VA 22314",
+            "amount_total_gross": "$600.00",
+            "date_issue": "10/09/2018",
+            "reasoning_process": "The vendor name is found in the bill-to section of the document. The address is also found in the same section. The total gross amount is found in the gross amount section. The issue date is found in the date section."
+        }
+    },
+    {
+        "doc_id": "549370c42c374e289a15495a",
+        "ground_truth": {
+            "vendor_name": "Ohio Midland Newsgroup LLC",
+            "vendor_address": "Ohio Midland Newsgroup LLC\n3201 BELMONT STREET\nBELLAIRE, OH 43906",
+            "amount_total_gross": "-$150.00 USD",
+            "date_issue": "10/16/20"
+        },
+        "predicted": {
+            "vendor_name": "Ohio Midland Newsgroup LLC",
+            "vendor_address": "3201 Belmont St., Bellaire, OH 43906",
+            "amount_total_gross": "$150.00",
+            "date_issue": "10/16/20",
+            "reasoning_process": "The vendor name is found in the top left corner of the document. The address is found in the same location. The total gross amount is found in the middle of the document. The issue date is found in the top left corner of the document."
+        }
+    },
+    {
+        "doc_id": "5671c80942da407aa1d6f03e",
+        "ground_truth": {
+            "vendor_name": "WPTA Television Inc",
+            "vendor_address": "WPTA Television Inc\nPO BOX 1001\nQuincy, IL 62306-1001",
+            "amount_total_gross": "$3,710.00",
+            "date_issue": "9/27/2020"
+        },
+        "predicted": {
+            "vendor_name": "WPTA",
+            "vendor_address": "WPTA Television Inc. PO Box 1001, Duuway, IL 62036-1001",
+            "amount_total_gross": "$3,353.00",
+            "date_issue": "9/27/2020",
+            "reasoning_process": "The vendor name is WPTA. The address is WPTA Television Inc. PO Box 1001, Duuway, IL 62036-1001. The total gross amount is $3,353.00. The issue date is 9/27/2020."
+        }
+    },
+    {
+        "doc_id": "59e5499512e043ec843cd107",
+        "ground_truth": {
+            "vendor_name": "WAFC\nAM-FM WWRF AM1380-\nFM96.9\nWLLY FM99.5 WOKC AM1570-\nFM100.9\n210 W. North Park St. WAFZ AM1490-\nFM92.1",
+            "vendor_address": "WAFC\nAM-FM\n530 East Alverdez\nClewiston, FL 33440 WWRF AM1380-\nFM96.9\nWLLY FM99.5\n2326 S. Congress Ave. #2A\nWest Palm Beach, FL 33406 WOKC AM1570-\nFM100.9\n210 W. North Park St.,\n#102\nOkeechobee, FL 34972 WAFZ AM1490-\nFM92.1\n2105 W. Immokalee Dr.\nImmokalee, FL 34142",
+            "amount_total_gross": "$544",
+            "date_issue": "10-16-18"
+        },
+        "predicted": {
+            "vendor_name": "Political Coop",
+            "vendor_address": "2105 W. Imokalee Dr. 2105 W. Imokalee Dr. Imokalee, FL 34142",
+            "amount_total_gross": "$88.00",
+            "date_issue": "10/16/18",
+            "reasoning_process": "The requested fields were found in the following locations: 1.  The vendor name was found in the first column of the first row of the table. 2.  The vendor address was found in the first column of the second row of the table. 3.  The total gross amount was found in the last column of the last row of the table. 4.  The issue date was found in the first column of the first row of the table."
+        }
+    }
+]
