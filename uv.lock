@@ -334,6 +334,7 @@ source = { virtual = "." }
 dependencies = [
     { name = "docile-benchmark" },
     { name = "ollama" },
+    { name = "pillow" },
     { name = "pydantic" },
     { name = "pydantic-settings" },
     { name = "pymupdf" },
@@ -346,6 +347,7 @@ dependencies = [
 requires-dist = [
     { name = "docile-benchmark", specifier = ">=0.3.4" },
     { name = "ollama", specifier = ">=0.6.2" },
+    { name = "pillow", specifier = ">=12.2.0" },
     { name = "pydantic", specifier = ">=2.13.4" },
     { name = "pydantic-settings", specifier = ">=2.14.1" },
     { name = "pymupdf", specifier = ">=1.27.2.3" },
