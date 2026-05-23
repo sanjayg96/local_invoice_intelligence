@@ -19,9 +19,9 @@ VISION_MODEL = "glm-ocr"
 TEXT_MODEL = "llama3.1:8b"
 
 # --- NEW FEATURES ---
-# True = Higher accuracy, higher latency. Uses the Pydantic scratchpad.
+# True = Higher accuracy, higher latency. Uses the Pydantic scratchpad. COT method.
 # False = Max speed, zero reasoning overhead.
-ENABLE_THINKING = False
+ENABLE_THINKING = True
 
 # Thermal control (seconds) to prevent heat saturation during full batch runs
 THERMAL_COOLDOWN_BATCH_SIZE = 10

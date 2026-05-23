@@ -8,9 +8,10 @@
             "date_issue": "JUL10/02"
         },
         "predicted": {
+            "reasoning_process": "To calculate the invoice total, I will follow these steps: \n\n1. Identify the subtotal from the 'Insert Net' section.\n2. Check if there are any additional charges or discounts that need to be added/subtracted from the subtotal.\n3. Calculate the tax amount (if applicable).\n4. Add the tax amount to the subtotal to get the total.\n5. Verify that the calculated total matches the 'INVOICE TOTALS' and 'TOTAL AMOUNT' values on the invoice.",
             "vendor_name": "Bozell",
-            "vendor_address": "40 WEST 23RD STREET\nNEW YORK, NY 10010-5201",
-            "amount_total_gross": null,
+            "vendor_address": "40 WEST 23RD STREET, NEW YORK, NY 10010-5201",
+            "invoice_total": "93,750.00",
             "date_issue": "JUL10/02"
         }
     },
@@ -23,10 +24,11 @@
             "date_issue": "5/15/02"
         },
         "predicted": {
+            "reasoning_process": "To extract the total amount due from this invoice, I will follow these steps: \n\n1. Identify all line items with their respective costs.\n2. Calculate the subtotal by adding up the costs of all line items.\n3. Verify that the subtotal matches the 'Subtotal' value provided on the invoice.\n4. Check if there are any additional fees or taxes listed, and adjust the total accordingly.\n5. The final step is to populate the `invoice_total` field with the calculated total amount due.",
             "vendor_name": "Larsen Interactive, Inc.",
             "vendor_address": "www.larseninteractive.com",
-            "amount_total_gross": null,
-            "date_issue": "05/15/2002"
+            "invoice_total": "$1,350.00",
+            "date_issue": "5/15/02"
         }
     },
     {
@@ -38,9 +40,10 @@
             "date_issue": "DEC11/01"
         },
         "predicted": {
+            "reasoning_process": "To extract the invoice total from this document, I will follow these steps:\n\n1. Identify the subtotal or total amount on the invoice.\n2. Check for any discounts or deductions that may have been applied to the subtotal.\n3. Calculate the tax (if applicable) and add it to the subtotal.\n4. If a discount was applied, subtract it from the subtotal before calculating the tax.\n5. The final total will be the sum of the subtotal and tax.\n\nFrom the document, I see that there is a 'Net Ordered' section with a value of $25,976.85, which appears to be the subtotal or total amount on the invoice. There is also a discount mentioned as '$519.54 CASH DSCT: 519.54', but it's not clear if this discount has been applied to the subtotal.\n\nAssuming that the discount has already been subtracted from the subtotal, I will proceed with calculating the tax (if applicable) and adding it to the subtotal.\n\nHowever, upon closer inspection, I notice that there is no indication of any tax being applied. Therefore, I will assume that the total amount on the invoice is simply the subtotal.\n\nInvoice Total: $25,976.85",
             "vendor_name": "Bozell",
-            "vendor_address": "40 WEST 23RD STREET\nNEW YORK, NY 10010-5201",
-            "amount_total_gross": null,
+            "vendor_address": "40 WEST 23RD STREET NEW YORK, NY 10010-5201",
+            "invoice_total": "$25,976.85",
             "date_issue": "DEC11/01"
         }
     },
@@ -53,9 +56,10 @@
             "date_issue": "10/1/02"
         },
         "predicted": {
+            "reasoning_process": "To extract the total amount due from this invoice, I will follow these steps:\n\n1. Identify all line items with their respective amounts.\n2. Add up the individual amounts to find the subtotal.\n3. Verify that there are no additional fees or taxes applied to the subtotal.\n4. Confirm that the subtotal matches the total amount due listed on the invoice.\n5. Populate the `invoice_total` field with the calculated subtotal.",
             "vendor_name": "Larsen Interactive, Inc.",
             "vendor_address": "101 East 2nd Street, Seymour, Indiana 47274",
-            "amount_total_gross": null,
+            "invoice_total": "2,110.00",
             "date_issue": "10/1/02"
         }
     },
@@ -68,9 +72,10 @@
             "date_issue": "July 14, 1999"
         },
         "predicted": {
-            "vendor_name": "GLOBAL EVENTS GROUP",
-            "vendor_address": "Marketing \u2022 Management \u2022 Sponsorships\nPhilip Morris USA\nAttn: Greg Leonard 12th Floor\n120 Park Avenue\nNew York, NY 10017",
-            "amount_total_gross": "$1,968.50",
+            "reasoning_process": "To extract the invoice total from the provided OCR document text, I will follow these steps: \n\n1. Identify the subtotal by finding the 'TOTAL DUE' amount mentioned in the invoice.\n2. Check if there are any additional taxes or fees that need to be added to the subtotal.\n3. If no taxes or fees are mentioned, the total due is the same as the subtotal.\n4. Populate the final 'invoice_total' field with the calculated value.",
+            "vendor_name": "Global Events Group",
+            "vendor_address": "12th Floor, 120 Park Avenue, New York, NY 10017",
+            "invoice_total": "]1968.50",
             "date_issue": "July 14, 1999"
         }
     },
@@ -83,9 +88,10 @@
             "date_issue": "6/8/01"
         },
         "predicted": {
+            "reasoning_process": "To extract the total amount from this invoice, I will follow these steps:\n\n1. Identify the subtotal: The subtotal is explicitly mentioned as $24.00.\n2. Calculate the tax: The tax rate is 8.25% and it's applied to the subtotal of $24.00. To calculate the tax, I'll multiply the subtotal by the tax rate (as a decimal).\n3. Add the tax to the subtotal to get the total: Once I have the tax amount, I'll add it to the subtotal to get the final total.\n\nNow, let's perform these calculations:\n\nSubtotal: $24.00\nTax Rate: 8.25% = 0.0825 (as a decimal)\nTax Amount: $24.00 * 0.0825 = $1.98\nTotal: $24.00 + $1.98 = $25.98\n\nTherefore, the total amount of this invoice is $25.98.",
             "vendor_name": "The CPS Group",
-            "vendor_address": "40 West 23rd Street\nNew York, NY 10010",
-            "amount_total_gross": null,
+            "vendor_address": "40 West 23rd Street, New York, NY 10010",
+            "invoice_total": "$25.98",
             "date_issue": "6/8/01"
         }
     },
@@ -98,9 +104,10 @@
             "date_issue": "July 31, 1999"
         },
         "predicted": {
+            "reasoning_process": "To extract the invoice total, I will follow these steps: \n1. Identify the subtotal for the current billing period.\n2. Identify the tax amount (if any).\n3. Add the subtotal and tax to calculate the total.\n4. Verify that the calculated total matches the 'AMOUNT DUE' value on the invoice.",
             "vendor_name": "E. Morris Communications, Inc.",
             "vendor_address": "120 PARK AVENUE\nNEW YORK, NY 10017-5592",
-            "amount_total_gross": "2,371.95",
+            "invoice_total": ",",
             "date_issue": "July 31, 1999"
         }
     },
@@ -113,9 +120,10 @@
             "date_issue": "10/29/99"
         },
         "predicted": {
+            "reasoning_process": "To extract the invoice total from the provided OCR document text, I will follow these steps: \n\n1. Identify the subtotal, which is listed as $1,200.00.\n2. Find the sales tax amount, which is listed as $99.00.\n3. Add the subtotal and sales tax amounts to calculate the total.\n4. The calculated total should match the value listed in the 'TOTAL' field of the invoice.",
             "vendor_name": "AAA FLAG & BANNER MFG. CO., INC.",
             "vendor_address": "8955 NATIONAL BOULEVARD \u2022 LOS ANGELES, CALIFORNIA 90034",
-            "amount_total_gross": null,
+            "invoice_total": "$1,299.00",
             "date_issue": "10/29/99"
         }
     },
@@ -128,9 +136,10 @@
             "date_issue": "4/20/99"
         },
         "predicted": {
-            "vendor_name": "CONCERT STAGING SERVICES, INC.",
-            "vendor_address": "9823 HILARO SPRINGS ROAD\nLITTLE ROCK, AR 72209",
-            "amount_total_gross": "$14,500.00",
+            "reasoning_process": "To extract the total amount from this invoice, I will follow these steps: \n1. Identify the relevant section of the document that contains the pricing information.\n2. Extract the quantity and rate for each item listed in the table.\n3. Multiply the quantity by the rate to calculate the subtotal for each item.\n4. Add up all the subtotals to find the total amount due.\n5. Verify that there are no additional fees or taxes included in the total.",
+            "vendor_name": "Concert Staging Services, Inc.",
+            "vendor_address": "9823 Hilaro Springs Road\nLittle Rock, AR 72209",
+            "invoice_total": "$14,500.00",
             "date_issue": "4/20/99"
         }
     },
@@ -143,10 +152,11 @@
             "date_issue": "12/23/99"
         },
         "predicted": {
+            "reasoning_process": "To calculate the total amount due on this invoice, I will follow these steps: \n\n1. Identify all charges and their corresponding amounts.\n2. Calculate the subtotal by adding up all the individual charges.\n3. Add the tax to the subtotal to get the total before taxes.\n4. Since there is no additional tax listed, assume that the tax amount listed under each charge is included in the total.\n5. The final step will be to add any other charges or fees not explicitly listed (in this case, none).\n6. Finally, I will populate the `invoice_total` field with the calculated total.",
             "vendor_name": "Hampton Inn",
             "vendor_address": "124 E. Palm Drive, Florida City, Florida 33034",
-            "amount_total_gross": "$110.00",
-            "date_issue": "12/20/99 3:16PM"
+            "invoice_total": "}",
+            "date_issue": "12/23/99"
         }
     },
     {
@@ -158,9 +168,10 @@
             "date_issue": "03/26/99 03/26/99"
         },
         "predicted": {
-            "vendor_name": "Phoenix Division",
+            "reasoning_process": "The invoice contains multiple sections with relevant information for calculating the total amount due. The key fields are 'COMMISSION (291.73)', 'TOTAL AMOUNT DUE... 1,458.27', and 'AMOUNT: 1,458.27' in the remittance section. To extract the correct total, I will focus on the 'COMMISSION' field as it is explicitly mentioned as a separate line item.",
+            "vendor_name": "Eller Media Company",
             "vendor_address": "2850 East Camelback Road, Suite 300, Phoenix, AZ 85016",
-            "amount_total_gross": null,
+            "invoice_total": "]458.27",
             "date_issue": "03/26/99"
         }
     },
@@ -173,9 +184,10 @@
             "date_issue": "November 30, 2001"
         },
         "predicted": {
+            "reasoning_process": "To extract the total amount due from the invoice, I will follow these steps: \n\n1. Identify all line items with hours worked and hourly rates.\n2. Calculate the cost of each line item by multiplying hours worked by hourly rate.\n3. Add up the costs of all line items to find the subtotal.\n4. Check if there are any additional fees or charges mentioned in the invoice (in this case, none).\n5. Verify that the total amount due is equal to the subtotal (since no tax is mentioned). \n\nNow, let's perform these steps: \n\n1. Line items with hours worked and hourly rates:\n- M. Brauer: 1.40 hours @ $260.00 per hour = $363.10\n- M. Alanis: 2.29 hours @ $150.00 per hour = $344.14\n- L. Looper: 6.38 hours @ $125.00 per hour = $797.99\n- C. Brooke: 6.18 hours @ $80.00 per hour = $494.77\n\n2. Calculate the cost of each line item:\n$363.10 + $344.14 + $797.99 + $494.77 = $1,999.90\n\n3. Add up the costs of all line items to find the subtotal: $1,999.90\n\n4. No additional fees or charges mentioned.\n\n5. Verify that the total amount due is equal to the subtotal: Yes, it is ($2,000.00 = $1,999.90 + $0.10)\n\nTherefore, the invoice_total is $2,000.00",
             "vendor_name": "Weber Shandwick",
             "vendor_address": "P.O. Box 100583, Atlanta, GA 30384-0583, USA",
-            "amount_total_gross": "2,000.00",
+            "invoice_total": "$2,000.00",
             "date_issue": "November 30, 2001"
         }
     },
@@ -188,9 +200,10 @@
             "date_issue": "10/29/99"
         },
         "predicted": {
-            "vendor_name": "Philip Morris U.S.A",
-            "vendor_address": "120 Park Avenue, New York NY 10017-5592",
-            "amount_total_gross": "3,750.00",
+            "reasoning_process": "To extract the total amount from this invoice, I will follow these steps: \n\n1. Identify the subtotal by finding the 'SUB-TOTAL:' line.\n2. Identify the sales tax by finding the 'SALES TAX:' line.\n3. Add the subtotal and sales tax to find the total.\n4. Verify that there are no other charges or fees that need to be added to the total.\n5. Populate the invoice_total field with the calculated total.",
+            "vendor_name": "AAA FLAG & BANNER MFG. CO., INC.",
+            "vendor_address": "8955 NATIONAL BOULEVARD \u2022 LOS ANGELES, CALIFORNIA 90034",
+            "invoice_total": "4,059.38",
             "date_issue": "10/29/99"
         }
     },
@@ -203,9 +216,10 @@
             "date_issue": "July 14, 1999"
         },
         "predicted": {
+            "reasoning_process": "To extract the total amount due from the invoice, I will follow these steps: \n\n1. Identify the relevant section of the invoice that contains the total amount due.\n2. Extract the numerical value associated with the 'TOTAL DUE' label.\n3. Confirm that there are no additional charges or fees that need to be added to the subtotal.\n4. Populate the `invoice_total` field with the extracted numerical value.",
             "vendor_name": "GLOBAL EVENTS GROUP",
-            "vendor_address": "Marketing \u2022 Management \u2022 Sponsorships\nPhilip Morris USA\nAttn: Greg Leonard 12th Floor\n120 Park Avenue\nNew York, NY 10017",
-            "amount_total_gross": "$2,108.00",
+            "vendor_address": "12th Floor, 120 Park Avenue, New York, NY 10017",
+            "invoice_total": "$2,108.00",
             "date_issue": "July 14, 1999"
         }
     },
@@ -218,9 +232,10 @@
             "date_issue": "May 31, 1999"
         },
         "predicted": {
+            "reasoning_process": "To extract the total amount due from the invoice, I will follow these steps: \n\n1. Identify the relevant section of the invoice that contains the total amount due.\n2. Extract the numerical value associated with the 'TOTAL' and 'AMOUNT DUE' labels.\n3. Verify that the extracted values are consistent and accurate.\n4. Populate the `invoice_total` field with the extracted value.",
             "vendor_name": "E. Morris Communications, Inc.",
-            "vendor_address": "EMC",
-            "amount_total_gross": "7,990.00",
+            "vendor_address": "820 North Orleans Suite 402 Chicago, IL 60610",
+            "invoice_total": "$7,990.00",
             "date_issue": "May 31, 1999"
         }
     },
@@ -233,9 +248,10 @@
             "date_issue": "6/18/1999"
         },
         "predicted": {
+            "reasoning_process": "To calculate the invoice total, I will follow these steps: \n1. Identify the subtotal from the 'DESCRIPTION' section.\n2. Check if there are any additional charges or fees that need to be added to the subtotal.\n3. Calculate the tax amount based on the subtotal and applicable tax rate (if provided).\n4. Add the tax amount to the subtotal to get the total.\n5. Verify that the 'Total' value matches my calculated result.",
             "vendor_name": "Indiana Black Expo Inc.",
-            "vendor_address": "3145 N. Meridian Street\nIndianapolis, Indiana 46208",
-            "amount_total_gross": "$15,000.00",
+            "vendor_address": "3145 N. Meridian Street, Indianapolis, Indiana 46208",
+            "invoice_total": "$15,000.00",
             "date_issue": "6/18/1999"
         }
     },
@@ -248,10 +264,11 @@
             "date_issue": "11/30/14"
         },
         "predicted": {
+            "reasoning_process": "To extract the total amount due from this invoice, I will follow these steps: \n\n1. Identify the relevant section of the invoice that contains the calculation for the total amount due.\n2. Extract the numbers and formulas used in the calculation.\n3. Perform the arithmetic operations to calculate the total amount due.\n4. Verify that the calculated total matches the amount listed on the invoice as 'AMOUNT DUE'.\n\nFrom the provided OCR text, I will focus on the section labeled 'PERIOD COST', 'ACTUAL GROSS BILLING', 'AGENCY COMMISSION', and 'NET DUE' to calculate the total amount due.",
             "vendor_name": "WJAR-TV",
             "vendor_address": "23 Kenney Drive, Cranston, RI 02920",
-            "amount_total_gross": null,
-            "date_issue": "11/30/14 BWQ14093002"
+            "invoice_total": "?",
+            "date_issue": "11/30/14"
         }
     },
     {
@@ -263,10 +280,11 @@
             "date_issue": "08/31/14"
         },
         "predicted": {
+            "reasoning_process": "To extract the invoice total, I will follow these steps: \n1. Identify the relevant sections of the invoice that contain numerical data.\n2. Extract the subtotal from the 'SUB-TOTALS' section.\n3. Calculate the tax amount by finding the difference between the 'ACTUAL GROSS BILLING' and 'AGENCY COMMISSION'.\n4. Add the subtotal, tax amount, and any other relevant charges to calculate the total invoice amount.",
             "vendor_name": "WJAR-TV",
             "vendor_address": "23 Kenney Drive, Cranston, RI 02920",
-            "amount_total_gross": "2,200.00",
-            "date_issue": "08/31/14 BWQ14082501"
+            "invoice_total": "?",
+            "date_issue": "08/31/14"
         }
     },
     {
@@ -278,9 +296,10 @@
             "date_issue": "10/11/2020"
         },
         "predicted": {
-            "vendor_name": "Sinclair Broadcast",
+            "reasoning_process": "To extract the invoice total, I will follow these steps: \n1. Identify all line items with a non-zero amount.\n2. Calculate the subtotal by summing up the amounts of all identified line items.\n3. Extract the tax rate from the gross total and net total values.\n4. Apply the tax rate to the subtotal to calculate the tax amount.\n5. Add the tax amount to the subtotal to get the invoice total.",
+            "vendor_name": "Sinclair Broadcast Group",
             "vendor_address": "c/o WSMH, PO Box 206270, Dallas, TX 75320-6270",
-            "amount_total_gross": "$600.00",
+            "invoice_total": "$510.00",
             "date_issue": "10/11/20"
         }
     },
@@ -293,9 +312,10 @@
             "date_issue": "2022-09-08"
         },
         "predicted": {
+            "reasoning_process": "To calculate the invoice total, I will follow these steps: \n\n1. Identify the subtotal from the 'Invoice Summary' section.\n2. Calculate the tax amount by finding the difference between the subtotal and the net due amount.\n3. Add the tax amount to the net due amount to find the total.\n\nFrom the 'Invoice Summary', I see that the gross amount is $1,650.00 and the agency commission is $0.00. The net due amount is also $1,402.50. \n\nNow, let's calculate the tax amount: Tax = Subtotal - Net Due\nTax = $1,650.00 - $1,402.50\nTax = $247.50\n\nNext, I will add the tax amount to the net due amount to find the total:\nTotal = Net Due + Tax\nTotal = $1,402.50 + $247.50\nTotal = $1,650.00\n\nHowever, this is not correct because it's actually the gross amount. The correct calculation for the total should be: Total = Subtotal (which is the same as the Gross Amount) - Agency Commission + Tax\nTotal = $1,650.00 - $0.00 + $247.50\nTotal = $1,897.50\n\nTherefore, the invoice total is $1,897.50.",
             "vendor_name": "iHeartMEDIA",
             "vendor_address": "P.O. Box 419499 Boston, MA 02241-9499",
-            "amount_total_gross": "$1,650.00",
+            "invoice_total": "$1,897.50",
             "date_issue": "08/09/22"
         }
     },
@@ -308,10 +328,11 @@
             "date_issue": "12/10/2021"
         },
         "predicted": {
+            "reasoning_process": "To calculate the invoice total, I will follow these steps: \n\n1. Find the subtotal by adding up the 'Total Cost' column in the 'Run Dates' table.\n2. Add any additional costs or fees to the subtotal (if applicable).\n3. Calculate the tax amount based on a standard tax rate of 8% (assuming this is a common tax rate for invoices). I will multiply the subtotal by the tax rate to get the tax amount.\n4. Add the tax amount to the subtotal to get the total.\n5. If there are any discounts or agency commissions, subtract them from the total to get the final invoice total.",
             "vendor_name": "WCKR-FM",
             "vendor_address": "",
-            "amount_total_gross": null,
-            "date_issue": null
+            "invoice_total": "Not yet calculated",
+            "date_issue": "Not specified in the provided text"
         }
     },
     {
@@ -323,9 +344,10 @@
             "date_issue": "10/30/2020 10/30/2020"
         },
         "predicted": {
+            "reasoning_process": "To extract the total invoice amount, I will first identify all relevant line items with their respective costs and then calculate the subtotal, tax, and finally the total.",
             "vendor_name": "KATZ TELEVISION GROUP",
-            "vendor_address": "125 West 55th St, New York, NY 10019",
-            "amount_total_gross": "$22,850.00",
+            "vendor_address": "125 West 55th St\nNew York, NY 10019",
+            "invoice_total": "0.00",
             "date_issue": "10/30/2020 at 11:27 AM"
         }
     },
@@ -338,9 +360,10 @@
             "date_issue": "September 30, 1999"
         },
         "predicted": {
-            "vendor_name": "Lorillard Tobacco Company",
-            "vendor_address": "714 Green Valley Road, Greensboro, NC 27408",
-            "amount_total_gross": "$8,634.75",
+            "reasoning_process": "To calculate the invoice total, I will follow these steps: \n\n1. Identify the subtotal for the services rendered from July 1 to August 31, 1999.\n2. Check if there are any prior balances or credits that need to be added or subtracted from the subtotal.\n3. Calculate the tax amount (if applicable).\n4. Add the subtotal and tax amount (if applicable) to get the total due.",
+            "vendor_name": "PricewaterhouseCoopers LLP",
+            "vendor_address": "1177 Avenue of the Americas, Suite 448, New York, NY 10036",
+            "invoice_total": "$8,156.87",
             "date_issue": "September 30, 1999"
         }
     },
@@ -353,9 +376,10 @@
             "date_issue": "07/27/14"
         },
         "predicted": {
+            "reasoning_process": "To extract the invoice total, I will follow these steps: \n\n1. Find the subtotal by adding up all the airtime revenue amounts listed in the table.\n2. Check if there are any additional fees or charges that need to be added to the subtotal (e.g., agency commission).\n3. If applicable, add the tax amount to the subtotal.\n4. The total will be the sum of the subtotal and any additional fees or taxes.\n\nFirst, I'll extract the airtime revenue amounts from the table:",
             "vendor_name": "Community Broadcasting Service",
             "vendor_address": "PO Box 3135, Boston, MA 02241-3135",
-            "amount_total_gross": null,
+            "invoice_total": "Not yet calculated",
             "date_issue": "07/27/14"
         }
     },
@@ -368,9 +392,10 @@
             "date_issue": "07/21/2020"
         },
         "predicted": {
+            "reasoning_process": "To extract the total amount from this invoice, I will follow these steps: \n\n1. Identify the subtotal and tax amounts.\n2. Calculate the total by adding the subtotal and tax amounts.\n3. Verify that there are no additional fees or charges that need to be added to the total.\n4. Populate the `invoice_total` field with the calculated total amount.",
             "vendor_name": "GREAT CIRCLE MEDIA",
             "vendor_address": "1117 W. Route 66, Flagstaff, AZ 86001",
-            "amount_total_gross": ">= $743.33",
+            "invoice_total": "}",
             "date_issue": "09/08/2020 - 09/14/2020"
         }
     },
@@ -383,9 +408,10 @@
             "date_issue": "06/16/22"
         },
         "predicted": {
+            "reasoning_process": "To extract the total amount due from this invoice, I will follow these steps:\n\n1. Identify all line items with a 'Len Run Rate Amount' and calculate their subtotal.\n2. Calculate any discounts or deductions applied to the subtotal.\n3. Add the subtotal and discount/deduction amounts to find the final total.\n4. Verify that this total matches the amount listed as 'PLEASE PAY THIS AMOUNT'.\n\n**Step 1: Identify line items and calculate subtotal**\nThere are three line items with a 'Len Run Rate Amount': $360.00, $240.00, and $400.00.\nThese amounts will be added together to find the subtotal.\nSubtotal = $360.00 + $240.00 + $400.00 = $1000.00\n\n**Step 2: Calculate discount/deduction**\nThere is a 'Descuento Agencia 15 %' listed with an amount of $150.00.\nThis will be subtracted from the subtotal to find the final total.\nFinal Total = Subtotal - Discount/Deduction = $1000.00 - $150.00 = $850.00\n\n**Step 3: Verify total matches 'PLEASE PAY THIS AMOUNT'**\nThe amount listed as 'PLEASE PAY THIS AMOUNT' is indeed $850.00, which matches our calculated final total.\n\n**invoice_total**: $850.00",
             "vendor_name": "Opportunity Media Advertising",
-            "vendor_address": "Ulises y Taimy Menocal, P.O. Box 142124, MIAMI, FL 33114",
-            "amount_total_gross": "$1000.00",
+            "vendor_address": "Ulises y Taimy Menocal P.O. Box 142124 MIAMI, FL 33114",
+            "invoice_total": "$850.00",
             "date_issue": "06/16/22"
         }
     },
@@ -398,9 +424,10 @@
             "date_issue": "10/11/20 10/11/20"
         },
         "predicted": {
+            "reasoning_process": "To calculate the total amount due for this invoice, I will first identify all the line items and their corresponding rates. Then, I will multiply the number of spots for each line item by its rate to find the subtotal for that line item. After that, I will sum up all the subtotals to get the gross total. Next, I will calculate the agency commission as a percentage of the gross total. Finally, I will subtract the agency commission from the gross total to get the net amount due.",
             "vendor_name": "National Media Research Planning & Placement LLC",
             "vendor_address": "815 Slaters Ln Alexandria VA 22314",
-            "amount_total_gross": "$12,600.00",
+            "invoice_total": "}",
             "date_issue": "10/11/2020"
         }
     },
@@ -413,9 +440,10 @@
             "date_issue": "10/16/2012"
         },
         "predicted": {
+            "reasoning_process": "To extract the invoice total, I will follow these steps:\n\n1. Identify all ordered spots and calculate their total cost.\n2. Check for any make-goods or missed spots and adjust the total accordingly.\n3. Add tax to the subtotal (if applicable).\n4. Calculate the final invoice total by adding tax to the subtotal.\n\nFirst, I will identify the ordered spots and calculate their total cost:\n\n1. Spot 1: :30 on 10/14/12 at 5-6pm on 2NEWS @ 5PM SUN for $800\n2. Spot 2: :30 on 10/19/12 at 7-8pm on HAWAII FIVE-O for $800 (reemptible with notice)\n\nSince the second spot is reemptible, I will not include it in the initial calculation.\n\nSubtotal = Spot 1 cost = $800\n\nNext, I will check for any make-goods or missed spots. According to the document, there are no make-goods listed, but there is a note about NFL running long on 10/14/12. However, this does not affect the ordered spots.\n\nNow, I will add tax to the subtotal (if applicable). Since the tax rate is not specified in the document, I will assume it is not applicable for this calculation.\n\nInvoice Total = Subtotal + Tax = $800 + 0 = $800\n\nHowever, since there are two spots listed and only one has been calculated, I need to add the second spot's cost to the subtotal. The second spot is reemptible with notice, but it still needs to be included in the calculation.\n\nSubtotal = Spot 1 cost + Spot 2 cost = $800 + $800 = $1600\n\nInvoice Total = Subtotal + Tax = $1600 + 0 = $1600",
             "vendor_name": "KUTV Channel 2",
             "vendor_address": "150 South Main Street #150, Salt Lake City, Utah, 84111",
-            "amount_total_gross": null,
+            "invoice_total": "$1,600.00",
             "date_issue": "10/16/2012"
         }
     },
@@ -428,9 +456,10 @@
             "date_issue": "03/25/18 03/25/18"
         },
         "predicted": {
+            "reasoning_process": "To calculate the invoice total, I will first identify all the relevant information from the document. The gross total is already provided as $924.00. However, this includes agency commission, which needs to be subtracted to find the net amount due. The agency commission is listed as $138.60. To find the net amount due, I will subtract the agency commission from the gross total: $924.00 - $138.60 = $785.40. This is the correct net amount due according to the document.",
             "vendor_name": "Alpha Media",
             "vendor_address": "301 Arctic Slope Ave., Ste. 200, Anchorage, AK 99518",
-            "amount_total_gross": "$924.00",
+            "invoice_total": "$785.40",
             "date_issue": "03/25/18"
         }
     },
@@ -443,9 +472,10 @@
             "date_issue": "Nov. 29, 2020"
         },
         "predicted": {
+            "reasoning_process": "To calculate the invoice total, I will follow these steps: \n1. Find the subtotal by adding up all the individual ad revenue amounts.\n2. Add the agency commission to the subtotal to get the gross amount.\n3. Subtract the payments/adjustments from the gross amount to get the net amount.\n4. The net amount is already provided as $357.00, so I will use this value directly.",
             "vendor_name": "OHANA MEDIA GROUP",
-            "vendor_address": "833 GAMBELL STREET, ANCHORAGE, AK 99501",
-            "amount_total_gross": null,
+            "vendor_address": "833 GAMBELL STREET\nANCHORAGE, AK 99501",
+            "invoice_total": "$357.00",
             "date_issue": "Nov. 29, 2020"
         }
     },
@@ -458,9 +488,10 @@
             "date_issue": "Oct/23/2020 Oct/23/2020 Oct/23/2020"
         },
         "predicted": {
+            "reasoning_process": "To extract the invoice total from this document, I will follow these steps: \n\n1. Identify the relevant fields that contain monetary values.\n2. Extract the subtotal (Gross Amount) and any applicable discounts or late charges.\n3. Calculate the tax amount by subtracting the subtotal from the paid amount.\n4. Add the tax amount to the subtotal to get the total invoice amount.\n\nFirst, I will extract the relevant fields: \n\n* Subtotal (Gross Amount): $278,502.50\n* Discounts: $0.00\n* Late Charges: $0.00\n* Paid Amount: $278,502.50\n\nNext, I will calculate the tax amount by subtracting the subtotal from the paid amount:\n\nTax Amount = Paid Amount - Subtotal\nTax Amount = $278,502.50 - $278,502.50\nTax Amount = $0.00\n\nFinally, I will add the tax amount to the subtotal to get the total invoice amount:\n\nInvoice Total = Subtotal + Tax Amount\nInvoice Total = $278,502.50 + $0.00\nInvoice Total = $278,502.50\n\nTherefore, the final invoice total is: \n\n$278,502.50",
             "vendor_name": "Katz Media Group",
-            "vendor_address": "125 West 55th\n8th Floor\nNew York, NY 10019-5366",
-            "amount_total_gross": null,
+            "vendor_address": "125 West 55th, 8th Floor, New York, NY 10019-5366",
+            "invoice_total": "$278,502.50",
             "date_issue": "Oct/23/2020"
         }
     },
@@ -473,9 +504,10 @@
             "date_issue": "July 2, 2022"
         },
         "predicted": {
+            "reasoning_process": "To calculate the total amount due, I will first find the subtotal by multiplying the cost per week by the number of weeks. Then, I will add any additional costs or taxes to find the final total.",
             "vendor_name": "State Executive Committee",
-            "vendor_address": "",
-            "amount_total_gross": "$2,041.00",
+            "vendor_address": "Karen Moore",
+            "invoice_total": "Not calculated yet",
             "date_issue": "July 2, 2022"
         }
     },
@@ -488,9 +520,10 @@
             "date_issue": "10-9-18"
         },
         "predicted": {
+            "reasoning_process": "To extract the invoice total, I will follow these steps: \n\n1. Identify all relevant line items with their respective costs.\n2. Calculate the subtotal for each line item by multiplying the cost per unit by the number of units.\n3. Add up the subtotals to find the total cost before tax.\n4. Look for any additional fees or charges that may be included in the invoice.\n5. If applicable, calculate the tax amount based on the provided tax rate (in this case, 6% is not explicitly stated but will assume it's a standard rate).\n6. Add the tax to the subtotal to find the total invoice amount.",
             "vendor_name": "Glades Media Radio Group",
             "vendor_address": "530 East Alverdez, Clewiston, FL 33440",
-            "amount_total_gross": "$2,098.00",
+            "invoice_total": "}",
             "date_issue": "10-9-18"
         }
     },
@@ -503,9 +536,10 @@
             "date_issue": "4/29/2022"
         },
         "predicted": {
+            "reasoning_process": "To extract the invoice total from the provided OCR document text, I will follow these steps: \n\n1. Identify the relevant section for calculating the total cost.\n2. Extract the subtotal and tax amounts from this section.\n3. Calculate the total by adding the subtotal and tax amounts.\n4. Verify that there are no additional fees or charges mentioned in the document that need to be added to the total.\n5. Populate the final `invoice_total` field with the calculated total.",
             "vendor_name": "Olomana Loomis ISC",
             "vendor_address": "900 Fort Street Mall, Suite 1548\nHonolulu, HI 96813",
-            "amount_total_gross": "5,250.00",
+            "invoice_total": "}",
             "date_issue": "4/29/2022"
         }
     },
@@ -518,9 +552,10 @@
             "date_issue": "10/27/20"
         },
         "predicted": {
-            "vendor_name": "GREATEST HITS",
-            "vendor_address": "1414 E COLLEGE DRIVE, PO BOX 61, MARSHALL MN 56258",
-            "amount_total_gross": ">>Subtotal (Spot:4) 112.00",
+            "reasoning_process": "To calculate the invoice total, I will follow these steps: \n\n1. Identify all line items with a 'Total' column value.\n2. Sum up the values in the 'Total' column to find the subtotal.\n3. Check if there are any additional fees or charges that need to be added to the subtotal.\n4. Calculate the tax amount (if applicable).\n5. Add the tax amount to the subtotal to get the total.\n6. If there is a balance due, subtract it from the total to get the final invoice total.",
+            "vendor_name": "KARZ",
+            "vendor_address": "1414 E COLLEGE DRIVE\nPO BOX 61\nMARSHALL MN 56258",
+            "invoice_total": "]",
             "date_issue": "10/27/20"
         }
     },
@@ -533,9 +568,10 @@
             "date_issue": "Nov. 29, 2020"
         },
         "predicted": {
+            "reasoning_process": "To calculate the invoice total, I will follow these steps: \n1. Find the subtotal by adding up all the individual line item totals.\n2. Calculate the tax amount by finding the percentage of the subtotal that is subject to tax (assuming 7% tax rate).\n3. Add the agency commission to the subtotal to get the total before tax.\n4. Add the tax amount to the total before tax to get the final invoice total.",
             "vendor_name": "RADIO FM MEDIA",
             "vendor_address": "PO BOX 9919, FARGO ND 58106-9919",
-            "amount_total_gross": "$2,526.00",
+            "invoice_total": "}",
             "date_issue": "Nov. 29, 2020"
         }
     },
@@ -548,9 +584,10 @@
             "date_issue": "08/23/20 08/23/20 08/23/20"
         },
         "predicted": {
-            "vendor_name": "WMAZ",
-            "vendor_address": "1314 Gray Highway\nMacon GA 31211",
-            "amount_total_gross": "$8,560.00",
+            "reasoning_process": "To calculate the invoice total, I will first extract all the relevant information from the document. The gross total is already provided as $8,560.00. However, this amount includes agency commission, which needs to be subtracted to get the net amount due. According to the document, the agency commission is $1,284.00. Therefore, I will subtract this amount from the gross total to get the net amount due.",
+            "vendor_name": "Waterfront Strategies / POL",
+            "vendor_address": "3050 K Street MW Suite 100, Washington DC 20007",
+            "invoice_total": "$7,276.00",
             "date_issue": "08/23/2020"
         }
     },
@@ -563,9 +600,10 @@
             "date_issue": "June 16, 1999"
         },
         "predicted": {
+            "reasoning_process": "To extract the invoice total from this document, I will follow these steps: \n\n1. Identify the subtotal or total due amount on the invoice.\n2. Check for any tax amounts mentioned in the invoice to calculate the final total.\n3. If no tax is mentioned, assume it's not applicable and use the subtotal as the invoice total.\n4. Populate the `invoice_total` field with the calculated value.",
             "vendor_name": "Lorillard Tobacco Company",
             "vendor_address": "714 Green Valley Road, Greensboro, NC 27408",
-            "amount_total_gross": "$8,974.50",
+            "invoice_total": "$8,974.50",
             "date_issue": "June 16, 1999"
         }
     },
@@ -578,9 +616,10 @@
             "date_issue": "10/5/2020"
         },
         "predicted": {
-            "vendor_name": "People for Ben",
-            "vendor_address": "invoices@mediafinancial.com",
-            "amount_total_gross": "$471.75",
+            "reasoning_process": "To calculate the invoice total, I will first find the subtotal by adding up the individual line totals. Then, I will add the tax to the subtotal to get the total. The tax rate is not explicitly stated in the document, but based on the 'House Account' information, it appears that the tax rate is 100% of the order total, which is unusual and may indicate a special case or error. Assuming this is correct, I will proceed with calculating the invoice total.",
+            "vendor_name": "KDEM-FM/KOTS-AM",
+            "vendor_address": "P.O. Box 470, 1700 S. Gold Avenue, Deming, NM 88031",
+            "invoice_total": "$471.75",
             "date_issue": "10/5/2020"
         }
     },
@@ -593,9 +632,10 @@
             "date_issue": "January 14, 1999"
         },
         "predicted": {
+            "reasoning_process": "To calculate the invoice total, I will follow these steps: \n\n1. Identify all line items on the invoice and their corresponding costs.\n2. Calculate the subtotal by adding up the costs of all line items.\n3. Determine if there is any tax applied to the subtotal (in this case, it appears that the payment terms are NET DUE ON RECEIPT, which implies no additional tax).\n4. If there is no tax, the total will be equal to the subtotal.\n5. Populate the invoice_total field with the calculated total.",
             "vendor_name": "WKA Communications L.L.C.",
-            "vendor_address": "805 15th Street, NW, Suite 805",
-            "amount_total_gross": "640000.00",
+            "vendor_address": "805 15th Street, NW, Suite 805\nWashington, DC 20005",
+            "invoice_total": "$640,000.00",
             "date_issue": "January 14, 1999"
         }
     },
@@ -608,9 +648,10 @@
             "date_issue": "10/20/20"
         },
         "predicted": {
+            "reasoning_process": "To extract the total amount from the invoice, I will follow these steps: \n\n1. Identify the relevant line item that contains the total amount.\n2. Extract the numerical value associated with the total amount.\n3. Verify that the extracted number is in the correct format (USD).\n4. Populate the `invoice_total` field with the extracted value.",
             "vendor_name": "Ohio Midland Newsgroup LLC",
             "vendor_address": "3201 BELMONT STREET, BELLAIRE, OH 43906",
-            "amount_total_gross": "$2,297.55 USD",
+            "invoice_total": "$2,297.55",
             "date_issue": "10/20/20 9:41 AM"
         }
     },
@@ -623,10 +664,11 @@
             "date_issue": "9/8/20"
         },
         "predicted": {
-            "vendor_name": "Kansas Radio Networks KAN/KIN",
-            "vendor_address": "",
-            "amount_total_gross": null,
-            "date_issue": "9/8/20 Modification Date"
+            "reasoning_process": "To extract the total amount due from this invoice, I will follow these steps: \n\n1. Identify the relevant section of the invoice that contains the total cost information.\n2. Extract the subtotal for each day listed in the 'TOTAL' section.\n3. Calculate the total by adding up all the subtotals.\n4. Check if there are any additional fees or taxes mentioned on the invoice.\n5. If applicable, add these to the total to arrive at the final amount due.",
+            "vendor_name": "StateNets",
+            "vendor_address": "2601 Northwind Drive, Richmond, VA 23233",
+            "invoice_total": "$11,400.00",
+            "date_issue": "9/8/20"
         }
     },
     {
@@ -638,10 +680,11 @@
             "date_issue": "1/23/2020"
         },
         "predicted": {
+            "reasoning_process": "To extract the invoice total, I will follow these steps: \n1. Identify the subtotal by looking for any line items that are not taxes or totals.\n2. Check if there is a tax amount listed on the invoice. If so, add it to the subtotal to get the total before tax.\n3. If no tax amount is listed, assume the total is already the subtotal.\n4. Write down my calculations and math for each step.",
             "vendor_name": "KCDZ Z107.7 FM",
             "vendor_address": "6448 Hallee Road, Joshua Tree, CA 92252",
-            "amount_total_gross": "$1,008.00",
-            "date_issue": "2020-01-23T10:47:52-08:00"
+            "invoice_total": "$1,008.00",
+            "date_issue": "January 23, 2020"
         }
     },
     {
@@ -653,9 +696,10 @@
             "date_issue": "05/11/22"
         },
         "predicted": {
-            "vendor_name": "Media Financial Services",
-            "vendor_address": "1655 Palm Beach Lakes Blvd., West Plam Beach Fl. 33401",
-            "amount_total_gross": "$220.00",
+            "reasoning_process": "To extract the invoice total from this document, I will follow these steps: \n\n1. Identify the line items and their corresponding quantities.\n2. Calculate the subtotal by multiplying the quantity of each item by its price (if provided).\n3. Add any additional fees or taxes to the subtotal to get the total.\n4. Verify that the total matches the 'Total Owed' amount listed on the invoice.\n\nIn this case, there is only one line item with a description and a quantity of 22 x 60sec commercials for an election campaign. The price per commercial is not explicitly stated, but the 'Line Total' is given as $220.00. This suggests that the total cost is already calculated and provided.\n\nTherefore, I will proceed to extract the invoice total directly from the document.",
+            "vendor_name": "WKZK",
+            "vendor_address": "2 Milledge Road, Augusta, GA 30904",
+            "invoice_total": "$220.00",
             "date_issue": "05/11/22"
         }
     },
@@ -668,10 +712,11 @@
             "date_issue": "10/7/2020"
         },
         "predicted": {
-            "vendor_name": "Felicia French",
+            "reasoning_process": "To extract the total amount from this invoice, I will follow these steps: \n\n1. Identify the subtotal (Gross Amount): $496.00 \n2. Find any additional charges or fees that are not included in the Gross Amount. In this case, there is a 'Show Low City Sales Tax' of 9.92%. This tax rate is 2% of the total amount, so I will calculate the subtotal before adding the tax.\n3. Calculate the subtotal by subtracting any discounts and agency commissions from the gross amount. Since both are 0.00, the subtotal remains $496.00\n4. Add the sales tax to the subtotal to get the total amount: $496.00 + $9.92 = $505.92 \n5. The total amount is already provided in the invoice as $505.92",
+            "vendor_name": "KNKI",
             "vendor_address": "",
-            "amount_total_gross": "496.00",
-            "date_issue": "10/8/2020 - 11/3/2020 (Run Dates)"
+            "invoice_total": ">505.92",
+            "date_issue": "10/8/2020 - 11/3/2020"
         }
     },
     {
@@ -683,9 +728,10 @@
             "date_issue": "1/22/20"
         },
         "predicted": {
-            "vendor_name": "FRIENDS OF John Delaney",
-            "vendor_address": "",
-            "amount_total_gross": "$11,550.00",
+            "reasoning_process": "To extract the invoice total from this document, I will follow these steps: \n\n1. Identify the relevant section of the document that contains financial information.\n2. Extract the subtotal (Air Time Gross) and any applicable taxes or fees.\n3. Calculate the total by adding the subtotal to any applicable taxes or fees.\n4. Verify that there are no other charges or deductions that need to be applied to the total.\n5. Populate the invoice_total field with the calculated result.",
+            "vendor_name": "Learfield Communications, Inc.",
+            "vendor_address": "505 Hobbs Road, Jefferson City, MO 65109",
+            "invoice_total": "$9,817.50",
             "date_issue": "1/22/20"
         }
     },
@@ -698,9 +744,10 @@
             "date_issue": "10/14/18"
         },
         "predicted": {
-            "vendor_name": "CUMULUS",
-            "vendor_address": "FAYETTEVILLE",
-            "amount_total_gross": null,
+            "reasoning_process": "To calculate the invoice total, I will follow these steps:\n\n1. Find the subtotal by adding up all the individual line items.\n2. Calculate the tax amount (if applicable).\n3. Add the agency commission to the subtotal to get the net amount.\n4. If there is a tax rate specified in the document, apply it to the subtotal to calculate the total.\n\nFirst, I will extract the relevant information from the table:\n\n* Line #: 2861214 appears 8 times, 2861215 appears 6 times, and 2861216 appears 8 times.\n* Rate: $25.00 for all line items.\n* Product: RHTV092918 (same product code for all line items).\n\nNext, I will calculate the subtotal by multiplying the number of occurrences of each line item by its rate and adding them up:\n\nSubtotal = (8 x $25) + (6 x $25) + (8 x $25)\nSubtotal = $200 + $150 + $200\nSubtotal = $550.00\n\nThere is no tax rate specified in the document, so I will assume that there is no tax.\n\nThe agency commission is already calculated as $90.00.\n\nTo calculate the net amount, I will add the agency commission to the subtotal:\n\nNet Amount = Subtotal + Agency Commission\nNet Amount = $550.00 + $90.00\nNet Amount = $640.00\n\nHowever, the document specifies that the Net Amount is actually $510.00, which suggests that there may be a discount or other adjustment applied to the subtotal.\n\nTo calculate the invoice total, I will use the net amount as specified in the document:\n\nInvoice Total = Net Amount\nInvoice Total = $510.00",
+            "vendor_name": "Cumulus",
+            "vendor_address": "Fayetteville",
+            "invoice_total": "$510.00",
             "date_issue": "10/14/18"
         }
     },
@@ -713,9 +760,10 @@
             "date_issue": "10/16/20"
         },
         "predicted": {
+            "reasoning_process": "To extract the invoice total, I will follow these steps: \n1. Identify the subtotal or total amount on the invoice.\n2. Check if there are any tax amounts listed.\n3. If a tax amount is found, calculate the total by adding the subtotal and tax.\n4. If no tax amount is found, assume the total is the same as the subtotal.\n5. The final step will be to populate the invoice_total field with the calculated value.",
             "vendor_name": "Ohio Midland Newsgroup LLC",
-            "vendor_address": "3201 BELMONT STREET, BELLAIRE, OH 43906",
-            "amount_total_gross": "-$150.00 USD",
+            "vendor_address": "3201 BELMONT STREET\nBELLAIRE, OH 43906",
+            "invoice_total": "-$150.00 USD",
             "date_issue": "10/16/20 9:01 AM"
         }
     },
@@ -728,10 +776,11 @@
             "date_issue": "9/27/2020"
         },
         "predicted": {
+            "reasoning_process": "To calculate the total amount due, I will first identify and sum up all the individual line items. Then, I will apply any applicable taxes to determine the final invoice total.",
             "vendor_name": "WPTA Television Inc",
-            "vendor_address": "PO BOX 1001, Quincy, IL 62306-1001",
-            "amount_total_gross": null,
-            "date_issue": "2020-09-28T12:38:00Z"
+            "vendor_address": "PO BOX 1001 Quincy, IL 62306-1001",
+            "invoice_total": "Not calculated yet",
+            "date_issue": "9/28/2020"
         }
     },
     {
@@ -743,10 +792,811 @@
             "date_issue": "10-16-18"
         },
         "predicted": {
+            "reasoning_process": "To extract the invoice total, I will follow these steps: \n1. Identify all line items with a cost and calculate their subtotal.\n2. Add any additional costs or fees to the subtotal.\n3. Calculate the tax amount based on the provided tax rate (if applicable).\n4. Add the tax amount to the subtotal to get the total.\n5. Verify that there are no other charges or deductions that need to be applied.",
             "vendor_name": "Glades Media Radio Group",
             "vendor_address": "530 East Alverdez, Clewiston, FL 33440",
-            "amount_total_gross": null,
+            "invoice_total": "$544",
             "date_issue": "10-16-18"
+        }
+    },
+    {
+        "doc_id": "5ab8ca1a8ba84b669c242e1e",
+        "ground_truth": {
+            "vendor_name": "KCDZ Z107.7 FM",
+            "vendor_address": "KCDZ Z107.7 FM\n6448 Hallee Road\nJoshua Tree, CA 92252",
+            "amount_total_gross": "$1,713.60",
+            "date_issue": "1/16/2020"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total, I will follow these steps: \n1. Identify the subtotal and tax amounts from the invoice.\n2. Calculate the subtotal by finding the number that precedes the word 'TOTAL' on the invoice.\n3. Since there is no separate tax amount listed, I will assume it is included in the subtotal.\n4. The total amount is already provided as $1,713.60, so I can use this value directly.\n5. Populate the final `invoice_total` field with the calculated or provided total.",
+            "vendor_name": "KCDZ Z107.7 FM",
+            "vendor_address": "6448 Hallee Road\nJoshua Tree, CA 92252",
+            "invoice_total": "$1,713.60",
+            "date_issue": "January 16, 2020"
+        }
+    },
+    {
+        "doc_id": "5b70a5d315174204b4bdd7a5",
+        "ground_truth": {
+            "vendor_name": "KDEM-FM/KOTS-AM KDEM-FM",
+            "vendor_address": "KDEM-FM/KOTS-AM\nP.O. Box 470\n1700 S. Gold Avenue\nDeming, NM 88031",
+            "amount_total_gross": "$660.00",
+            "date_issue": "10/6/2020"
+        },
+        "predicted": {
+            "reasoning_process": "To calculate the invoice total, I will first extract the relevant information from the document. The order total is mentioned as $660.00, but this includes a 'Net' amount of $561.00 and an additional $99.00 ($660 - $561). This suggests that there may be additional charges or fees included in the order total.",
+            "vendor_name": "KDEM-FM/KOTS-AM",
+            "vendor_address": "P.O. Box 470, 1700 S. Gold Avenue, Deming, NM 88031",
+            "invoice_total": "$660.00",
+            "date_issue": "10/6/2020"
+        }
+    },
+    {
+        "doc_id": "5b7fc80fe6564f2da3cf14cb",
+        "ground_truth": {
+            "vendor_name": "KCDZ Z107.7 FM",
+            "vendor_address": "KCDZ Z107.7 FM\n6448 Hallee Road\nJoshua Tree, CA 92252",
+            "amount_total_gross": "$1,713.60",
+            "date_issue": "1/30/2020"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total, I will follow these steps: \n1. Identify the subtotal and tax amounts from the invoice.\n2. Calculate the subtotal by finding the number that precedes the word 'TOTAL' on the invoice.\n3. Since there is no separate tax amount listed, I will assume it is included in the subtotal.\n4. The total amount is already provided on the invoice as $1,713.60.\n5. To confirm my calculation, I will add any additional amounts that may be present (e.g., shipping costs).\n6. If there are no additional amounts, the total will remain the same.",
+            "vendor_name": "KCDZ Z107.7 FM",
+            "vendor_address": "6448 Hallee Road\nJoshua Tree, CA 92252",
+            "invoice_total": "$1,713.60",
+            "date_issue": "January 30, 2020"
+        }
+    },
+    {
+        "doc_id": "6305d8e507fd4baab7f837bb",
+        "ground_truth": {
+            "vendor_name": "National Hispanic Press Foundation National Hispanic Press Association",
+            "vendor_address": "National Hispanic Press Foundation-\nes, Chairman 652 National Press Building\nTrasurerWashington, D.C. 20045 National Hispanic Press Association\nAttention: Andres Tobar\n652 National Press Building\nWashington, D.C. 20045",
+            "amount_total_gross": "$28,010",
+            "date_issue": "January 29, 1999"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total from this document, I will follow these steps: \n\n1. Identify the subtotal mentioned in the text.\n2. Determine if there are any additional fees or charges that need to be added to the subtotal.\n3. Calculate the tax amount based on the provided information (if applicable).\n4. Add the subtotal and tax amounts together to get the total invoice amount.\n\nLet's start by identifying the subtotal.",
+            "vendor_name": "National Hispanic Press Association",
+            "vendor_address": "652 National Press Building, Washington, D.C. 20045",
+            "invoice_total": "0",
+            "date_issue": "January 29, 1999"
+        }
+    },
+    {
+        "doc_id": "63b24b6c460c4e309b145d76",
+        "ground_truth": {
+            "vendor_name": "WXME-AM WXME-AM",
+            "vendor_address": "WXME-AM\n274 BRITTON ROAD\nMONTICELLO, ME 04760 WXME-AM, 274 BRITTON ROAD MONTICELLO, ME 04760",
+            "amount_total_gross": "$780.00",
+            "date_issue": "2/24/2021"
+        },
+        "predicted": {
+            "reasoning_process": "To calculate the invoice total, I will follow these steps: \n\n1. Identify the subtotal from the text.\n2. Determine if there is a tax amount mentioned in the text.\n3. If no tax is mentioned, assume it's not applicable and proceed to calculate the total using only the subtotal.\n4. Populate the invoice_total field with the calculated value.",
+            "vendor_name": "WXME-AM",
+            "vendor_address": "274 BRITTON ROAD\nMONTICELLO, ME 04760",
+            "invoice_total": "$780.00",
+            "date_issue": "2/24/2021"
+        }
+    },
+    {
+        "doc_id": "6467c52003444e2781e7faaa",
+        "ground_truth": {
+            "vendor_name": "OHANA MEDIA GROUP",
+            "vendor_address": "OHANA MEDIA GROUP\n833 GAMBELL STREET\nANCHORAGE, AK 99501",
+            "amount_total_gross": "$1,122.00",
+            "date_issue": "May. 30, 2021"
+        },
+        "predicted": {
+            "reasoning_process": "To calculate the invoice total, I will follow these steps: \n\n1. Find the subtotal by adding up all the individual item totals.\n2. Calculate the tax amount (if any) and add it to the subtotal to get the total before tax.\n3. Add any additional fees or charges to the total before tax to get the final invoice total.\n4. Since there is no explicit tax rate mentioned in the document, I will assume that the gross amount is already inclusive of tax.\n5. The payments/adjustments section shows a credit of $1,122.00, which means the actual amount due is -$0.00. However, this is likely an error and not relevant to calculating the invoice total.",
+            "vendor_name": "Ohana Media Group",
+            "vendor_address": "833 Gambell Street, Anchorage, AK 99501",
+            "invoice_total": "$1,320.00",
+            "date_issue": "May 30, 2021"
+        }
+    },
+    {
+        "doc_id": "6791ce7f9abe4029852b9b31",
+        "ground_truth": {
+            "vendor_name": "K-BEST MEDIA, LLC",
+            "vendor_address": "P.O. Box 1632 Big Spring, TX 79721",
+            "amount_total_gross": "1839.60",
+            "date_issue": "10/26/2020"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the total amount from this invoice, I will follow these steps: \n\n1. Identify the subtotal or line items on the invoice. In this case, there are no line items listed, so I will assume that the 'AMOUNT' field is the only relevant figure.\n2. Check for any tax amounts or percentages. There is no mention of tax in the provided text.\n3. Since there are no line items and no tax mentioned, I will use the 'AMOUNT' field as the total amount.\n4. Populate the `invoice_total` field with the value from the 'AMOUNT' field.",
+            "vendor_name": "K-BEST MEDIA, LLC",
+            "vendor_address": "P.O. Box 1632 Big Spring, TX 79721",
+            "invoice_total": ">1839.60",
+            "date_issue": "10/26/2020"
+        }
+    },
+    {
+        "doc_id": "67edf662037f4e6581a25ab8",
+        "ground_truth": {
+            "vendor_name": "KCDZ Z107.7 FM",
+            "vendor_address": "KCDZ Z107.7 FM\n6448 Hallee Road\nJoshua Tree, CA 92252",
+            "amount_total_gross": "$570.00",
+            "date_issue": "10/12/2020"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total, I will follow these steps: \n1. Identify the subtotal and tax amounts from the invoice.\n2. Calculate the subtotal by finding the number that precedes the word 'TOTAL' on the invoice.\n3. Since there is no separate tax amount listed, I will assume it is included in the subtotal or not applicable for this specific invoice.\n4. The total amount is already provided as $570.00, which should be the final invoice total.",
+            "vendor_name": "KCDZ Z107.7 FM",
+            "vendor_address": "6448 Hallee Road, Joshua Tree, CA 92252",
+            "invoice_total": "$570.00",
+            "date_issue": "10/12/2020"
+        }
+    },
+    {
+        "doc_id": "6a6b6a39b9914e72b943c579",
+        "ground_truth": {
+            "vendor_name": "KUTV Channel 2",
+            "vendor_address": "KUTV Channel 2\n150 South Main Street #150\nSalt Lake City, Ut. 84111",
+            "amount_total_gross": "$575",
+            "date_issue": "10/22/2012"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total, I will follow these steps: \n\n1. Identify all ordered spots and their respective rates.\n2. Calculate the subtotal by adding up the rates of all ordered spots.\n3. Check for any comments or notes that may indicate additional charges or credits.\n4. If there are no comments or notes, the tax rate is assumed to be 0% (no tax).\n5. Add the subtotal and tax (if applicable) to calculate the total invoice amount.",
+            "vendor_name": "KUTV Channel 2",
+            "vendor_address": "150 South Main Street #150\nSalt Lake City, Utah 84111",
+            "invoice_total": "}",
+            "date_issue": "10/22/2012"
+        }
+    },
+    {
+        "doc_id": "6e2f39308bb2489996907752",
+        "ground_truth": {
+            "vendor_name": "Mark Turcotte\nWSB",
+            "vendor_address": "Mark Turcotte\nWSB\n1601 W. Peachtree Street NE\nAtlanta, GA 30309",
+            "amount_total_gross": "$3,485.00",
+            "date_issue": "08/06/2020"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total from this document, I will follow these steps:\n\n1. Identify all line items with a non-zero quantity and calculate their subtotal by multiplying the quantity by the rate.\n2. Add up all subtotals to get the subtotal of all items.\n3. Look for any line item that has a negative amount (Agency Commission) and subtract it from the subtotal.\n4. The resulting value will be the total before tax.\n5. Since there is no tax information provided, I will assume the total before tax is also the invoice total.",
+            "vendor_name": "Mark Turcotte",
+            "vendor_address": "WSB\n1601 W. Peachtree Street NE\nAtlanta, GA 30309",
+            "invoice_total": "$3,870.00",
+            "date_issue": "08/06/2020"
+        }
+    },
+    {
+        "doc_id": "6fc4df9f834d4b2085c24a7d",
+        "ground_truth": {
+            "vendor_name": "KCDZ Z107.7 FM",
+            "vendor_address": "KCDZ Z107.7 FM\n6448 Hallee Road\nJoshua Tree, CA 92252",
+            "amount_total_gross": "$570.00",
+            "date_issue": "10/19/2020"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total, I will follow these steps: \n1. Identify the subtotal and tax amounts from the invoice.\n2. Calculate the subtotal by finding the number that precedes the word 'TOTAL' on the invoice.\n3. Since there is no separate tax amount listed, I will assume it is included in the subtotal or not applicable for this specific invoice.\n4. The total amount is already provided as $570.00, which should be the final invoice total.",
+            "vendor_name": "KCDZ Z107.7 FM",
+            "vendor_address": "6448 Hallee Road, Joshua Tree, CA 92252",
+            "invoice_total": "$570.00",
+            "date_issue": "10/19/2020"
+        }
+    },
+    {
+        "doc_id": "71f1fc005ef1468da9d04fcd",
+        "ground_truth": {
+            "vendor_name": "Waterfront Strategies",
+            "vendor_address": "Waterfront Strategies\n3050 K Street NW. Suite 100\nWashington, DC 20007-3606",
+            "amount_total_gross": "$98,600.00",
+            "date_issue": "Oct/23/2020 Oct/23/2020"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total from this document, I will follow these steps: \n\n1. Identify the relevant fields that contain monetary values.\n2. Extract the subtotal (Gross Amount) and any applicable discounts or late charges.\n3. Calculate the tax amount by subtracting the subtotal from the paid amount.\n4. Add the tax amount to the subtotal to get the total invoice amount.\n\nFirst, I will extract the relevant fields: \n\n* Subtotal (Gross Amount): $98,600.00\n* Paid Amount: $98,600.00\n* Discounts: $0.00\n* Late Charges: $0.00\n\nNext, I will calculate the tax amount by subtracting the subtotal from the paid amount:\n\nTax Amount = Paid Amount - Subtotal\nTax Amount = $98,600.00 - $98,600.00\nTax Amount = $0.00\n\nFinally, I will add the tax amount to the subtotal to get the total invoice amount:\n\nInvoice Total = Subtotal + Tax Amount\nInvoice Total = $98,600.00 + $0.00\nInvoice Total = $98,600.00\n\nTherefore, the final invoice total is: \n\n{ ",
+            "vendor_name": "Katz Media Group",
+            "vendor_address": "125 West 55th, 8th Floor, New York, NY 10019-5366",
+            "invoice_total": "$98,600.00",
+            "date_issue": "Oct/23/2020"
+        }
+    },
+    {
+        "doc_id": "72067f4e27754be2b012bb1a",
+        "ground_truth": {
+            "vendor_name": "Truth Broadcasting",
+            "vendor_address": "Truth Broadcasting\n4405 Providence Lane\nWinston-Salem, NC 27106\n(336)759-0363",
+            "amount_total_gross": "564.64",
+            "date_issue": "10/31/20"
+        },
+        "predicted": {
+            "reasoning_process": "To calculate the total amount due, I will follow these steps: \n\n1. Extract the individual line items from the 'Run Date Time Length Description Rate Quantity Amount' section.\n2. Calculate the subtotal by multiplying the rate by quantity for each item and summing up the results.\n3. Identify any agency commission or representative firm commission deductions, if applicable.\n4. Apply these deductions to the subtotal to calculate the net due amount.\n\nNow, let's proceed with the calculations: \n\n1. Extract individual line items:\n- DJT - For You (35.29) x 12 = 423.48\n- DJT - Econ Surrogate (35.29) x 8 = 282.32\n2. Calculate subtotal: 423.48 + 282.32 = 705.80\n3. Identify deductions:\n- Agency Comm: -84.70\n- REP FIRM COMM: -71.99\n4. Apply deductions to calculate net due amount: 705.80 - 84.70 - 71.99 = 549.11\nHowever, the invoice states that the 'TOTAL BROADCASTS' is $564.64 and the 'NET DUE' is $407.95. This discrepancy suggests that there may be additional deductions or adjustments not explicitly mentioned in the provided text.\nTo reconcile this difference, I will assume that the net due amount ($407.95) is the correct total after all applicable deductions have been applied.\n\nTherefore, the final invoice total is: $407.95",
+            "vendor_name": "Truth Broadcasting",
+            "vendor_address": "4405 Providence Lane, Winston-Salem, NC 27106",
+            "invoice_total": ">407.95",
+            "date_issue": "10/31/20"
+        }
+    },
+    {
+        "doc_id": "726cd979f5c0484f8bbd55a1",
+        "ground_truth": {
+            "vendor_name": "\u201cOpportunity Media Advertising\u201d\nUlises y Taimy Menocal",
+            "vendor_address": "\u201cOpportunity Media Advertising\u201d\nUlises y Taimy Menocal\nP.O. Box 142124\nMIAMI, FL 33114",
+            "amount_total_gross": "$612.00",
+            "date_issue": "06/30/22"
+        },
+        "predicted": {
+            "reasoning_process": "To calculate the invoice total, I will follow these steps: \n\n1. Identify all amounts on the invoice.\n2. Calculate the subtotal by adding up all the individual amounts.\n3. Apply the discount to find the discounted amount.\n4. Add any additional fees or charges (if present).\n5. The final invoice total is the sum of the discounted amount and any additional fees.",
+            "vendor_name": "Opportunity Media Advertising",
+            "vendor_address": "Ulises y Taimy Menocal, P.O. Box 142124, MIAMI, FL 33114",
+            "invoice_total": "$612.00",
+            "date_issue": "06/30/22"
+        }
+    },
+    {
+        "doc_id": "744c87e80b044f42a0552c27",
+        "ground_truth": {
+            "vendor_name": "CARTER CO. BRDCSTNG CO, INC",
+            "vendor_address": "CARTER CO. BRDCSTNG CO, INC\nP.O. BOX 487\nGRAYSON KY 41143",
+            "amount_total_gross": "104.04",
+            "date_issue": "06/28/2020"
+        },
+        "predicted": {
+            "reasoning_process": "To calculate the invoice total, I will follow these steps: \n1. Identify all relevant numerical values in the document.\n2. Calculate the subtotal by summing up the rates for each broadcast time.\n3. Apply the discount percentage to find the discounted amount.\n4. Add the discounted amount and any additional charges (if present) to find the total.\n5. Verify that the calculated total matches the value in the 'Annex' field.",
+            "vendor_name": "CARTER CO. BRDCSTNG CO, INC",
+            "vendor_address": "P.O. BOX 487\nGRAYSON KY 41143",
+            "invoice_total": "Not yet calculated",
+            "date_issue": "06/28/2020"
+        }
+    },
+    {
+        "doc_id": "7591b51f45644b4a8bed1c51",
+        "ground_truth": {
+            "vendor_name": "KCDZ Z107.7 FM",
+            "vendor_address": "KCDZ Z107.7 FM\n6448 Hallee Road\nJoshua Tree, CA 92252",
+            "amount_total_gross": "$4,253.40",
+            "date_issue": "9/17/2020"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total, I will follow these steps: \n1. Identify the subtotal and tax amounts from the invoice.\n2. Calculate the subtotal by finding the number that precedes the word 'TOTAL' on the invoice.\n3. Since there is no separate tax amount listed, I will assume it is included in the subtotal.\n4. The total amount is already provided on the invoice as $4,253.40.\n5. To confirm my calculation, I will add any additional amounts that may be present (e.g., shipping costs).\n6. If there are no additional amounts, the total will remain the same.",
+            "vendor_name": "KCDZ Z107.7 FM",
+            "vendor_address": "6448 Hallee Road\nJoshua Tree, CA 92252",
+            "invoice_total": "$4,253.40",
+            "date_issue": "9/17/2020"
+        }
+    },
+    {
+        "doc_id": "76fb5118724f4b16a20493df",
+        "ground_truth": {
+            "vendor_name": "Hits 106 KLMI FM 106.1",
+            "vendor_address": "Hits 106 KLMI FM 106.1\n413 E Garfield\nLaramie WY 82070",
+            "amount_total_gross": "400.00 400.00",
+            "date_issue": "08/02/22"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total, I will follow these steps: \n1. Identify the relevant section of the document that contains pricing information.\n2. Extract the subtotal from this section.\n3. Determine if there are any additional fees or taxes to be added to the subtotal.\n4. Calculate the final invoice total by adding any applicable fees or taxes to the subtotal.",
+            "vendor_name": "KLMI-FM",
+            "vendor_address": "413 E Garfield, Laramie WY 82070",
+            "invoice_total": "400.00",
+            "date_issue": "08/02/22"
+        }
+    },
+    {
+        "doc_id": "8104f4910ca94395afa1298d",
+        "ground_truth": {
+            "vendor_name": "KATZ RADIO",
+            "vendor_address": "KATZ RADIO\nWRWN-FM (Savannah, GA)\nJESSICA LAVORERIO.\nPHILADELPHIA",
+            "amount_total_gross": "210.00",
+            "date_issue": "Jan 30, 20 Jan 30, 20"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total from this document, I will follow these steps: \n\n1. Identify the relevant section that contains the total amount due.\n2. Extract the subtotal (already provided) and tax information (if applicable).\n3. Calculate the total by adding the subtotal and tax (if applicable).\n4. Verify that there are no additional fees or charges that need to be added to the total.\n\nBased on the document, I will start with step 1.",
+            "vendor_name": "Katz Media Group",
+            "vendor_address": "125 West 55th Street 3rd Floor, New York, NY 10019",
+            "invoice_total": "210.00",
+            "date_issue": "Jan 30, 20"
+        }
+    },
+    {
+        "doc_id": "83dfe6e78ae14455b3016b43",
+        "ground_truth": {
+            "vendor_name": "KMOZ 92.3 The Moose KMOZ 92.3 The Moose",
+            "vendor_address": "KMOZ 92.3 The Moose\n1360 E. Sherwood Drive\nGrand Junction, CO 81501 KMOZ 92.3 The Moose\n1360 E. Sherwood Drive\nGrand Junction, CO 81501",
+            "amount_total_gross": "$1,270.80 $1,270.80 $1,270.80",
+            "date_issue": "6/30/2022 6/30/2022"
+        },
+        "predicted": {
+            "reasoning_process": "To calculate the invoice total, I will first find the subtotal by adding up all the individual spot totals. Then, I will apply the agency discount to get the net amount. Finally, I will confirm that the net amount matches the invoice total.",
+            "vendor_name": "KMOZ 92.3 The Moose",
+            "vendor_address": "1360 E. Sherwood Drive, Grand Junction, CO 81501",
+            "invoice_total": "1,080.00",
+            "date_issue": "6/30/2022"
+        }
+    },
+    {
+        "doc_id": "84708161e1e347f5bbeb9d5a",
+        "ground_truth": {
+            "vendor_name": "KMGO RADIO",
+            "vendor_address": "KMGO RADIO\n402 N 12TH ST\nCENTERVILLE, IA 52544-1718",
+            "amount_total_gross": "700.00",
+            "date_issue": "8/20/2020"
+        },
+        "predicted": {
+            "reasoning_process": "To calculate the invoice total, I will follow these steps: \n\n1. Identify all relevant line items and their costs.\n2. Calculate the subtotal by adding up the costs of all line items.\n3. Check if there are any discounts or agency commissions that need to be applied.\n4. If applicable, subtract the discount from the subtotal.\n5. Add the tax rate (if provided) to the subtotal to calculate the total.\n6. The final invoice total will be the sum of the net amount and any additional fees or charges.",
+            "vendor_name": "MEDIA FINANCIAL SERVICES",
+            "vendor_address": "1655 PALM BEACH LAKES BLVD SUITE 903, WEST PALM BEACH, FL 33401",
+            "invoice_total": "}",
+            "date_issue": "8/25/2020 - 8/31/2020"
+        }
+    },
+    {
+        "doc_id": "84842c5f98174d6e9e5c3770",
+        "ground_truth": {
+            "vendor_name": "Community Broadcasting Service Community Broadcasting Service",
+            "vendor_address": "Community Broadcasting Service\nPO BOX 3135\nBoston, MA 02241-3135 Community Broadcasting Service\nPO BOX 3135\nBoston, MA 02241-3135",
+            "amount_total_gross": "$4,920.00",
+            "date_issue": "07/27/14 07/27/14"
+        },
+        "predicted": {
+            "reasoning_process": "To calculate the total amount due on the invoice, I will follow these steps: \n\n1. Find the subtotal by adding up all the airtime revenue amounts listed in the table.\n2. Add any agency commission to the subtotal to get the gross billing amount.\n3. Subtract the agency commission from the gross billing amount to get the net due amount.\n4. Verify that there are no other charges or fees that need to be added to the total.",
+            "vendor_name": "Community Broadcasting Service",
+            "vendor_address": "PO Box 3135, Boston, MA 02241-3135",
+            "invoice_total": "$4182.00",
+            "date_issue": "07/27/14"
+        }
+    },
+    {
+        "doc_id": "893d9cc0e7294fdab7fdfd1d",
+        "ground_truth": {
+            "vendor_name": "Katz Commnications \u00b7 Katz Media Group Inc",
+            "vendor_address": "Kat CommnicationsKatz Media Group Inc\n125 W. 55th St., New York, New York 10019",
+            "amount_total_gross": "$51,807.50",
+            "date_issue": "9/11/2018"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total, I will follow these steps: \n1. Identify the subtotal from the 'Transaction Totals' section.\n2. Check if there are any additional fees or taxes that need to be added to the subtotal.\n3. If no additional fees or taxes are present, the subtotal is equal to the total.",
+            "vendor_name": "Katz Communications",
+            "vendor_address": "125 W. 55th St., New York, New York 10019",
+            "invoice_total": "$51,807.50",
+            "date_issue": "9/11/2018"
+        }
+    },
+    {
+        "doc_id": "8b647df7ecae433a9efe3082",
+        "ground_truth": {
+            "vendor_name": "KDEM-FM/KOTS-AM KDEM-FM",
+            "vendor_address": "KDEM-FM/KOTS-AM\nP.O. Box 470\n1700 S. Gold Avenue\nDeming, NM 88031",
+            "amount_total_gross": "$967.50",
+            "date_issue": "10/14/2020"
+        },
+        "predicted": {
+            "reasoning_process": "To calculate the invoice total, I will follow these steps: \n\n1. Find the subtotal by adding up all the line item totals.\n2. Find the tax rate and apply it to the subtotal to get the total before tax.\n3. The total on the invoice is already provided as $967.50, but I will verify this calculation by comparing it to my own calculations.\n\nFirst, let's find the subtotal: \n\nThe line item totals are:\n$322.50 (line 1)\n$822.38 (total spots) = $822.38 (line 2-4)\nSince there are three identical lines for order #64613 and #64614, I will only count one of them.\nThe subtotal is the sum of these line item totals: \n$322.50 + $822.38 = $1144.88\n\nNext, let's find the tax rate and apply it to the subtotal:\nI do not see a specific tax rate mentioned in the invoice, but I will assume that the total on the invoice includes tax.\nTherefore, I will use the provided total as is: \n$967.50\n\nNow, let's verify this calculation by comparing it to my own calculations:\nSubtotal: $1144.88\nTax rate: unknown (assuming included in total)\nTotal before tax: unknown (assuming included in total)\nTotal on invoice: $967.50\n\nThe provided total matches my calculated subtotal plus an unknown amount for tax, so I will use the provided total as is.\n\nInvoice Total: $967.50",
+            "vendor_name": "Crystal Diamond for NM",
+            "vendor_address": "invoices@mediafinancial.com",
+            "invoice_total": "$967.50",
+            "date_issue": "10/14/2020"
+        }
+    },
+    {
+        "doc_id": "8c105e1b14d74f93bd0b2da3",
+        "ground_truth": {
+            "vendor_name": "WZZM WZZM WZZM\nWZZM",
+            "vendor_address": "WZZM\n645 3 Mile Road NW\nGrand Rapids MI 49544 WZZM\n645 3 Mile Road NW\nGrand Rapids MI 49544 WZZM\nWZZM\nPO BOX: 637386\nCincinnati OH 45263-7386",
+            "amount_total_gross": "$8,520.00",
+            "date_issue": "05/24/20 05/24/20"
+        },
+        "predicted": {
+            "reasoning_process": "To calculate the invoice total, I will first identify the relevant sections of the document that contain financial information. The gross total is listed as $8,520.00 and the agency commission is listed as $1,278.00. To find the subtotal, I will subtract the agency commission from the gross total: $8,520.00 - $1,278.00 = $7,242.00. This is already listed as the net amount due, so it appears to be correct. Next, I will look for any tax information. The payment terms are listed as 'Cash in Advance', which suggests that there may not be any taxes included in this invoice. However, I will verify by checking for any other sections of the document that mention taxes or fees. After reviewing the document again, I did not find any additional information about taxes or fees. Therefore, I will assume that the net amount due is the total amount due and does not include any taxes.",
+            "vendor_name": "American Media & Advocacy Group",
+            "vendor_address": "815 Slaters Lane, Alexandria VA 22314",
+            "invoice_total": "$7,242.00",
+            "date_issue": "05/24/20"
+        }
+    },
+    {
+        "doc_id": "8e111a3f5e2845a58952d37a",
+        "ground_truth": {
+            "vendor_name": "Sinclair Broadcast Group Inc\nC/O WHP Sinclair Broadcast Group\nc/o WHP",
+            "vendor_address": "Sinclair Broadcast Group Inc\nC/O WHP\nPO BOX 206270\nDALLAS TX 75320-6270 Sinclair Broadcast Group\nc/o WHP\nPO Box 206270\nDallas TX 75320-6270",
+            "amount_total_gross": "$500.00",
+            "date_issue": "5/2/2021"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total, I will follow these steps: 1) Identify the subtotal from the 'Gross Total' field, which is $500.00. 2) Calculate the commission by multiplying the subtotal by a commission rate (not explicitly stated in the text). However, since the commission amount is provided as ($75.00), I can use this value directly. 3) Identify the sales tax from the 'Sales Tax' field, which is $0.00. 4) Calculate the net total by subtracting the commission and adding the sales tax to the subtotal.",
+            "vendor_name": "Sinclair Broadcast Group Inc",
+            "vendor_address": "C/O WHP PO BOX 206270 DALLAS TX 75320-6270",
+            "invoice_total": "$425.00",
+            "date_issue": "5/2/2021"
+        }
+    },
+    {
+        "doc_id": "98cfd9b1adae4f269db59c8e",
+        "ground_truth": {
+            "vendor_name": "WXXV-TV",
+            "vendor_address": "WXXV-TV\nP.O. Box 2500\nGulfport, MS 39505",
+            "amount_total_gross": "$701.25",
+            "date_issue": "10/18/2020"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total from this document, I will follow these steps: \n\n1. Identify all line items with a non-zero amount.\n2. Calculate the subtotal by summing up the amounts of these line items.\n3. Check for any tax or commission applied to the subtotal.\n4. If applicable, add the tax or commission to the subtotal to get the total.\n5. The final invoice total will be the net total.",
+            "vendor_name": "FOX 25",
+            "vendor_address": "P.O. Box 2500, Gulfport, MS 39505",
+            "invoice_total": "$701.25",
+            "date_issue": "10/21/2020"
+        }
+    },
+    {
+        "doc_id": "9a03395c039f46988d88472a",
+        "ground_truth": {
+            "vendor_name": "Ohio Midland Newsgroup LLC",
+            "vendor_address": "Ohio Midland Newsgroup LLC\n3201 BELMONT STREET\nBELLAIRE, OH 43906",
+            "amount_total_gross": "$150.00 USD",
+            "date_issue": "10/13/20"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total, I will follow these steps: \n1. Identify any subtotal or line items on the invoice.\n2. If a subtotal is present, calculate the tax amount by applying the applicable tax rate to the subtotal.\n3. Add the tax amount to the subtotal to get the total.\n4. If no subtotal is provided, I will assume that the 'Total' value mentioned at the top of the page is the invoice total.",
+            "vendor_name": "Ohio Midland Newsgroup LLC",
+            "vendor_address": "3201 BELMONT STREET\nBELLAIRE, OH 43906",
+            "invoice_total": "$150.00 USD",
+            "date_issue": "10/13/20 12:00 PM"
+        }
+    },
+    {
+        "doc_id": "9bb25921bf3d47a59e6eb84b",
+        "ground_truth": {
+            "vendor_name": "WWFE-AM",
+            "vendor_address": "WWFE-AM\nLA PODEROSA 670 AM\n330 S.W. 27 Avenue\nSuite 207\nMiami, Fl 33135",
+            "amount_total_gross": "$5,040.00",
+            "date_issue": "7/21/2020"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total from this document, I will follow these steps:",
+            "vendor_name": "THE G MEDIA GROUP, INC.",
+            "vendor_address": "3733 SW 149 AVENUE MIAMI, FL 33185 USA",
+            "invoice_total": "0",
+            "date_issue": "7/21/2020"
+        }
+    },
+    {
+        "doc_id": "9cffd75e1cd84d8188aff20c",
+        "ground_truth": {
+            "vendor_name": "Rich Broadcasting",
+            "vendor_address": "Rich Broadcasting\n1406 Commerce Way\nIdaho Falls, ID 83401",
+            "amount_total_gross": "$1,407.60 USD",
+            "date_issue": "3/31/22"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total from the provided OCR document text, I will follow these steps: \n\n1. Identify the relevant section of the text that contains the total amount.\n2. Extract the numerical value representing the subtotal or total amount.\n3. Verify if there are any additional charges or fees that need to be added to the subtotal.\n4. Calculate the tax amount, if applicable.\n5. Add the tax amount to the subtotal to obtain the final invoice total.\n\nBased on the provided text, I will start by identifying the relevant section containing the total amount.",
+            "vendor_name": "Rich Broadcasting",
+            "vendor_address": "1406 Commerce Way, Idaho Falls, ID 83401",
+            "invoice_total": "$1,407.60 USD",
+            "date_issue": "3/31/22"
+        }
+    },
+    {
+        "doc_id": "9dbb0628bd534f95a07b4776",
+        "ground_truth": {
+            "vendor_name": "Waterfront Strategies",
+            "vendor_address": "Waterfront Strategies\n3050 K Street NW. Suite 100\nWashington, DC 20007-3606",
+            "amount_total_gross": "$12,529.00",
+            "date_issue": "Jul/20/2020 Jul/20/2020"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the total amount from this invoice, I will follow these steps: \n\n1. Identify the 'Gross Amount' which is the initial amount before any deductions or taxes.\n2. Check for any discounts or late charges that may have been applied to the gross amount.\n3. If there are no discounts or late charges, the total paid amount should be equal to the gross amount.\n4. Verify that the 'Total Paid Amt' is indeed equal to the 'Gross Amount', which it is in this case.\n5. The final invoice total will be the same as the Total Paid Amt.",
+            "vendor_name": "WSTM-TV",
+            "vendor_address": "1030 James Street, Syracuse, NY 12203, United States",
+            "invoice_total": "$12,529.00",
+            "date_issue": "Jul/20/2020"
+        }
+    },
+    {
+        "doc_id": "9e2b80eff45f4f2199ed93f3",
+        "ground_truth": {
+            "vendor_name": "WLYH-TV LANCASTER,PA WLYH-TV LANCASTER,PA (STRM) STRATEGIC MEDIA SERVICES (STRM) STRATEGIC MEDIA SERVICES",
+            "vendor_address": "(STRM) STRATEGIC MEDIA SERVICES\n1911 NORTH FT MYER DRIVE, SUITE 400\nARLINGTON, VA 22209 (STRM) STRATEGIC MEDIA SERVICES\n1911 NORTH FT MYER DRIVE, SUITE 400\nARLINGTON, VA 22209",
+            "amount_total_gross": "$1,125.00",
+            "date_issue": "06/24/15 06/24/15"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total, I will follow these steps: \n1. Identify the relevant section of the document that contains the financial information.\n2. Extract the subtotal from the 'Report Totals' or 'Order Totals' sections.\n3. Check if there are any additional fees or taxes mentioned in the document.\n4. Calculate the total by adding the subtotal and any additional fees or taxes.\n5. Verify that the calculated total matches the value in the 'Invoice Total' field.",
+            "vendor_name": "POLITICAL ISSUE GROU",
+            "vendor_address": "1911 NORTH FT MYER DRIVE, SUITE 400 ARLINGTON, VA 22209",
+            "invoice_total": "$1,425.00",
+            "date_issue": "06/24/15"
+        }
+    },
+    {
+        "doc_id": "a2309a7e736b4be8b2dc6108",
+        "ground_truth": {
+            "vendor_name": "CHRISTAL RADIO",
+            "vendor_address": "CHRISTAL RADIO\nKLLL-FM (Lubbock, TX)\nMARK CLOWERS\nNEW YORK",
+            "amount_total_gross": "2,415.00",
+            "date_issue": "Feb 21, 20 Feb 21, 20"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total from this document, I will follow these steps: \n\n1. Identify the relevant section that contains the total amount due.\n2. Extract the subtotal (already provided as $2415.00) and tax information (if any).\n3. Calculate the total by adding the subtotal and tax (if applicable).\n4. Populate the `invoice_total` field with the calculated result.",
+            "vendor_name": "Katz Media Group",
+            "vendor_address": "125 West 55th Street, 3rd Floor, New York, NY 10019",
+            "invoice_total": "$2415.00",
+            "date_issue": "Feb 21, 20"
+        }
+    },
+    {
+        "doc_id": "a3936554677248e291dde526",
+        "ground_truth": {
+            "vendor_name": "WAFC\nAM590/FM\n92.5/100.5/105.1 WWRF\nAM1380/FM96.9/94.7\nWLLY\nFM99.5 WOKC\nAM1570/FM100.9\nWLMX\nFM106.1/FM95.1 WAFZ\nAM1490/FM92.1",
+            "vendor_address": "WAFC\nAM590/FM\n92.5/100.5/105.1\n530 East Alverdez Ave\nClewiston, FL 33440 WWRF\nAM1380/FM96.9/94.7\nWLLY\nFM99.5\n2326 S. Congress Ave. #2A\nWPB, FL 33406 WOKC\nAM1570/FM100.9\nWLMX\nFM106.1/FM95.1\n3936 18th Terrace\nOkeechobee, FL 34974 WAFZ\nAM1490/FM92.1\n316 North 15th Street,\nSuite 3\nImmokalee, FL 34142",
+            "amount_total_gross": "$2720.85",
+            "date_issue": "7-15-20"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total from the provided OCR document text, I will follow these steps:",
+            "vendor_name": "Glades Media Radio Group",
+            "vendor_address": "530 East Alverdez Ave Clewiston, FL 33440",
+            "invoice_total": "0",
+            "date_issue": "7-15-20"
+        }
+    },
+    {
+        "doc_id": "a3ab0695612a420da43bd432",
+        "ground_truth": {
+            "vendor_name": "University of Kentucky Research Foundation\nc/o National City Bank University of Kentucky Research Foundation\nc/o National City Bank",
+            "vendor_address": "University of Kentucky Research Foundation\nc/o National City Bank\nSection 506\nLouisville, KY 40289 University of Kentucky Research Foundation\nc/o National City Bank\nSectlon 506\nLouisville, KY 40289",
+            "amount_total_gross": "72,005.18 72,005.18",
+            "date_issue": "December 22, 2003"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total from this document, I will follow these steps: \n\n1. Identify the relevant section of the document that contains the financial information.\n2. Extract the amount listed as 'Billing for the lump sum payment' which is $72,005.18.\n3. Verify that there are no other amounts mentioned in the document that could be considered part of the total.\n4. Confirm that this amount represents the entire balance due and not just a portion of it.\n5. Populate the 'invoice_total' field with the extracted amount.",
+            "vendor_name": "University of Kentucky Research Foundation",
+            "vendor_address": "c/o National City Bank, Section 506, Louisville, KY 40289",
+            "invoice_total": "$72,005.18",
+            "date_issue": "December 22, 2003"
+        }
+    },
+    {
+        "doc_id": "a3f51835ee5a479cb87f85fe",
+        "ground_truth": {
+            "vendor_name": "WBCQ-FM WXME-AM",
+            "vendor_address": "WBCQ-FM\nP.O. BOX 824\nHoulton, ME 04730 \"WXME-AM\" 274 Britton Road, Monticello, ME 04760",
+            "amount_total_gross": "$240.00",
+            "date_issue": "12/19/18"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the total amount due from the invoice, I will follow these steps: \n\n1. Identify the item description and spot rate.\n2. Calculate the subtotal by multiplying the number of ads by the spot rate.\n3. Verify that the calculated subtotal matches the Total Amount Due listed on the invoice.\n4. If the subtotal matches, then the tax amount is zero since it's not explicitly mentioned in the invoice.\n5. The total amount due will be equal to the subtotal.",
+            "vendor_name": "WXME-AM",
+            "vendor_address": "274 Britton Road, Monticello, ME 04760",
+            "invoice_total": "$240.00",
+            "date_issue": "12/19/18"
+        }
+    },
+    {
+        "doc_id": "a779989fc3d043e79039acef",
+        "ground_truth": {
+            "vendor_name": "Waterfront Strategies",
+            "vendor_address": "Waterfront Strategies\n3050 K Street NW, Suite 100\nWashington, DC 20007-3606",
+            "amount_total_gross": "$22,729.00",
+            "date_issue": "Jun/15/2020 Jun/15/2020 Jun/15/2020"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the total amount due from this invoice, I will follow these steps: \n\n1. Identify the 'Gross Amount' which is the initial amount before any discounts or taxes.\n2. Check for any 'Discounts' or 'Late Charges' that may have been applied to the Gross Amount.\n3. If there are no Discounts or Late Charges, the Total Paid Amount will be equal to the Gross Amount.\n4. Extract the Total Paid Amount as the final invoice total.",
+            "vendor_name": "WSTM-TV",
+            "vendor_address": "1030 James Street\nSyracuse, NY 13203\nUnited States",
+            "invoice_total": "$22,729.00",
+            "date_issue": "Jun/15/2020"
+        }
+    },
+    {
+        "doc_id": "a82b97925f0f4fe1b9f69dfc",
+        "ground_truth": {
+            "vendor_name": "Sinclair Broadcast Group Inc Sinclair Broadcast Group Inc Sinclair Broadcast Group",
+            "vendor_address": "Sinclair Broadcast Group Inc\nC/O WRSP\nPO BOX 206270\nDALLAS TX 75320-6270 Sinclair Broadcast Group Inc\nC/O WRSP\nPO BOX 206270\nDALLAS TX 75320-6270 Sinclair Broadcast Group\nc/o WRSP+\nPO Box 206270\nDallas TX 75320-6270",
+            "amount_total_gross": "$2,606.50",
+            "date_issue": "5/29/2022 5/29/2022"
+        },
+        "predicted": {
+            "reasoning_process": "To calculate the invoice total, I will first find the subtotal by adding up all the amounts listed in the 'Amount' column. Then, I will add the commission amount to get the gross total. Since there is no sales tax, the net total will be the same as the gross total.",
+            "vendor_name": "Sinclair Broadcast Group",
+            "vendor_address": "c/o WRSP, PO BOX 206270, DALLAS TX 75320-6270",
+            "invoice_total": "?",
+            "date_issue": "5/29/2022"
+        }
+    },
+    {
+        "doc_id": "aa0864814cd04ca5b5c52ef6",
+        "ground_truth": {
+            "vendor_name": "Magnum Communications",
+            "vendor_address": "Magnum Communications\nPO Box 118\nWest Bend, WI 53095",
+            "amount_total_gross": "$266.64",
+            "date_issue": "4/2/2020"
+        },
+        "predicted": {
+            "reasoning_process": "To calculate the invoice total, I will follow these steps: \n\n1. Identify all relevant charges from the on-air schedule.\n2. Calculate the subtotal by adding up all the individual charges.\n3. Check for any additional fees or taxes that may be included in the 'Total Charges' field.\n4. If no additional fees or taxes are found, use the 'Total Charges' as the invoice total.",
+            "vendor_name": "Magnum Communications",
+            "vendor_address": "PO Box 118, West Bend, W1 53095",
+            "invoice_total": "$266.64",
+            "date_issue": "4/2/2020"
+        }
+    },
+    {
+        "doc_id": "adcf240913504cc4a807808f",
+        "ground_truth": {
+            "vendor_name": "BAT Investments Ltd",
+            "vendor_address": "BAT Investments Ltd\nR&D Centre\nRegents Park Road\nMillbrook\nSouthampton S015 8TL",
+            "amount_total_gross": "GBP 5187.00",
+            "date_issue": "18/10/04"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total, I will follow these steps: \n1. Identify the relevant sections of the document that contain pricing information.\n2. Extract the prices for each item and calculate the subtotal.\n3. Determine the tax rate and apply it to the subtotal to find the total.\n4. Verify that all necessary fields are populated before providing the final invoice total.",
+            "vendor_name": "BAT Investments Ltd",
+            "vendor_address": "R&D Centre, Regents Park Road, Millbrook, Southampton SO15 8TL",
+            "invoice_total": "0",
+            "date_issue": "18/10/04"
+        }
+    },
+    {
+        "doc_id": "b5292d31f1e54614916edc2d",
+        "ground_truth": {
+            "vendor_name": "WLTX-TV",
+            "vendor_address": "WLTX-TV Columbia, SC",
+            "amount_total_gross": "$320 $320",
+            "date_issue": "2/19/20"
+        },
+        "predicted": {
+            "reasoning_process": "To calculate the invoice total, I will first extract the relevant information from the MAKEGOOD OFFER section of the document. The MAKEGOOD OFFER section lists two dates with multiple time periods and corresponding costs. I will sum up the costs for each date separately and then add them together to get the subtotal. After that, I will calculate the tax by applying a percentage (which is not explicitly stated in the document) to the subtotal. Finally, I will add the tax to the subtotal to get the total invoice amount.",
+            "vendor_name": "Tulsi Now, Inc.",
+            "vendor_address": "",
+            "invoice_total": "}",
+            "date_issue": "2/19/20"
+        }
+    },
+    {
+        "doc_id": "bbd6e70912004112b83dbe39",
+        "ground_truth": {
+            "vendor_name": "Learfield",
+            "vendor_address": "Learfield, 505 Hobbs Road, Jefferson City, MO 65109",
+            "amount_total_gross": "$17,408.00",
+            "date_issue": "3/30/22"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total from this document, I will follow these steps: \n\n1. Identify the relevant section of the document that contains pricing information.\n2. Extract the subtotal and tax amounts from this section.\n3. Calculate the total by adding the subtotal and tax amounts.\n4. Verify that there are no additional fees or charges that need to be added to the total.\n5. Populate the `invoice_total` field with the calculated total.",
+            "vendor_name": "Advertiser Alliance for a Better MN Educa",
+            "vendor_address": "",
+            "invoice_total": "$17,408.00",
+            "date_issue": ""
+        }
+    },
+    {
+        "doc_id": "bc7472a78c084edc895c0eb5",
+        "ground_truth": {
+            "vendor_name": "Waterfront Strategies",
+            "vendor_address": "Waterfront Strategies\n3050 K Street NW. Suite 100\nWashington, DC 20007-3606",
+            "amount_total_gross": "$16,702.50",
+            "date_issue": "Jun/29/2022 Jun/29/2022 Jun/29/2022"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the total amount due from this invoice, I will follow these steps: \n\n1. Identify the 'Gross Amount' which is the initial amount before any discounts or taxes.\n2. Check for any 'Discounts' or 'Late Charges' that may have been applied to the Gross Amount.\n3. If there are no Discounts or Late Charges, the Total Paid Amt will be equal to the Gross Amount.\n4. Extract the Total Paid Amt as the final invoice total.",
+            "vendor_name": "WBMA-TV",
+            "vendor_address": "800 Concourse Parkway Suite 200 Birmingham, AL 35236 United States",
+            "invoice_total": "$16,702.50",
+            "date_issue": "Jun/29/2022"
+        }
+    },
+    {
+        "doc_id": "c1fef5ae45844c46a997d352",
+        "ground_truth": {
+            "vendor_name": "Learfield StateNets Platinum",
+            "vendor_address": "Learfield, 505 Hobbs Road, Jefferson City, MO 65109 StateNets Platinum\nAttn: Dave Martin\n2601 Northwind Drive\nRichmond VA 23233",
+            "amount_total_gross": "$11,816.00",
+            "date_issue": "5/4/22"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total from this document, I will follow these steps: \n\n1. Identify the relevant sections of the document that contain financial information.\n2. Extract the subtotal (Air Time Gross) and any additional charges or fees (Agency Commission).\n3. Calculate the tax amount (if applicable).\n4. Add the subtotal, additional charges/fees, and tax to calculate the total invoice amount.\n\nBased on the provided text, I will proceed with these steps.",
+            "vendor_name": "Learfield",
+            "vendor_address": "505 Hobbs Road, Jefferson City, MO 65109",
+            "invoice_total": "$10,043.60",
+            "date_issue": "5/4/22"
+        }
+    },
+    {
+        "doc_id": "c34046cc071d4b9b9230aaab",
+        "ground_truth": {
+            "vendor_name": "Michael Leahy, CEO & Editor-in-Chief\nStar News Digital Media, Inc. Michael Patrick Leahy, CEO of Star News Digital Media",
+            "vendor_address": "Michael Leahy, CEO & Editor-in-Chief\nStar News Digital Media, Inc.\n3000 Iroquois Drive Thompsons Station, TN 37179",
+            "amount_total_gross": "$1,400",
+            "date_issue": "July 14, 2022"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the total amount due from the invoice, I will follow these steps:\n\n1. Identify the subtotal by finding the specific costs mentioned in the invoice.\n2. Calculate the tax rate and apply it to the subtotal to find the total.\n3. Verify that the calculated total matches the 'Amount Due' listed on the invoice.\n\n**Step 1: Find the Subtotal**\n\nThe invoice mentions two separate costs:\n- $700 per week for 2 weeks, July 15 to July 28 = $1,400 (this is already mentioned as the subtotal)\n- Two, 60-second spots per show day airing in the 6 am to 7 am hours (10 spots/week @$70 per spot in the 6 am and 7 am hours).\n\nSince this second cost is not explicitly stated as a separate amount, I will assume it's included in the $1,400 subtotal.\n\n**Step 2: Calculate Tax Rate and Apply to Subtotal**\n\nThere is no mention of tax rate or any additional fees. Therefore, I will assume there are no taxes applied to this invoice.\n\n**Step 3: Verify Total**\n\nThe 'Amount Due' listed on the invoice is $1,400, which matches my calculated subtotal (since I assumed no taxes). Therefore, the total amount due is indeed $1,400.",
+            "vendor_name": "Star News Digital Media",
+            "vendor_address": "3000 Iroquois Drive Thompsons Station, TN 37179",
+            "invoice_total": "$1,400",
+            "date_issue": "July 14, 2022"
+        }
+    },
+    {
+        "doc_id": "c3cd6444e4174e7189486b31",
+        "ground_truth": {
+            "vendor_name": "Silverton Broadcasting Company, LLC",
+            "vendor_address": "Silverton Broadcasting Company, LLC\nKFNB TV Casper WY",
+            "amount_total_gross": "$2,510.00 2,510.00",
+            "date_issue": "10/22/2018"
+        },
+        "predicted": {
+            "reasoning_process": "To calculate the invoice total, I will follow these steps:\n\n1. Identify all line items with a 'Gross' column value.\n2. Calculate the subtotal by summing up the values in the 'Gross' column for all identified line items.\n3. Find the tax rate (if applicable) and calculate the tax amount by multiplying the subtotal by the tax rate.\n4. Add the tax amount to the subtotal to get the total.\n5. The total will be the invoice total.",
+            "vendor_name": "Silverton Broadcasting Company, LLC",
+            "vendor_address": "KFNB TV Casper WY",
+            "invoice_total": "}",
+            "date_issue": "10/22/2018"
+        }
+    },
+    {
+        "doc_id": "cc8adecb02fc4cf39e5838e4",
+        "ground_truth": {
+            "vendor_name": "\u201cOpportunity Media Advertising\u201d\nUlises y Taimy Menocal",
+            "vendor_address": "\u201cOpportunity Media Advertising\u201d\nUlises y Taimy Menocal\nP.O. Box 142124\nMIAMI, FL 33114",
+            "amount_total_gross": "$850.00",
+            "date_issue": "07/13/22"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the total amount from this invoice, I will follow these steps:\n\n1. Identify all the individual line items with their respective costs.\n2. Calculate the subtotal by adding up the costs of all the line items.\n3. Apply any discounts or deductions to the subtotal to get the final amount before tax.\n4. Add the tax amount to the final amount before tax to get the total invoice amount.\n\nFirst, I will identify the individual line items and their costs:\n\n* 15\u201d 9 ads at $40.00 each: $360.00\n* 15\u201d 6 ads at $40.00 each: $240.00\n* 15\u201d 10 ads at $40.00 each: $400.00\n\nNext, I will calculate the subtotal by adding up these costs:\n\n$360.00 + $240.00 + $400.00 = $1000.00\n\nThe invoice also mentions a discount of 15% for the agency.\n\nTo apply this discount, I will multiply the subtotal by 0.85 (1 - 0.15):\n\n$1000.00 x 0.85 = $850.00\n\nThis is the final amount before tax.\n\nHowever, there is a discrepancy in the provided text. The invoice states that the total amount due is $850.00, but this seems to be incorrect based on my calculations. I will assume that the correct total amount due is actually $1000.00 minus the discount of 15%.\n\nTherefore, the final invoice total is: $1000.00",
+            "vendor_name": "Opportunity Media Advertising",
+            "vendor_address": "Ulises y Taimy Menocal P.O. Box 142124 MIAMI, FL 33114",
+            "invoice_total": "$850.00",
+            "date_issue": "07/13/22"
+        }
+    },
+    {
+        "doc_id": "d3deb3b359a141ecba602d66",
+        "ground_truth": {
+            "vendor_name": "Learfield Communications, Inc.",
+            "vendor_address": "Learfield Communications, Inc., 505 Hobbs Road, Jefferson City, MO 65109",
+            "amount_total_gross": "$52,234.00",
+            "date_issue": "9/8/20"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total from this document, I will follow these steps: \n\n1. Identify the relevant sections of the document that contain numerical data.\n2. Extract the subtotal, tax, and other relevant amounts from these sections.\n3. Perform calculations to determine the total amount due.\n4. Verify that all extracted amounts are correctly formatted and free of errors.\n5. Populate the final `invoice_total` field with the calculated result.",
+            "vendor_name": "Learfield Communications",
+            "vendor_address": "505 Hobbs Road, Jefferson City, MO 65109",
+            "invoice_total": "0",
+            "date_issue": "Not provided"
+        }
+    },
+    {
+        "doc_id": "d6f28e6199cd4edeb45e07fc",
+        "ground_truth": {
+            "vendor_name": "Katz Communicaions \u00b7 Katz Media Group Inc",
+            "vendor_address": "Katz Communicaions \u00b7 Katz Media Group Inc\n125 W. 55th St., New York, New York 10019",
+            "amount_total_gross": "$187,341.70",
+            "date_issue": "1/8/2020"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total, I will follow these steps: \n\n1. Identify the subtotal from the 'Transaction Totals' section.\n2. Check if there are any additional fees or taxes that need to be added to the subtotal (in this case, sales tax, freight amount, freight tax, and duty amount are all $0).\n3. If no additional fees or taxes apply, the total will be equal to the subtotal.\n4. Populate the 'invoice_total' field with the calculated total.",
+            "vendor_name": "Katz Communications",
+            "vendor_address": "125 W. 55th St., New York, New York 10019",
+            "invoice_total": "$187,341.70",
+            "date_issue": "1/8/2020 4:20:26 PM EST"
+        }
+    },
+    {
+        "doc_id": "d8a3d1f3e96d4ee98c3b2397",
+        "ground_truth": {
+            "vendor_name": "JOE C. DANIELS Joe C. Danicls",
+            "vendor_address": "JOE C. DANIELS\n3408 Long Lake Dr. S.E.\nLacey, Washington 98503 Joe C. Daniels\n3408 Long Lake Drive S.E.\nLacey, Washington 98503-4050",
+            "amount_total_gross": "$2,750.00",
+            "date_issue": "January 28, 1999"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total from this document, I will follow these steps: \n\n1. Identify the subtotal or base amount of the invoice.\n2. Determine if there are any additional charges or fees that need to be added to the subtotal.\n3. Calculate the tax amount based on the provided information.\n4. Add the tax amount to the subtotal to get the total.\n5. Verify that the calculated total matches the value provided in the document.",
+            "vendor_name": "Tobacco Industry Labor Management Committee",
+            "vendor_address": "3408 Long Lake Drive S.E., Lacey, Washington 98503-4050",
+            "invoice_total": "$2,750.00",
+            "date_issue": "January 28, 1999"
+        }
+    },
+    {
+        "doc_id": "d9fe9accad084cadaf361ec4",
+        "ground_truth": {
+            "vendor_name": "Sinclair Broadcast Group Inc Sinclair Broadcast Group",
+            "vendor_address": "Sinclair Broadcast Group Inc\nC/O WLOS\nPO BOX 206270\nDALLAS TX 75320-6270 Sinclair Broadcast Group\nc/o WLOS\nPO Box 206270\nDallas TX 75320-6270",
+            "amount_total_gross": "$2,847.50",
+            "date_issue": "2/16/2020"
+        },
+        "predicted": {
+            "reasoning_process": "To extract the invoice total, I will follow these steps: \n\n1. Identify all line items with their respective amounts.\n2. Calculate the subtotal by adding up all the line item amounts.\n3. Add the commission to the subtotal to get the gross total.\n4. Since there is no sales tax, the net total and invoice total will be the same.",
+            "vendor_name": "Sinclair Broadcast Group Inc",
+            "vendor_address": "C/O WLOS\nPO BOX 206270\nDALLAS TX 75320-6270",
+            "invoice_total": "$2,847.50",
+            "date_issue": "2/16/2020"
         }
     }
 ]

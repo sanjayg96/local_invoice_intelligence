@@ -54,7 +54,7 @@ def main():
     results_log = []
     
     # Running a batch of 50 to test the pipeline and cooldown logic
-    test_subset = subset_ids[:50]
+    test_subset = subset_ids[:100]
     
     # Initialize the executor OUTSIDE the loop
     executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)

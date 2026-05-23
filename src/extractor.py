@@ -70,8 +70,12 @@ def run_2_step_extraction(images, schema):
         
     # STEP 2: The Brain (LLM)
     system_prompt = (
-        "You are an expert data extraction AI. You will be provided with the raw OCR markdown "
-        "text extracted from an invoice. Analyze the text and extract the required fields into the JSON schema."
+        "You are an expert financial data extraction AI. You will be provided with raw OCR markdown "
+        "text extracted from an invoice. \n\n"
+        "CRITICAL INSTRUCTION FOR `reasoning_process`: This field is your personal scratchpad. "
+        "DO NOT copy text from the invoice for this field. Instead, use this field to write out YOUR OWN internal "
+        "step-by-step logic. Find the subtotal, find the tax, find the total, and explain your math BEFORE "
+        "populating the final `invoice_total` field."
     )
     
     llm_response = ollama.chat(
