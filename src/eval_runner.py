@@ -1,9 +1,6 @@
 import os
 import json
 import concurrent.futures
-import base64
-import fitz  # PyMuPDF
-import ollama
 import time
 from tqdm import tqdm
 from docile.dataset import Dataset
@@ -12,7 +9,8 @@ from config import (
     DOCILE_DATASET_PATH, 
     SUBSET_JSON_PATH, 
     EVAL_RESULTS_PATH, 
-    MODEL_NAME, 
+    VISION_MODEL,
+    TEXT_MODEL,
     ENABLE_THINKING,
     THERMAL_COOLDOWN_SECONDS,
     THERMAL_COOLDOWN_BATCH_SIZE,
@@ -20,20 +18,9 @@ from config import (
 )
 from schema import InvoiceExtractionBase, InvoiceExtractionWithReasoning
 
-def pdf_to_base64_image(pdf_path: str, max_dimension: int = 1024) -> str:
-    """Converts the first page of a PDF into a base64 encoded JPEG, scaling large files down."""
-    doc = fitz.open(pdf_path)
-    page = doc.load_page(0) 
-    
-    # Calculate scaling matrix to cap the longest edge
-    rect = page.rect
-    scale = min(1.0, max_dimension / max(rect.width, rect.height))
-    mat = fitz.Matrix(scale, scale)
-    
-    pix = page.get_pixmap(matrix=mat)
-    img_bytes = pix.tobytes("jpeg")
-    doc.close()
-    return base64.b64encode(img_bytes).decode('utf-8')
+# Import our decoupled extraction engine
+from extractor import pdf_to_base64_images, run_2_step_extraction
+
 
 def extract_ground_truth(doc) -> dict:
     """Extracts the text values for our specific target fields from DocILE."""
@@ -49,26 +36,6 @@ def extract_ground_truth(doc) -> dict:
     return gt_data
 
 
-def call_ollama(model_name, system_prompt, b64_image, schema):
-    """Wrapper function to execute the API call."""
-    return ollama.chat(
-        model=model_name,
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {
-                "role": "user",
-                "content": "Extract the vendor name, vendor address, total gross amount, and issue date.",
-                "images": [b64_image]
-            }
-        ],
-        format=schema.model_json_schema(), 
-        options={
-            "temperature": 0.0, 
-            "num_ctx": 8192
-        }
-    )
-
-
 def main():
     print(f"Loading DocILE dataset from {DOCILE_DATASET_PATH}...")
     dataset = Dataset("val", DOCILE_DATASET_PATH)
@@ -80,17 +47,16 @@ def main():
     
     # Dynamically select schema based on the config toggle
     ActiveSchema = InvoiceExtractionWithReasoning if ENABLE_THINKING else InvoiceExtractionBase
+    print(f"2-Step Pipeline: {VISION_MODEL} -> {TEXT_MODEL}")
     print(f"Thinking Mode: {'ON' if ENABLE_THINKING else 'OFF'}")
     print(f"Thermal Cooldown: {THERMAL_COOLDOWN_SECONDS}s per batch of {THERMAL_COOLDOWN_BATCH_SIZE} documents\n")
     
     results_log = []
     
-    # Running a batch of 5 to test the pipeline and cooldown logic
-    test_subset = subset_ids[:50]
-    # test_subset = subset_ids
+    # Running a batch of 50 to test the pipeline and cooldown logic
+    test_subset = subset_ids[:100]
     
     # Initialize the executor OUTSIDE the loop
-    # We keep a pool of workers available so we don't block on cleanup
     executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
     
     for idx, doc_id in enumerate(tqdm(test_subset, desc="Processing Invoices")):
@@ -98,35 +64,34 @@ def main():
         ground_truth = extract_ground_truth(doc)
         
         pdf_path = os.path.join(DOCILE_DATASET_PATH, "pdfs", f"{doc_id}.pdf")
-        b64_image = pdf_to_base64_image(pdf_path)
         
-        system_prompt = "You are a precise data extraction AI. Extract the requested fields from this document image."
+        # 1. Image Conversion
+        images = pdf_to_base64_images(pdf_path)
         
         try:
-            # Submit to our persistent thread pool
-            future = executor.submit(call_ollama, MODEL_NAME, system_prompt, b64_image, ActiveSchema)
+            # 2. Multi-Step Extraction
+            future = executor.submit(run_2_step_extraction, images, ActiveSchema)
             
-            # The strict 120-second watchdog
+            # The strict watchdog using your custom timeout parameter
             response = future.result(timeout=MODEL_TIMEOUT_SECONDS)
             predicted_data = json.loads(response['message']['content'])
             
         except concurrent.futures.TimeoutError:
             print(f"\n[TIMEOUT] Document {doc_id} permanently stalled. Abandoning thread.")
-            predicted_data = {"error": f"Timeout - VLM locked up within {MODEL_TIMEOUT_SECONDS} seconds"}
-            # Notice we do NOT shut down the executor here. We just let the dead thread hang 
-            # in the background and use one of our other max_workers for the next document.
+            predicted_data = {"error": f"Timeout - Pipeline locked up within {MODEL_TIMEOUT_SECONDS} seconds"}
             
         except Exception as e:
             print(f"\n[ERROR] Processing {doc_id}: {e}")
             predicted_data = {"error": str(e)}
 
+        # 3. Log Results
         results_log.append({
             "doc_id": doc_id,
             "ground_truth": ground_truth,
             "predicted": predicted_data
         })
         
-        # Apply thermal cooldown, skipping the sleep after the final document
+        # 4. Apply custom thermal cooldown
         if (idx + 1) % THERMAL_COOLDOWN_BATCH_SIZE == 0 and idx < len(test_subset) - 1:
             print(f"\n[Thermal Control] Cooling down for {THERMAL_COOLDOWN_SECONDS}s...")
             time.sleep(THERMAL_COOLDOWN_SECONDS)
@@ -134,7 +99,7 @@ def main():
     with open(EVAL_RESULTS_PATH, "w") as f:
         json.dump(results_log, f, indent=4)
         
-    print(f"\n✅ Evaluation complete. Results saved to {EVAL_RESULTS_PATH}")
+    print(f"\n✅ Evaluation complete. Run `uv run python src/evaluate_metrics.py` to score.")
 
 if __name__ == "__main__":
     main()

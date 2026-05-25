@@ -42,18 +42,18 @@ The initial experiment runs a zero-shot extraction on a 50-document subset of th
   * Mathematical float comparison for amounts
   * Datetime parsing for dates
 
-### Initial Results
+### Iteration 2 results
+- with 2 step extraction with glm-ocr and llama-3.1:8b
 
 ```text
 ====== TRUE EXTRACTION ACCURACY ======
-
-vendor_name           : 68.08%
-vendor_address        : 70.14%
-amount_total_gross    : 60.00%
-date_issue            : 60.00%
-
+vendor_name           : 76.85%
+vendor_address        : 82.44%
+amount_total_gross    : 55.00%
+date_issue            : 91.00%
 ======================================
-Total average: 64.55%
+Total average: 76.32%
+======================================
 ```
 
 > Note: This is an unoptimized, single-pass baseline intended to establish a benchmark for future systemic improvements.
@@ -182,6 +182,6 @@ uv run python src/evaluate_metrics.py
 
   * VRAM context-window clamping
   * Thread timeouts
-* [ ] Implement multi-step reasoning and prompt scratchpads
+* [x] Implement multi-step reasoning and prompt scratchpads
 * [ ] Explore agentic orchestration (e.g. LangGraph) with auditor nodes to validate mathematical totals against extracted line items
 * [ ] Build a lightweight local UI for drag-and-drop batch document processing
