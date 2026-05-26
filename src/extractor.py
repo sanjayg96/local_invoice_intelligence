@@ -34,7 +34,7 @@ def extract_text_hybrid(pdf_path: str) -> str:
         
         # 2. The Validation Gate: Is this a flat scanned image?
         if len(text) < 50: 
-            print(f"  [Fallback] Page {page_num + 1} is a flat scan. Triggering OCR...")
+            # print(f"  [Fallback] Page {page_num + 1} is a flat scan. Triggering OCR...")
             
             # Use PyMuPDF to quickly render the page to an image
             page_fitz = doc_fitz.load_page(page_num)
@@ -90,7 +90,8 @@ def run_2_step_extraction(pdf_path: str, schema):
         format=schema.model_json_schema(),
         options={
             "temperature": 0.0,
-            "num_ctx": 8192 
+            "num_ctx": 8192,
+            "num_predict": 1024  # Forces the model to stop and return after 1024 tokens, preventing server lockups. 
         }
     )
     

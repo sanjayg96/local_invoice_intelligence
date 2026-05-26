@@ -13,7 +13,7 @@ EVAL_RESULTS_PATH = RESULTS_DIR / "eval_report.json"
 
 # --- VLM / LLM Settings ---
 # The "Eyes": Pure Transcription (No Q&A, No JSON formatting)
-VISION_MODEL = "llava:7b" 
+# VISION_MODEL = "llava:7b" 
 
 # The "Brain": Extracts JSON from Markdown
 TEXT_MODEL = "llama3.1:8b"
@@ -25,7 +25,7 @@ TEXT_MODEL = "llama3.1:8b"
 ENABLE_THINKING = True
 
 # Thermal control (seconds) to prevent heat saturation during full batch runs
-THERMAL_COOLDOWN_BATCH_SIZE = 10
+THERMAL_COOLDOWN_BATCH_SIZE = 20
 THERMAL_COOLDOWN_SECONDS = 60
 
 # Misc
