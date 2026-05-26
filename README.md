@@ -22,37 +22,22 @@ This repository serves as the foundational baseline and evaluation framework for
 
 ---
 
-## Current Baseline Benchmark (Zero-Shot)
-
-The initial experiment runs a zero-shot extraction on a 50-document subset of the [DocILE Dataset](https://github.com/rossumai/docile/tree/main) while enforcing strict JSON schema outputs.
-
-### Baseline Configuration
-
-* **Model:** Llama 3.2 Vision (11B) via Ollama
-* **Compute:** Unified Memory Architecture (Apple Silicon M-Series)
-* **Target Fields:**
-
-  * Vendor Name
-  * Vendor Address
-  * Total Gross Amount
-  * Issue Date
-* **Evaluation Method:**
-
-  * Fuzzy token-set matching for text
-  * Mathematical float comparison for amounts
-  * Datetime parsing for dates
-
-### Iteration 2 results
-- with 2 step extraction with glm-ocr and llama-3.1:8b
+## Iteration 3 results (3% Accuracy Jump, 50% latency reduction)
+- Two step extraction with "Hybrid Eyes" and "Brain"
+- The task was decoupled into pure perception (eyes) with digital PDFs parsed with pdfplumnber with layout=True and an image fallback if the PDF is scanned in which case PyMuPDF is used to get the image and is passed to Tesseract OCR.
+- The resulting text is passed to llama3.1:8b model to extract the fields and output the structured JSON.
+Average latency per doc when tested on 100 docs is 13s on Macbook Air M5, 24 GB memory.
 
 ```text
+Scoring 100 documents with Semantic Matching...
+
 ====== TRUE EXTRACTION ACCURACY ======
-vendor_name           : 76.85%
-vendor_address        : 82.44%
-amount_total_gross    : 55.00%
+vendor_name           : 74.93%
+vendor_address        : 79.27%
+amount_total_gross    : 72.00%
 date_issue            : 91.00%
 ======================================
-Total average: 76.32%
+Total average: 79.30%
 ======================================
 ```
 

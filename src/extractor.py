@@ -1,93 +1,96 @@
-import fitz  # PyMuPDF
-import base64
-import io
+import fitz
 import ollama
+import pytesseract
+import pdfplumber
 from PIL import Image
-from config import VISION_MODEL, TEXT_MODEL
+from config import TEXT_MODEL
 
-def pdf_to_base64_images(pdf_path: str, max_dimension: int = 1024) -> list:
-    """Converts PDF pages to JPEGs, padded to a perfect square to prevent GPU tensor crashes.
-        This was done to fix the GGML_ASSERT error: GGML_ASSERT(a->ne[2] * 4 == b->ne[0])
+# --- APPLE SILICON TESSERACT PATH ---
+pytesseract.pytesseract.tesseract_cmd = '/opt/homebrew/bin/tesseract' 
+
+def extract_text_hybrid(pdf_path: str) -> str:
     """
-    doc = fitz.open(pdf_path)
-    images = []
+    The 'Hybrid Eyes'. Uses pdfplumber for perfect 2D spatial text extraction.
+    Falls back to PyMuPDF + Tesseract OCR on a per-page basis if it's a flat scan.
+    """
+    master_text = ""
     
-    for page_num in range(len(doc)):
-        page = doc.load_page(page_num) 
+    # Open with both libraries (pdfplumber for text layout, fitz for fast image rendering)
+    doc_plumber = pdfplumber.open(pdf_path)
+    doc_fitz = fitz.open(pdf_path)
+    
+    for page_num in range(len(doc_plumber.pages)):
+        page_plumber = doc_plumber.pages[page_num]
         
-        # 1. Render the page to a high-res pixmap
-        pix = page.get_pixmap(dpi=150)
+        # 1. The Fast Path: Born-Digital Layout Extraction
+        # This is the command that pads text with spaces to match the physical layout
+        text = page_plumber.extract_text(layout=True)
         
-        # 2. Convert PyMuPDF pixmap to a Pillow Image
-        # If the PDF has an alpha channel, we convert it to standard RGB
-        mode = "RGBA" if pix.alpha else "RGB"
-        img = Image.frombytes(mode, [pix.width, pix.height], pix.samples)
-        if mode == "RGBA":
-            # Strip alpha channel and replace with white background
-            background = Image.new("RGB", img.size, (255, 255, 255))
-            background.paste(img, mask=img.split()[3])
-            img = background
+        # Clean up in case the page is completely devoid of digital text
+        if text:
+            text = text.strip()
+        else:
+            text = ""
+        
+        # 2. The Validation Gate: Is this a flat scanned image?
+        if len(text) < 50: 
+            print(f"  [Fallback] Page {page_num + 1} is a flat scan. Triggering OCR...")
             
-        # 3. Scale the image down so its longest edge matches max_dimension
-        img.thumbnail((max_dimension, max_dimension), Image.Resampling.LANCZOS)
+            # Use PyMuPDF to quickly render the page to an image
+            page_fitz = doc_fitz.load_page(page_num)
+            pix = page_fitz.get_pixmap(dpi=300)
+            mode = "RGBA" if pix.alpha else "RGB"
+            img = Image.frombytes(mode, [pix.width, pix.height], pix.samples)
+            
+            if mode == "RGBA":
+                background = Image.new("RGB", img.size, (255, 255, 255))
+                background.paste(img, mask=img.split()[3])
+                img = background
+                
+            # Run deterministic OCR (Tesseract preserves basic layout by default)
+            text = pytesseract.image_to_string(img)
         
-        # 4. Create a perfect white square canvas
-        square_canvas = Image.new('RGB', (max_dimension, max_dimension), (255, 255, 255))
-        
-        # 5. Paste the scaled invoice into the exact center of the square
-        offset_x = (max_dimension - img.width) // 2
-        offset_y = (max_dimension - img.height) // 2
-        square_canvas.paste(img, (offset_x, offset_y))
-        
-        # 6. Export to base64
-        buffer = io.BytesIO()
-        square_canvas.save(buffer, format="JPEG", quality=85)
-        images.append(base64.b64encode(buffer.getvalue()).decode('utf-8'))
-        
-    doc.close()
-    return images
-
-def run_2_step_extraction(images, schema):
-    """
-    Step 1: GLM-OCR transcribes pages to Markdown.
-    Step 2: Llama 3.1 extracts structured JSON from the Markdown.
-    """
-    combined_markdown = ""
+        master_text += f"\n--- START OF PAGE {page_num + 1} ---\n"
+        master_text += text
+        master_text += f"\n--- END OF PAGE {page_num + 1} ---\n"
+            
+    doc_plumber.close()
+    doc_fitz.close()
     
-    # STEP 1: The Eyes (Vision)
-    for idx, b64_img in enumerate(images):
-        vision_response = ollama.chat(
-            model=VISION_MODEL,
-            messages=[{
-                "role": "user",
-                "content": "Text Recognition:",
-                "images": [b64_img]
-            }],
-            options={"temperature": 0.0}
-        )
-        combined_markdown += f"\n--- PAGE {idx + 1} ---\n"
-        combined_markdown += vision_response['message']['content']
-        
-    # STEP 2: The Brain (LLM)
+    return master_text
+
+def run_2_step_extraction(pdf_path: str, schema):
+    """
+    Step 1 (Perception): Hybrid router extracts text via pdfplumber or Tesseract.
+    Step 2 (Analysis): Llama 3.1 reads the text and enforces the JSON schema.
+    """
+    
+    # 1. Extract the text securely, regardless of document origin
+    master_transcription = extract_text_hybrid(pdf_path)
+    # print(pdf_path)
+    # print(master_transcription)
+    
+    # 2. The Auditor (Llama 3.1 8B)
     system_prompt = (
-        "You are an expert financial data extraction AI. You will be provided with raw OCR markdown "
-        "text extracted from an invoice. \n\n"
-        "CRITICAL INSTRUCTION FOR `reasoning_process`: This field is your personal scratchpad. "
-        "DO NOT copy text from the invoice for this field. Instead, use this field to write out YOUR OWN internal "
-        "step-by-step logic. Find the subtotal, find the tax, find the total, and explain your math BEFORE "
-        "populating the final `invoice_total` field."
+        "You are an expert financial data auditor. You will be provided with a complete, "
+        "multi-page text extraction of an invoice. The text has been formatted to preserve "
+        "the original physical layout of the document.\n\n"
+        "CRITICAL INSTRUCTION FOR `reasoning_process`: This field is your scratchpad. "
+        "Review the entire text. Note the vendor. Verify the dates. "
+        "If there are multiple pages, find the final total (usually on the last page) "
+        "and explicitly differentiate it from line-item subtotals BEFORE populating the JSON fields."
     )
     
     llm_response = ollama.chat(
         model=TEXT_MODEL,
         messages=[
             {"role": "system", "content": system_prompt},
-            {"role": "user", "content": f"OCR DOCUMENT TEXT:\n{combined_markdown}"}
+            {"role": "user", "content": f"DOCUMENT TRANSCRIPTION:\n{master_transcription}"}
         ],
         format=schema.model_json_schema(),
         options={
             "temperature": 0.0,
-            "num_ctx": 8192
+            "num_ctx": 8192 
         }
     )
     

@@ -130,10 +130,10 @@ def main():
         scores["amount_total_gross"].append(amt_score)
 
         # # --- DIAGNOSTIC PRINT ---
-        if amt_score == 0.0:
-            print(f"❌ MISMATCH [ID: {item.get('doc_id')}]:")
-            print(f"   Ground Truth Text: '{gt.get('amount_total_gross')}'")
-            print(f"   Model Predicted:   '{pred.get('amount_total_gross')}'\n")
+        # if amt_score == 0.0:
+        #     print(f"❌ MISMATCH [ID: {item.get('doc_id')}]:")
+        #     print(f"   Ground Truth Text: '{gt.get('amount_total_gross')}'")
+        #     print(f"   Model Predicted:   '{pred.get('invoice_total')}'\n")
         
         # 3. Evaluate Dates
         date_score = compare_dates(gt.get("date_issue"), pred.get("date_issue"))
