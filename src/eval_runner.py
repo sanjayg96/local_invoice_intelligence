@@ -4,6 +4,7 @@ import concurrent.futures
 import time
 from tqdm import tqdm
 from docile.dataset import Dataset
+import traceback
 
 from config import (
     DOCILE_DATASET_PATH, 
@@ -19,7 +20,8 @@ from config import (
 from schema import InvoiceExtractionBase, InvoiceExtractionWithReasoning
 
 # Import our decoupled extraction engine
-from extractor import pdf_to_base64_images, run_2_step_extraction
+# from extractor import pdf_to_base64_images, run_2_step_extraction
+from extractor import run_2_step_extraction
 
 
 def extract_ground_truth(doc) -> dict:
@@ -66,11 +68,11 @@ def main():
         pdf_path = os.path.join(DOCILE_DATASET_PATH, "pdfs", f"{doc_id}.pdf")
         
         # 1. Image Conversion
-        images = pdf_to_base64_images(pdf_path)
+        # images = pdf_to_base64_images(pdf_path)
         
         try:
             # 2. Multi-Step Extraction
-            future = executor.submit(run_2_step_extraction, images, ActiveSchema)
+            future = executor.submit(run_2_step_extraction, pdf_path, ActiveSchema)
             
             # The strict watchdog using your custom timeout parameter
             response = future.result(timeout=MODEL_TIMEOUT_SECONDS)
@@ -81,8 +83,9 @@ def main():
             predicted_data = {"error": f"Timeout - Pipeline locked up within {MODEL_TIMEOUT_SECONDS} seconds"}
             
         except Exception as e:
-            print(f"\n[ERROR] Processing {doc_id}: {e}")
-            predicted_data = {"error": str(e)}
+            print(f"\n[ERROR] Processing {doc_id}:")
+            traceback.print_exc()  # <--- This will print the EXACT line of the crash
+            predicted_data = {"error": "Pipeline Failure"}
 
         # 3. Log Results
         results_log.append({

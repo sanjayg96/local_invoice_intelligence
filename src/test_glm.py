@@ -2,7 +2,7 @@ import ollama
 import base64
 import fitz
 
-SAMPLE_PDF_PATH = "/Users/sanja/Projects/docile/data/docile/pdfs/0a1bf0ac3db840e1be10e064.pdf"
+SAMPLE_PDF_PATH = "/Users/sanja/Projects/docile/data/docile/pdfs/3d31ea7f83bf4e18a478e568.pdf"
 
 # def image_to_base64(image_path):
 #     with open(image_path, "rb") as image_file:
@@ -32,7 +32,7 @@ response = ollama.chat(
         'role': 'user',
         # GLM-OCR requires very specific, rigid trigger prompts. 
         # "Text Recognition:" or "Table Recognition:" are the standards.
-        'content': 'Table Recognition:', 
+        'content': 'Text Recognition:', 
         'images': [image_b64]
     }]
 )

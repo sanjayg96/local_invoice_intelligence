@@ -33,7 +33,11 @@ class InvoiceExtractionWithReasoning(BaseModel):
     )
     
     date_issue: Optional[str] = Field(
-        description="The date the invoice was issued or created. Format as YYYY-MM-DD if possible."
+        description=(
+            "The date the invoice was issued or created. Format as YYYY-MM-DD if possible."
+            "CRITICAL: Output the raw date string ONLY. Do not include parentheses, "
+            "notes, explanations, or corrections."
+            )
     )
 
 # Keeping the Base class purely so your eval_runner.py imports don't break
