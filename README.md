@@ -41,8 +41,6 @@ Total average: 79.30%
 ======================================
 ```
 
-> Note: This is an unoptimized, single-pass baseline intended to establish a benchmark for future systemic improvements.
-
 ---
 
 ## Tech Stack
