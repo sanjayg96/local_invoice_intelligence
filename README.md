@@ -6,6 +6,10 @@ The core finding: on a 297-document DocILE invoice benchmark, a fully local Qwen
 
 This project is both an implementation and an experiment: how close can practical local models get to frontier API models on a real document extraction task?
 
+The more important result is this: **GPT-5.5 itself never broke 85%.** The ceiling here is more about the task and not about which model you pick. And local models are already at that ceiling.
+
+---
+
 ## Why This Matters
 
 Invoice extraction is harder than it looks. Vendor names, addresses, totals, and issue dates appear in inconsistent layouts, across multiple pages, near distracting line items, subtotals, taxes, remittance blocks, and OCR noise.
@@ -18,6 +22,8 @@ Most teams solve this by sending documents to large cloud models. That works, bu
 - and uncertainty about whether frontier models are actually much better on the specific task.
 
 This project tests that assumption directly.
+
+---
 
 ## Headline Results
 
@@ -33,7 +39,14 @@ Metrics: semantic matching tolerant of OCR artifacts, currency formatting, date 
 | `qwen3:14b` no thinking | Local Ollama | **81.76%** | 82.26% | 83.50% | 76.43% | 84.85% | ~18.3s/doc |
 | `gpt-5.5` | OpenAI API | **83.04%** | 88.60% | 87.67% | 70.71% | 85.19% | 2.57s/doc |
 
-GPT-5.5 cost **$1.96** for the full 297-document benchmark. It was faster and stronger on vendor identity fields, but the local Qwen3 14B pipeline came within **1.28 percentage points** overall and performed better on gross total extraction.
+A few things worth noting from this table:
+ 
+- GPT-5.5 is stronger on **vendor identity fields** (name, address) — likely due to its large training corpus of company names and addresses.
+- Qwen3 14B outperforms GPT-5.5 on **`amount_total_gross`** (76.43% vs 70.71%). This is the hardest field in the benchmark, and the larger model does not win here.
+- GPT-5.5 cost **$1.96** for all 297 documents (~$0.0066/doc). At 50,000 invoices/month, that is ~$330/month in extraction cost alone before any orchestration or retry logic. The local pipeline cost is $0.
+- The Qwen3 result uses `--ollama-thinking false`. Enabling thinking mode reduced accuracy and introduced JSON decode failures on this task.
+
+---
 
 ## Architecture
 
@@ -75,6 +88,8 @@ Qwen3 supports model-level thinking. The code exposes that separately from the o
 
 In testing, Qwen3 thinking mode reduced early accuracy and introduced JSON decode failures, so the best Qwen3 result uses `--ollama-thinking false`.
 
+---
+
 ## What Was Learned
 
 The frontier API model did not produce a 95%+ result on this benchmark. GPT-5.5 reached **83.04%**, while local Qwen3 14B reached **81.76%**.
@@ -85,6 +100,8 @@ That result changes the decision calculus:
 - If privacy and recurring cost matter, Qwen3 14B is surprisingly competitive.
 - The hardest remaining field is `amount_total_gross`, where even GPT-5.5 struggled.
 - Better extraction may require targeted validation, specialized total-detection logic, or selective retry rather than simply using a larger model.
+
+---
 
 ## Quick Start
 
@@ -132,6 +149,8 @@ caffeinate uv run python src/eval_runner.py --pipeline baseline --provider ollam
 uv run python src/evaluate_metrics.py --report results/eval_report_qwen3_14b_full_nothink.json
 ```
 
+---
+
 ## Running Model Comparisons
 
 ### Local Llama 3.2 3B
@@ -176,6 +195,8 @@ uv run python src/evaluate_metrics.py --report results/eval_report_openai_gpt55_
 
 The OpenAI path sends the extracted invoice transcript to the API. Use it only for benchmarking or when sending invoice text to a third party is acceptable.
 
+---
+
 ## Using the Extractor in Code
 
 The benchmark runner is the easiest entry point, but the extraction logic is also reusable from Python.
@@ -202,6 +223,8 @@ print(response["message"]["content"])
 
 For production use, wrap this call in your own service boundary and replace the benchmark-specific DocILE paths with your document source.
 
+---
+
 ## Configuration
 
 Key settings live in `src/config.py` and can be overridden with environment variables.
@@ -210,7 +233,7 @@ Key settings live in `src/config.py` and can be overridden with environment vari
 | :--- | :--- | :--- |
 | `MODEL_PROVIDER` | `ollama` or `openai` | `ollama` |
 | `TEXT_MODEL` | Default local model | `qwen3:14b` |
-| `OPENAI_MODEL` | OpenAI benchmark model | `gpt-5.2` |
+| `OPENAI_MODEL` | OpenAI benchmark model | `gpt-5.5` |
 | `OCR_BACKEND` | OCR fallback backend | `tesseract` |
 | `ENABLE_THINKING` | Pydantic scratchpad schema | `false` |
 | `OLLAMA_THINKING` | Qwen/Ollama thinking mode | `false` |
@@ -221,6 +244,8 @@ CLI flags override most model and pipeline choices:
 ```bash
 uv run python src/eval_runner.py --help
 ```
+
+---
 
 ## Evaluation Method
 
@@ -239,6 +264,8 @@ It uses semantic matching rather than exact string equality:
 
 This is stricter than eyeballing results but more realistic than exact-match scoring for noisy document extraction.
 
+---
+
 ## Next Steps
 
 1. **Baseline-plus rescue:** Revisit the validation and targeted rescue pipeline for weak fields. The next likely gain is not a larger model, but selective correction of suspicious totals, dates, or ungrounded values.
@@ -246,6 +273,8 @@ This is stricter than eyeballing results but more realistic than exact-match sco
 3. **Error analysis:** Group failures by OCR failure, prompt/context ambiguity, model hallucination, schema mismatch, and ground-truth ambiguity.
 4. **Developer API:** Wrap the extractor in a small FastAPI service for local/private invoice processing.
 5. **UI:** Build a lightweight interface for uploading PDFs, reviewing extracted fields, and correcting results.
+
+---
 
 ## Tech Stack
 
