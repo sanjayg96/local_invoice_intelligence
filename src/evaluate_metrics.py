@@ -2,6 +2,8 @@
 
 import json
 import re
+import argparse
+import statistics
 from rapidfuzz import fuzz
 from dateutil import parser as date_parser
 import warnings
@@ -24,6 +26,9 @@ def parse_first_float(text):
         
     # Clean out commas to keep numeric blocks unbroken
     cleaned = str(text).replace(",", "")
+    cleaned = re.sub(r"(?<=\d)\s+\.(?=\d{1,2}\b)", ".", cleaned)
+    cleaned = re.sub(r"(?<=\d)\s+(?=\d{2}\b)", ".", cleaned)
+    cleaned = cleaned.replace("^", "0")
     
     # Extract all numbers that have a decimal point FIRST (highly likely to be prices/totals)
     decimal_matches = re.findall(r'\d+\.\d+', cleaned)
@@ -50,8 +55,12 @@ def compare_amounts(gt, pred):
 
 def try_parse_date(token):
     """Attempts to parse an isolated string token into a datetime date object."""
+    token = str(token)
+    token = re.sub(r"(?<=\d)[Il|](?=\d)", "1", token)
+    token = re.sub(r"(?<=[A-Za-z])[Il|](?=[/-])", "1", token)
+    token = re.sub(r"(?<=\d)[oO](?=\d)", "0", token)
     try:
-        return date_parser.parse(str(token), fuzzy=True).date()
+        return date_parser.parse(token, fuzzy=True).date()
     except Exception:
         return None
 
@@ -91,8 +100,92 @@ def compare_dates(gt, pred):
                 
     return 0.0
 
+
+FIELDS = ["vendor_name", "vendor_address", "amount_total_gross", "date_issue"]
+
+
+def score_record(item):
+    gt = item.get("ground_truth", {})
+    pred = item.get("predicted", {})
+
+    scores = {}
+    for field in ["vendor_name", "vendor_address"]:
+        gt_val = normalize_text(gt.get(field))
+        pred_val = normalize_text(pred.get(field))
+        if not gt_val and not pred_val:
+            continue
+        scores[field] = fuzz.token_set_ratio(pred_val, gt_val)
+
+    pred_amount = pred.get("invoice_total") or pred.get("amount_total_gross")
+    scores["amount_total_gross"] = compare_amounts(gt.get("amount_total_gross"), pred_amount)
+    scores["date_issue"] = compare_dates(gt.get("date_issue"), pred.get("date_issue"))
+    return scores
+
+
+def summarize_scores(score_lists):
+    field_averages = {
+        field: (sum(values) / len(values) if values else None)
+        for field, values in score_lists.items()
+    }
+    populated = [value for value in field_averages.values() if value is not None]
+    return {
+        "fields": field_averages,
+        "total_average": sum(populated) / len(populated) if populated else None,
+    }
+
+
+def score_records(data):
+    score_lists = {field: [] for field in FIELDS}
+    for item in data:
+        for field, score in score_record(item).items():
+            score_lists[field].append(score)
+    return score_lists
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Score an invoice extraction report.")
+    parser.add_argument(
+        "--report",
+        default="results/eval_report.json",
+        help="Path to the eval report JSON produced by eval_runner.py.",
+    )
+    return parser.parse_args()
+
+
+def _latency_summary(data):
+    latencies = [
+        item.get("pipeline_metadata", {}).get("latency_s")
+        for item in data
+        if item.get("pipeline_metadata", {}).get("latency_s") is not None
+    ]
+    if not latencies:
+        return None
+    ordered = sorted(float(value) for value in latencies)
+    p95_index = min(len(ordered) - 1, int(len(ordered) * 0.95))
+    page_buckets = {}
+    for item in data:
+        metadata = item.get("pipeline_metadata", {})
+        pages = metadata.get("page_count")
+        latency = metadata.get("latency_s")
+        if pages is None or latency is None:
+            continue
+        page_buckets.setdefault(str(pages), []).append(float(latency))
+
+    return {
+        "count": len(ordered),
+        "avg_s": statistics.mean(ordered),
+        "p50_s": statistics.median(ordered),
+        "p95_s": ordered[p95_index],
+        "max_s": max(ordered),
+        "by_page_count": {
+            page_count: statistics.mean(values)
+            for page_count, values in sorted(page_buckets.items(), key=lambda item: int(item[0]))
+        },
+    }
+
+
 def main():
-    report_path = "results/eval_report.json"
+    args = parse_args()
+    report_path = args.report
     
     try:
         with open(report_path, "r") as f:
@@ -101,64 +194,39 @@ def main():
         print(f"Could not find {report_path}.")
         return
 
-    scores = {
-        "vendor_name": [],
-        "vendor_address": [],
-        "amount_total_gross": [],
-        "date_issue": []
-    }
+    scores = {field: [] for field in FIELDS}
 
     print(f"Scoring {len(data)} documents with Semantic Matching...\n")
 
     for item in data:
-        gt = item.get("ground_truth", {})
-        pred = item.get("predicted", {})
-        
-        # 1. Evaluate Text Fields
-        for field in ["vendor_name", "vendor_address"]:
-            gt_val = normalize_text(gt.get(field))
-            pred_val = normalize_text(pred.get(field))
-            if not gt_val and not pred_val:
-                continue 
-            score = fuzz.token_set_ratio(pred_val, gt_val)
+        for field, score in score_record(item).items():
             scores[field].append(score)
-
-        # 2. Evaluate Amounts
-        # Look for the alias first, then fall back to the old key
-        pred_amount = pred.get("invoice_total") or pred.get("amount_total_gross")
-        amt_score = compare_amounts(gt.get("amount_total_gross"), pred_amount)
-        scores["amount_total_gross"].append(amt_score)
-
-        # # --- DIAGNOSTIC PRINT ---
-        # if amt_score == 0.0:
-        #     print(f"❌ MISMATCH [ID: {item.get('doc_id')}]:")
-        #     print(f"   Ground Truth Text: '{gt.get('amount_total_gross')}'")
-        #     print(f"   Model Predicted:   '{pred.get('invoice_total')}'\n")
-        
-        # 3. Evaluate Dates
-        date_score = compare_dates(gt.get("date_issue"), pred.get("date_issue"))
-        scores["date_issue"].append(date_score)
-
-        # # --- DIAGNOSTIC PRINT ---
-        # if date_score == 0.0:
-        #     print(f"❌ MISMATCH [ID: {item.get('doc_id')}]:")
-        #     print(f"   Ground Truth Text: '{gt.get('date_issue')}'")
-        #     print(f"   Model Predicted:   '{pred.get('date_issue')}'\n")
 
     # Calculate and Print the Final Metrics
     print("====== TRUE EXTRACTION ACCURACY ======")
-    total_sum = 0
+    summary = summarize_scores(scores)
     for field, score_list in scores.items():
         if not score_list:
             print(f"{field:<22}: N/A")
             continue
-        avg_score = sum(score_list) / len(score_list)
+        avg_score = summary["fields"][field]
         print(f"{field:<22}: {avg_score:.2f}%")
-        total_sum += avg_score
         
     print("======================================")
-    print(f"Total average: {total_sum / 4:.2f}%")
+    print(f"Total average: {summary['total_average']:.2f}%")
     print("======================================")
+
+    latency = _latency_summary(data)
+    if latency:
+        print("\n====== LATENCY ======")
+        print(f"Documents             : {latency['count']}")
+        print(f"Average               : {latency['avg_s']:.2f}s")
+        print(f"P50                   : {latency['p50_s']:.2f}s")
+        print(f"P95                   : {latency['p95_s']:.2f}s")
+        print(f"Max                   : {latency['max_s']:.2f}s")
+        for page_count, avg_latency in latency["by_page_count"].items():
+            print(f"Avg for {page_count} page(s)     : {avg_latency:.2f}s")
+        print("=====================")
 
 if __name__ == "__main__":
     main()
