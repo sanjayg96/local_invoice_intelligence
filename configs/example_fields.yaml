@@ -1,0 +1,17 @@
+fields:
+  - name: vendor_name
+    description: The supplier, seller, or billing organization name visible on the document.
+    type: string
+    required: true
+  - name: invoice_number
+    description: The invoice identifier or document number, if present.
+    type: string
+    required: false
+  - name: issue_date
+    description: The date the document was issued or created.
+    type: date
+    required: false
+  - name: total_due
+    description: The final amount due, grand total, or balance payable.
+    type: money
+    required: false

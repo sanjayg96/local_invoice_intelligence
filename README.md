@@ -1,31 +1,149 @@
 # Local Invoice Intelligence
 
-A privacy-first invoice extraction benchmark and local AI pipeline for turning messy invoice PDFs into structured JSON.
+A local, private PDF extraction toolkit for turning invoices and other business documents into structured JSON or Excel.
 
-The core finding: on a 297-document DocILE invoice benchmark, a fully local Qwen3 14B pipeline reached **81.76% average extraction accuracy**, while a frontier OpenAI GPT-5.5 API baseline reached **83.04%**. The local model was only **1.28 percentage points behind**, with no API cost and no document data leaving the machine.
+Users define the fields they care about in YAML or JSON, point the tool at one PDF or a folder of PDFs, and run extraction locally through Ollama by default. Cloud APIs are optional and intended for comparison or cases where sending transcript text to a third party is acceptable.
 
-This project is both an implementation and an experiment: how close can practical local models get to frontier API models on a real document extraction task?
+The benchmark work is preserved as evidence, but it is no longer the product direction. The goal is a general document extraction system, not a DocILE-specific optimizer.
 
-The more important result is this: **GPT-5.5 itself never broke 85%.** The ceiling here is more about the task and not about which model you pick. And local models are already at that ceiling.
+## What It Does
 
----
+```mermaid
+flowchart LR
+    A["PDF or folder of PDFs"] --> B["Hybrid text/OCR transcript"]
+    B --> C["User-defined fields"]
+    C --> D["Local LLM structured JSON"]
+    D --> E["Validation metadata"]
+    E --> F["JSON / XLSX export"]
+```
 
-## Why This Matters
+- Runs locally by default with Ollama.
+- Accepts arbitrary user-defined fields with descriptions.
+- Uses `pdfplumber` layout text first and OCR fallback for scanned pages.
+- Produces JSON for one document or Excel for folders.
+- Includes metadata: source file, latency, model, warnings, and transcript size.
+- Keeps benchmark adapters separate from the product workflow.
 
-Invoice extraction is harder than it looks. Vendor names, addresses, totals, and issue dates appear in inconsistent layouts, across multiple pages, near distracting line items, subtotals, taxes, remittance blocks, and OCR noise.
+## Quick Start
 
-Most teams solve this by sending documents to large cloud models. That works, but it introduces:
+### Install
 
-- recurring API cost,
-- privacy and data residency concerns,
-- vendor dependency,
-- and uncertainty about whether frontier models are actually much better on the specific task.
+```bash
+git clone <repo-url>
+cd local_invoice_intelligence
+uv sync
+```
 
-This project tests that assumption directly.
+Install Tesseract locally, then pull a local model:
 
----
+```bash
+ollama pull qwen3:14b
+```
 
-## Headline Results
+### Define Fields
+
+Create a YAML file like `configs/example_fields.yaml`:
+
+```yaml
+fields:
+  - name: vendor_name
+    description: The supplier, seller, or billing organization name visible on the document.
+    type: string
+    required: true
+  - name: invoice_number
+    description: The invoice identifier or document number, if present.
+    type: string
+  - name: issue_date
+    description: The date the document was issued or created.
+    type: date
+  - name: total_due
+    description: The final amount due, grand total, or balance payable.
+    type: money
+```
+
+Supported `type` values are intentionally generic: `string`, `text`, `date`, `number`, `integer`, `money`, and `boolean`. Types are used for schema hints and validation metadata, not field-specific rules.
+
+### Extract One PDF
+
+```bash
+uv run lii extract-one \
+  --pdf /path/to/document.pdf \
+  --fields configs/example_fields.yaml \
+  --out results/document.json
+```
+
+### Extract a Folder to Excel
+
+```bash
+uv run lii extract-folder \
+  --input-dir /path/to/pdfs \
+  --fields configs/example_fields.yaml \
+  --out results/extractions.xlsx \
+  --artifacts-dir results/artifacts
+```
+
+The workbook has one row per PDF and one column per requested field, plus:
+
+- `source_file`
+- `latency_s`
+- `model`
+- `warnings`
+- `transcript_chars`
+
+When `--artifacts-dir` is set, the raw JSON result for each PDF is also written there.
+
+## Streamlit Demo
+
+The Streamlit app is a small portfolio/demo surface, not the main scalable interface.
+
+```bash
+uv run streamlit run app/streamlit_app.py
+```
+
+It supports PDF upload, editable field definitions, local extraction, JSON/table preview, and JSON download.
+
+## Providers
+
+Local Ollama is the default:
+
+```bash
+uv run lii extract-one --pdf invoice.pdf --fields configs/example_fields.yaml --out results/invoice.json --provider ollama --model qwen3:14b
+```
+
+OpenAI can be used explicitly:
+
+```bash
+OPENAI_API_KEY=sk-... uv run lii extract-one \
+  --pdf invoice.pdf \
+  --fields configs/example_fields.yaml \
+  --out results/invoice_openai.json \
+  --provider openai \
+  --model gpt-5.5
+```
+
+The OpenAI path sends the extracted transcript to the API. Use it only when that privacy tradeoff is acceptable.
+
+## Evaluation
+
+Evaluation accepts arbitrary field definitions. Benchmarks are adapters, not product logic.
+
+```bash
+uv run lii eval \
+  --dataset docile \
+  --dataset-root /path/to/docile \
+  --fields configs/example_fields.yaml \
+  --out results/docile_report.json
+```
+
+Current adapters:
+
+- `docile`: preserved invoice benchmark adapter.
+- `sroie`: normalized `pdfs/` plus `annotations/*.json` layout.
+- `kleister`: normalized `pdfs/` plus `annotations/*.json` layout for Kleister Charity/NDA style evaluation.
+
+See `benchmarks/` for adapter notes.
+
+## Benchmark Evidence
 
 Direct baseline pipeline: `pdfplumber`/Tesseract transcript -> one model call -> structured JSON. No rescue pass.
 
@@ -39,255 +157,37 @@ Metrics: semantic matching tolerant of OCR artifacts, currency formatting, date 
 | `qwen3:14b` no thinking | Local Ollama | **81.76%** | 82.26% | 83.50% | 76.43% | 84.85% | ~18.3s/doc |
 | `gpt-5.5` | OpenAI API | **83.04%** | 88.60% | 87.67% | 70.71% | 85.19% | 2.57s/doc |
 
-A few things worth noting from this table:
- 
-- GPT-5.5 is stronger on **vendor identity fields** (name, address) — likely due to its large training corpus of company names and addresses.
-- Qwen3 14B outperforms GPT-5.5 on **`amount_total_gross`** (76.43% vs 70.71%). This is the hardest field in the benchmark, and the larger model does not win here.
-- GPT-5.5 cost **$1.96** for all 297 documents (~$0.0066/doc). At 50,000 invoices/month, that is ~$330/month in extraction cost alone before any orchestration or retry logic. The local pipeline cost is $0.
-- The Qwen3 result uses `--ollama-thinking false`. Enabling thinking mode reduced accuracy and introduced JSON decode failures on this task.
+The current best local result is Qwen3 14B no-thinking direct baseline at **81.76%**. Baseline-plus rescue was investigated with safer gating and shadow rescue, but it did not produce meaningful lift. Those experiments are preserved for reproducibility and should not drive the product architecture.
 
----
-
-## Architecture
-
-The project deliberately separates perception from reasoning.
-
-```mermaid
-flowchart LR
-    A["Invoice PDF"] --> B["pdfplumber layout text"]
-    B --> C{"Enough digital text?"}
-    C -- "Yes" --> E["Spatial transcript"]
-    C -- "No" --> D["Tesseract OCR fallback"]
-    D --> E
-    E --> F["LLM extraction"]
-    F --> G["Pydantic JSON schema"]
-    G --> H["Semantic evaluation"]
-```
-
-### 1. Deterministic Perception
-
-The pipeline first extracts layout-preserving text using `pdfplumber(layout=True)`. This keeps columns and spatial relationships visible in plain text, which matters for invoices where the final total may be far away from its label or mixed with subtotals.
-
-For scanned or weak-text pages, it falls back to OCR. Tesseract is the default because RapidOCR did not improve the benchmark in local tests.
-
-### 2. Model-Agnostic Reasoning
-
-The same transcript and schema can be sent to:
-
-- local Ollama models such as `llama3.2:3b`, `llama3.1:8b`, and `qwen3:14b`,
-- or OpenAI's API through the Responses API with Structured Outputs.
-
-This makes comparisons fair: the model changes, but the PDF parsing, OCR fallback, schema, and scoring logic stay constant.
-
-### 3. Controlled Reasoning Experiments
-
-Qwen3 supports model-level thinking. The code exposes that separately from the older schema scratchpad:
-
-- `--ollama-thinking false|true|low|medium|high`
-- `ENABLE_THINKING=false` by default, so the Pydantic `reasoning_process` scratchpad is off for clean benchmarks.
-
-In testing, Qwen3 thinking mode reduced early accuracy and introduced JSON decode failures, so the best Qwen3 result uses `--ollama-thinking false`.
-
----
-
-## What Was Learned
-
-The frontier API model did not produce a 95%+ result on this benchmark. GPT-5.5 reached **83.04%**, while local Qwen3 14B reached **81.76%**.
-
-That result changes the decision calculus:
-
-- If the requirement is maximum speed and API use is acceptable, GPT-5.5 is attractive at 2.57s/doc.
-- If privacy and recurring cost matter, Qwen3 14B is surprisingly competitive.
-- The hardest remaining field is `amount_total_gross`, where even GPT-5.5 struggled.
-- Better extraction may require targeted validation, specialized total-detection logic, or selective retry rather than simply using a larger model.
-
----
-
-## Quick Start
-
-### Prerequisites
-
-- Python 3.12+
-- `uv`
-- Tesseract installed locally
-- Ollama for local model runs
-- DocILE dataset available locally
-
-The current config expects DocILE at:
+Reproduce the best local DocILE baseline:
 
 ```bash
-/Users/sanja/Projects/docile/data/docile
+bash benchmarks/docile/run_baseline.sh
 ```
 
-Update `DOCILE_DATASET_PATH` in `src/config.py` if your dataset lives elsewhere.
+Generated benchmark JSON files are not checked in. Download DocILE and re-run the scripts locally to verify the reported numbers.
 
-### Install
+## Repo Layout
 
-```bash
-git clone <repo-url>
-cd local_invoice_intelligence
-uv sync
+```text
+src/local_invoice_intelligence/
+  extraction/   field configs, generic extraction pipeline, validation
+  ocr/          hybrid PDF text/OCR transcript
+  models/       Ollama and optional OpenAI providers
+  batch/        folder processing
+  export/       Excel export
+  eval/         dataset adapters and field-driven scoring
+  cli.py        developer CLI
+benchmarks/
+  docile/
+  sroie/
+  kleister/
+experiments/
+  docile_baseline_results/
+configs/
+  example_fields.yaml
+app/
+  streamlit_app.py
 ```
 
-Pull a local model:
-
-```bash
-ollama pull qwen3:14b
-```
-
-Run a small local benchmark:
-
-```bash
-uv run python src/eval_runner.py --pipeline baseline --provider ollama --limit 30 --model qwen3:14b --ollama-thinking false --output results/eval_report_qwen3_14b_30.json
-uv run python src/evaluate_metrics.py --report results/eval_report_qwen3_14b_30.json
-```
-
-Run the full local benchmark:
-
-```bash
-caffeinate uv run python src/eval_runner.py --pipeline baseline --provider ollama --model qwen3:14b --ollama-thinking false --output results/eval_report_qwen3_14b_full_nothink.json
-uv run python src/evaluate_metrics.py --report results/eval_report_qwen3_14b_full_nothink.json
-```
-
----
-
-## Running Model Comparisons
-
-### Local Llama 3.2 3B
-
-```bash
-uv run python src/eval_runner.py --pipeline baseline --provider ollama --model llama3.2:3b --output results/eval_report_llama32_3b.json
-uv run python src/evaluate_metrics.py --report results/eval_report_llama32_3b.json
-```
-
-### Local Llama 3.1 8B
-
-```bash
-uv run python src/eval_runner.py --pipeline baseline --provider ollama --model llama3.1:8b --output results/eval_report_llama31_8b.json
-uv run python src/evaluate_metrics.py --report results/eval_report_llama31_8b.json
-```
-
-### Local Qwen3 14B
-
-```bash
-uv run python src/eval_runner.py --pipeline baseline --provider ollama --model qwen3:14b --ollama-thinking false --output results/eval_report_qwen3_14b.json
-uv run python src/evaluate_metrics.py --report results/eval_report_qwen3_14b.json
-```
-
-### OpenAI GPT-5.5
-
-Create `.env`:
-
-```bash
-OPENAI_API_KEY=sk-...
-MODEL_PROVIDER=openai
-OPENAI_MODEL=gpt-5.5
-OPENAI_REASONING_EFFORT=low
-OPENAI_MAX_OUTPUT_TOKENS=1024
-```
-
-Run:
-
-```bash
-uv run python src/eval_runner.py --pipeline baseline --provider openai --model gpt-5.5 --output results/eval_report_openai_gpt55_full.json
-uv run python src/evaluate_metrics.py --report results/eval_report_openai_gpt55_full.json
-```
-
-The OpenAI path sends the extracted invoice transcript to the API. Use it only for benchmarking or when sending invoice text to a third party is acceptable.
-
----
-
-## Using the Extractor in Code
-
-The benchmark runner is the easiest entry point, but the extraction logic is also reusable from Python.
-
-```python
-import sys
-
-sys.path.insert(0, "src")
-
-from extractor import run_2_step_extraction
-from schema import InvoiceExtractionBase
-
-response = run_2_step_extraction(
-    pdf_path="/path/to/invoice.pdf",
-    schema=InvoiceExtractionBase,
-    ocr_backend="tesseract",
-    model="qwen3:14b",
-    provider="ollama",
-    ollama_thinking="false",
-)
-
-print(response["message"]["content"])
-```
-
-For production use, wrap this call in your own service boundary and replace the benchmark-specific DocILE paths with your document source.
-
----
-
-## Configuration
-
-Key settings live in `src/config.py` and can be overridden with environment variables.
-
-| Setting | Purpose | Default |
-| :--- | :--- | :--- |
-| `MODEL_PROVIDER` | `ollama` or `openai` | `ollama` |
-| `TEXT_MODEL` | Default local model | `qwen3:14b` |
-| `OPENAI_MODEL` | OpenAI benchmark model | `gpt-5.5` |
-| `OCR_BACKEND` | OCR fallback backend | `tesseract` |
-| `ENABLE_THINKING` | Pydantic scratchpad schema | `false` |
-| `OLLAMA_THINKING` | Qwen/Ollama thinking mode | `false` |
-| `MODEL_TIMEOUT_SECONDS` | Per-document watchdog | `200` |
-
-CLI flags override most model and pipeline choices:
-
-```bash
-uv run python src/eval_runner.py --help
-```
-
----
-
-## Evaluation Method
-
-The scoring script compares four DocILE fields:
-
-- `vendor_name`
-- `vendor_address`
-- `amount_total_gross`
-- `date_issue`
-
-It uses semantic matching rather than exact string equality:
-
-- names and addresses use fuzzy token matching,
-- amounts normalize currency symbols, commas, and OCR spacing,
-- dates normalize common date formats and OCR confusions.
-
-This is stricter than eyeballing results but more realistic than exact-match scoring for noisy document extraction.
-
----
-
-## Next Steps
-
-1. **Baseline-plus rescue:** Revisit the validation and targeted rescue pipeline for weak fields. The next likely gain is not a larger model, but selective correction of suspicious totals, dates, or ungrounded values.
-2. **Gross total specialist:** Add deterministic candidate generation and ranking for `amount_total_gross`, since this remained hard even for GPT-5.5.
-3. **Error analysis:** Group failures by OCR failure, prompt/context ambiguity, model hallucination, schema mismatch, and ground-truth ambiguity.
-4. **Developer API:** Wrap the extractor in a small FastAPI service for local/private invoice processing.
-5. **UI:** Build a lightweight interface for uploading PDFs, reviewing extracted fields, and correcting results.
-
----
-
-## Tech Stack
-
-- Python
-- `pdfplumber` for layout-preserving text extraction
-- PyMuPDF for PDF page rendering
-- Tesseract OCR via `pytesseract`
-- Ollama for local inference
-- OpenAI Responses API for frontier-model benchmarking
-- Pydantic schemas for structured extraction
-- RapidFuzz and dateutil for evaluation
-- DocILE dataset for benchmarking
-
----
-
-Built by Sanjay as a practical benchmark for private, local document intelligence.
+Legacy DocILE experiment scripts live under `benchmarks/docile/scripts/` so the top-level package stays focused on the general toolkit.

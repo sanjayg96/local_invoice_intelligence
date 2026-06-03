@@ -114,8 +114,19 @@ def parse_args():
     parser.add_argument(
         "--provider",
         choices=["ollama", "openai"],
-        default=MODEL_PROVIDER,
-        help="Model provider. Use openai for API benchmarking or ollama for local inference.",
+        default="ollama",
+        help=(
+            "Model provider. Defaults to ollama for local inference; pass openai "
+            "explicitly for API benchmarking."
+        ),
+    )
+    parser.add_argument(
+        "--shadow-identity-rescue",
+        action="store_true",
+        help=(
+            "For baseline_plus diagnostics, run rescue on soft vendor name/address "
+            "issues without applying those candidates."
+        ),
     )
     return parser.parse_args()
 
@@ -216,6 +227,7 @@ def main():
                     rescue_model=args.rescue_model,
                     ocr_backend=args.ocr_backend,
                     ollama_thinking=args.ollama_thinking,
+                    shadow_identity_rescue=args.shadow_identity_rescue,
                 )
             else:
                 # 2. Multi-Step Extraction
@@ -302,7 +314,10 @@ def main():
     latency = _latency_summary(results_log)
     if latency:
         print(f"\nLatency summary: {latency}")
-    print(f"\n✅ Evaluation complete. Run `uv run python src/evaluate_metrics.py --report {args.output}` to score.")
+    print(
+        "\n✅ Evaluation complete. Run "
+        f"`uv run python benchmarks/docile/scripts/evaluate_metrics.py --report {args.output}` to score."
+    )
 
 if __name__ == "__main__":
     main()
