@@ -16,4 +16,15 @@ Run the best local direct baseline:
 bash benchmarks/docile/run_baseline.sh
 ```
 
+Run the blank-only 3B ensemble experiment:
+
+```bash
+bash benchmarks/docile/run_blank_ensemble.sh
+```
+
+This keeps `qwen3:14b` as the primary extractor and calls `llama3.2:3b`
+only for fields where the primary final value is blank/null. The 3B candidate
+is accepted only when it passes the existing field validation and evidence
+grounding checks.
+
 Generated result JSON files are intentionally not checked in. Re-run the scripts locally after downloading DocILE.

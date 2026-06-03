@@ -6,6 +6,6 @@ uv run python benchmarks/docile/scripts/eval_runner.py \
   --provider ollama \
   --model qwen3:14b \
   --ollama-thinking false \
-  --output results/eval_report_qwen3_14b_full_nothink.json
+  --output results/eval_report_qwen3:14b_baseline.json
 
-uv run python benchmarks/docile/scripts/evaluate_metrics.py --report results/eval_report_qwen3_14b_full_nothink.json
+uv run python benchmarks/docile/scripts/evaluate_metrics.py --report results/eval_report_qwen3_14b_baseline.json

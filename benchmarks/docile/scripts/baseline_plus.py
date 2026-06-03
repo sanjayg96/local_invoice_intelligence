@@ -11,7 +11,12 @@ import ollama
 from dateutil import parser as date_parser
 from rapidfuzz import fuzz
 
-from config import BASELINE_PLUS_PRIMARY_MODEL, BASELINE_PLUS_RESCUE_MODEL, ENABLE_THINKING
+from config import (
+    BASELINE_PLUS_PRIMARY_MODEL,
+    BASELINE_PLUS_RESCUE_MODEL,
+    BLANK_ENSEMBLE_MODEL,
+    ENABLE_THINKING,
+)
 from extractor import extract_text_hybrid
 from ollama_controls import (
     maybe_add_thinking_directive,
@@ -272,6 +277,10 @@ def should_attempt_rescue(issue: Optional[str], spec: FieldSpec) -> bool:
     return issue == "not_grounded" and spec.kind in {"money", "date"}
 
 
+def should_attempt_blank_ensemble(issue: Optional[str], spec: FieldSpec) -> bool:
+    return issue == "blank"
+
+
 def should_shadow_rescue(issue: Optional[str], spec: FieldSpec) -> bool:
     if should_attempt_rescue(issue, spec):
         return False
@@ -448,6 +457,36 @@ def rescue_replacement_decision(
     return decision
 
 
+def blank_ensemble_replacement_decision(
+    primary: dict[str, Any],
+    candidate: dict[str, Any],
+    spec: FieldSpec,
+    windows: list[dict[str, Any]],
+) -> dict[str, Any]:
+    candidate_issue = candidate.get("validation_issue")
+    candidate_value = candidate.get("value")
+    rescue_support = evidence_support_score(candidate_value, spec, windows)
+    quote_supported = rescue_quote_supports(candidate, spec)
+    decision = {
+        "accepted": False,
+        "primary_issue": primary.get("validation_issue"),
+        "candidate_issue": candidate_issue,
+        "rescue_support_score": round(rescue_support, 2),
+        "quote_supported": quote_supported,
+        "reason": "",
+    }
+    if primary.get("validation_issue") != "blank":
+        decision["reason"] = "primary_not_blank"
+    elif candidate_issue:
+        decision["reason"] = f"ensemble_candidate_invalid:{candidate_issue}"
+    elif not quote_supported:
+        decision["reason"] = "ensemble_quote_does_not_support_value"
+    else:
+        decision["accepted"] = True
+        decision["reason"] = "blank_primary_filled_by_valid_ensemble_candidate"
+    return decision
+
+
 def _rescue_schema(field_names: list[str]) -> dict[str, Any]:
     result_schema = {
         "type": "object",
@@ -539,6 +578,7 @@ def extract_baseline_plus(
     ocr_backend: str | None = None,
     ollama_thinking: str | bool | None = None,
     shadow_identity_rescue: bool = False,
+    blank_only_ensemble: bool = False,
 ) -> dict[str, Any]:
     started = time.perf_counter()
     specs = resolve_specs(fields)
@@ -568,7 +608,12 @@ def extract_baseline_plus(
         field_results[field_name] = record
         if record["validation_issue"]:
             weak_fields.append(field_name)
-            if should_attempt_rescue(record["validation_issue"], spec):
+            if blank_only_ensemble:
+                if should_attempt_blank_ensemble(record["validation_issue"], spec):
+                    rescue_fields.append(field_name)
+                else:
+                    record["rescue_skipped_reason"] = "blank_ensemble_only"
+            elif should_attempt_rescue(record["validation_issue"], spec):
                 rescue_fields.append(field_name)
             elif shadow_identity_rescue and should_shadow_rescue(record["validation_issue"], spec):
                 shadow_fields.append(field_name)
@@ -613,12 +658,20 @@ def extract_baseline_plus(
                     page=raw.get("page"),
                 )
                 candidate["weakness_level"] = weakness_level(candidate["validation_issue"])
-                decision = rescue_replacement_decision(
-                    field_results[field_name],
-                    candidate,
-                    spec,
-                    windows_by_field.get(field_name, []),
-                )
+                if blank_only_ensemble:
+                    decision = blank_ensemble_replacement_decision(
+                        field_results[field_name],
+                        candidate,
+                        spec,
+                        windows_by_field.get(field_name, []),
+                    )
+                else:
+                    decision = rescue_replacement_decision(
+                        field_results[field_name],
+                        candidate,
+                        spec,
+                        windows_by_field.get(field_name, []),
+                    )
                 if field_name in shadow_fields:
                     decision = {**decision, "shadow_only": True}
                     shadow_decisions[field_name] = decision
@@ -652,10 +705,37 @@ def extract_baseline_plus(
             "rescue_decisions": rescue_decisions,
             "shadow_decisions": shadow_decisions,
             "shadow_identity_rescue": shadow_identity_rescue,
+            "blank_only_ensemble": blank_only_ensemble,
             "warnings": warnings,
             "transcript_chars": len(transcription),
         },
     }
+
+
+def extract_blank_ensemble(
+    pdf_path: str,
+    fields: Optional[list[str | FieldSpec]] = None,
+    primary_model: str = BASELINE_PLUS_PRIMARY_MODEL,
+    ensemble_model: str = BLANK_ENSEMBLE_MODEL,
+    ocr_backend: str | None = None,
+    ollama_thinking: str | bool | None = None,
+) -> dict[str, Any]:
+    result = extract_baseline_plus(
+        pdf_path=pdf_path,
+        fields=fields,
+        primary_model=primary_model,
+        rescue_model=ensemble_model,
+        ocr_backend=ocr_backend,
+        ollama_thinking=ollama_thinking,
+        shadow_identity_rescue=False,
+        blank_only_ensemble=True,
+    )
+    result["metadata"]["pipeline"] = "blank_ensemble"
+    result["metadata"]["models"] = {
+        "primary": primary_model,
+        "blank_ensemble": ensemble_model if result["metadata"].get("rescue_fields") else None,
+    }
+    return result
 
 
 def flatten_baseline_plus_result(result: dict[str, Any]) -> dict[str, Any]:
