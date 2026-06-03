@@ -21,6 +21,7 @@ from config import (
     OCR_BACKEND,
     BASELINE_PLUS_PRIMARY_MODEL,
     BASELINE_PLUS_RESCUE_MODEL,
+    BLANK_ENSEMBLE_MODEL,
     MODEL_PROVIDER,
     OPENAI_MODEL,
     OLLAMA_THINKING,
@@ -32,7 +33,7 @@ from evaluate_metrics import FIELDS, score_record, summarize_scores
 # Import our decoupled extraction engine
 # from extractor import pdf_to_base64_images, run_2_step_extraction
 from extractor import run_2_step_extraction
-from baseline_plus import extract_baseline_plus, flatten_baseline_plus_result
+from baseline_plus import extract_baseline_plus, extract_blank_ensemble, flatten_baseline_plus_result
 
 
 DEFAULT_FIELDS = ["vendor_name", "vendor_address", "amount_total_gross", "date_issue"]
@@ -56,9 +57,13 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Run invoice extraction evaluation.")
     parser.add_argument(
         "--pipeline",
-        choices=["baseline_plus", "baseline"],
+        choices=["baseline_plus", "blank_ensemble", "baseline"],
         default=PIPELINE_MODE,
-        help="Extraction pipeline to run. Use baseline_plus for validation/rescue or baseline for comparison.",
+        help=(
+            "Extraction pipeline to run. Use baseline for direct extraction, "
+            "blank_ensemble for 3B retries on blank primary fields only, or "
+            "baseline_plus for broader validation/rescue."
+        ),
     )
     parser.add_argument(
         "--limit",
@@ -106,6 +111,11 @@ def parse_args():
         help="Ollama model for baseline_plus rescue extraction.",
     )
     parser.add_argument(
+        "--blank-ensemble-model",
+        default=BLANK_ENSEMBLE_MODEL,
+        help="Ollama model used by blank_ensemble to retry only blank/null primary fields.",
+    )
+    parser.add_argument(
         "--ollama-thinking",
         choices=["auto", "false", "true", "low", "medium", "high"],
         default=OLLAMA_THINKING,
@@ -114,8 +124,19 @@ def parse_args():
     parser.add_argument(
         "--provider",
         choices=["ollama", "openai"],
-        default=MODEL_PROVIDER,
-        help="Model provider. Use openai for API benchmarking or ollama for local inference.",
+        default="ollama",
+        help=(
+            "Model provider. Defaults to ollama for local inference; pass openai "
+            "explicitly for API benchmarking."
+        ),
+    )
+    parser.add_argument(
+        "--shadow-identity-rescue",
+        action="store_true",
+        help=(
+            "For baseline_plus diagnostics, run rescue on soft vendor name/address "
+            "issues without applying those candidates."
+        ),
     )
     return parser.parse_args()
 
@@ -174,8 +195,11 @@ def main():
     if args.pipeline == "baseline_plus":
         print("Baseline-plus extraction: full-transcript baseline + validation + targeted rescue")
         print(f"Models: primary={args.model}, rescue={args.rescue_model}")
+    elif args.pipeline == "blank_ensemble":
+        print("Blank ensemble extraction: Qwen primary + 3B field-only retries for blank/null fields")
+        print(f"Models: primary={args.model}, blank_ensemble={args.blank_ensemble_model}")
     else:
-        print(f"2-Step Pipeline: {VISION_MODEL} -> {args.model}")
+        print(f"2-Step Pipeline: {args.model}")
     print(f"Provider: {args.provider}")
     print(f"OCR Backend: {args.ocr_backend}")
     print(f"Schema Scratchpad: {'ON' if ENABLE_THINKING else 'OFF'}")
@@ -216,6 +240,17 @@ def main():
                     rescue_model=args.rescue_model,
                     ocr_backend=args.ocr_backend,
                     ollama_thinking=args.ollama_thinking,
+                    shadow_identity_rescue=args.shadow_identity_rescue,
+                )
+            elif args.pipeline == "blank_ensemble":
+                future = executor.submit(
+                    extract_blank_ensemble,
+                    pdf_path,
+                    DEFAULT_FIELDS,
+                    primary_model=args.model,
+                    ensemble_model=args.blank_ensemble_model,
+                    ocr_backend=args.ocr_backend,
+                    ollama_thinking=args.ollama_thinking,
                 )
             else:
                 # 2. Multi-Step Extraction
@@ -232,7 +267,7 @@ def main():
             # The strict watchdog using your custom timeout parameter
             response = future.result(timeout=MODEL_TIMEOUT_SECONDS)
             processing_latency_s = time.perf_counter() - processing_started
-            if args.pipeline == "baseline_plus":
+            if args.pipeline in {"baseline_plus", "blank_ensemble"}:
                 pipeline_result = response
                 predicted_data = flatten_baseline_plus_result(pipeline_result)
             else:
@@ -302,7 +337,10 @@ def main():
     latency = _latency_summary(results_log)
     if latency:
         print(f"\nLatency summary: {latency}")
-    print(f"\n✅ Evaluation complete. Run `uv run python src/evaluate_metrics.py --report {args.output}` to score.")
+    print(
+        "\n✅ Evaluation complete. Run "
+        f"`uv run python benchmarks/docile/scripts/evaluate_metrics.py --report {args.output}` to score."
+    )
 
 if __name__ == "__main__":
     main()

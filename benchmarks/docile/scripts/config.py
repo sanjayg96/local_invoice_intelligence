@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Paths
-BASE_DIR = Path(__file__).parent.parent
+BASE_DIR = Path(__file__).resolve().parents[3]
 DATA_DIR = BASE_DIR / "data"
 RESULTS_DIR = BASE_DIR / "results"
 
@@ -34,11 +34,14 @@ OPENAI_MAX_OUTPUT_TOKENS = int(os.getenv("OPENAI_MAX_OUTPUT_TOKENS", "1024"))
 OPENAI_REASONING_EFFORT = os.getenv("OPENAI_REASONING_EFFORT", "low").lower()
 
 # --- Baseline-plus extraction settings ---
-# pipeline mode: "baseline_plus" for original full-transcript extraction plus
-# validation and targeted rescue, or "baseline" for the original extraction only.
+# pipeline mode:
+# - "baseline" for original full-transcript extraction only.
+# - "baseline_plus" for validation and broader targeted rescue.
+# - "blank_ensemble" for Qwen primary plus a 3B field-only retry for blank values.
 PIPELINE_MODE = "baseline"
 BASELINE_PLUS_PRIMARY_MODEL = os.getenv("BASELINE_PLUS_PRIMARY_MODEL", TEXT_MODEL)
 BASELINE_PLUS_RESCUE_MODEL = os.getenv("BASELINE_PLUS_RESCUE_MODEL", TEXT_MODEL)
+BLANK_ENSEMBLE_MODEL = os.getenv("BLANK_ENSEMBLE_MODEL", "llama3.2:3b")
 
 # OCR fallback used only for pages where pdfplumber finds very little digital text.
 # Options: "tesseract" or "rapidocr".
