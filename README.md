@@ -2,6 +2,10 @@
 
 A local, private PDF extraction toolkit for turning invoices and other business documents into structured JSON or Excel.
 
+This project started as a serious local-vs-frontier-model extraction study and produced a strong practical result: a fully local `qwen3:14b` no-thinking baseline reached **81.76% average accuracy** on 297 DocILE validation invoices, landing only **1.28 percentage points behind GPT-5.5** at **83.04%**. The work included benchmark design, hybrid PDF/OCR transcription, structured-output prompting, semantic scoring, latency/cost comparison, and baseline-plus rescue experiments.
+
+The key takeaway: local models are already close enough to frontier API performance for many private document extraction workflows. This repo now turns that research into a usable local toolkit while preserving the benchmark path as evidence.
+
 Users define the fields they care about in YAML or JSON, point the tool at one PDF or a folder of PDFs, and run extraction locally through Ollama by default. Cloud APIs are optional and intended for comparison or cases where sending transcript text to a third party is acceptable.
 
 The benchmark work is preserved as evidence, but it is no longer the product direction. The goal is a general document extraction system, not a DocILE-specific optimizer.
